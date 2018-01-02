@@ -25,12 +25,19 @@ public class Question {
 	@Column(length=150, nullable=false)
 	private String question;
 	
+<<<<<<< HEAD
 
 	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST,mappedBy="question")
 	private List <Reponse> reponses;
 	
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
+=======
+	@OneToMany(mappedBy="question")
+	private List <Reponse> reponses;
+	
+	@ManyToOne
+>>>>>>> 0ba90beff02ed30e4fe03c010e4adf2215cb1f6e
 	private Questionnaire questionnaire;
 
 	public Question () {}

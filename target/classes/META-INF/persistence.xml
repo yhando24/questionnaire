@@ -10,16 +10,16 @@
 		 <class>fr.nouas.beans.Reponse</class>
 		 <class>fr.nouas.beans.Category</class>
 		<properties>
-			<!-- <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/hibernate"/>
-			<property name="javax.persistence.jdbc.user" value="root"/>
-			<property name="javax.persistence.jdbc.password" value=""/> -->
+			
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.connection.datasource" value="java:comp/env/jdbc/questionnaire"/>	
 			<!-- ne pas utiliser en prod -->
+<<<<<<< HEAD
 			 <property name="hibernate.hbm2ddl.auto" value="create"/> 
+=======
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+>>>>>>> 0ba90beff02ed30e4fe03c010e4adf2215cb1f6e
 			<property name="hibernate.show_sql" value="true"/>
 		</properties>
 	
