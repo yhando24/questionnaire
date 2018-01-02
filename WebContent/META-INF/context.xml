@@ -3,8 +3,8 @@
 <Resource
       	name="jdbc/Nouas"
         type="javax.sql.DataSource"
-		username="root"
-		password=""
+		username="drius759"
+		password="potter759"
 		driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/nouas"              
 		maxTotal="100"
