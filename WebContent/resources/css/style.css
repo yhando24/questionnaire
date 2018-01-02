@@ -1,0 +1,9 @@
+body {
+	
+}
+span {
+	display:inline-block;
+	border-radius:10em;
+	width:1em;
+	height:1em;	
+}
