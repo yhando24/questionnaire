@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Question {
 
-	// bonjour
+	// bonjour question
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
