@@ -24,6 +24,68 @@ public class Category {
 	private List <Questionnaire> questionnaires;
 	
 	@Column(length=90, nullable=true, unique=true)
-	private String couleur;
+	private String color;
 
+	@Column(length=90, nullable=true)
+	private String description;
+	
+	public Category () {};
+	
+	public Category(int id, String name, List<Questionnaire> questionnaires, String color, String description) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.questionnaires = questionnaires;
+		this.color = color;
+		this.description = description;
+	}
+	
+	public Category(String name, List<Questionnaire> questionnaires, String color, String description) {
+		super();
+		this.name = name;
+		this.questionnaires = questionnaires;
+		this.color = color;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<Questionnaire> getQuestionnaires() {
+		return questionnaires;
+	}
+
+	public void setQuestionnaires(List<Questionnaire> questionnaires) {
+		this.questionnaires = questionnaires;
+	}
+	
+	public void addQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaires.add(questionnaire);
+	}
+	
+	public String getColor() {
+		return color;
+	}
+
+	public void setCoolor(String color) {
+		this.color = color;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }

@@ -2,8 +2,10 @@ package fr.nouas.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,12 +25,12 @@ public class Question {
 	@Column(length=150, nullable=false)
 	private String question;
 	
-	@Column(nullable=false)
-	@OneToMany(mappedBy="question")
+
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST,mappedBy="question")
 	private List <Reponse> reponses;
 	
-	@Column (nullable = true)
-	@ManyToOne
+	
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Questionnaire questionnaire;
 
 	public Question () {}

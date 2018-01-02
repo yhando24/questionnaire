@@ -2,8 +2,10 @@ package fr.nouas.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,9 +20,9 @@ public class Questionnaire {
 	private int id;
 	
 	@Column(length=150, nullable=false)
-	private String nom;
+	private String name;
 
-	@OneToMany(mappedBy="questionnaire")
+	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST,mappedBy="questionnaire")
 	private List <Question> questions;
 	
 	@ManyToOne
@@ -28,17 +30,17 @@ public class Questionnaire {
 
 	public Questionnaire () {};
 	
-	public Questionnaire(int id, String nom, List<Question> questions, Category category) {
+	public Questionnaire(int id, String name, List<Question> questions, Category category) {
 		super();
 		this.id = id;
-		this.nom = nom;
+		this.name = name;
 		this.questions = questions;
 		this.category = category;
 	}
 	
 	public Questionnaire(String nom, List<Question> questions, Category category) {
 		super();
-		this.nom = nom;
+		this.name = name;
 		this.questions = questions;
 		this.category = category;
 	}
@@ -47,12 +49,12 @@ public class Questionnaire {
 		return id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getName() {
+		return name;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Question> getQuestions() {
@@ -73,4 +75,5 @@ public class Questionnaire {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
 }

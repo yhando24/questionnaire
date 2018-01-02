@@ -2,13 +2,13 @@
 <Context>
 <Valve className="org.apache.catalina.valves.rewrite.RewriteValve"/>
 <Resource
-      	name="jdbc/Nouas"
+      	name="jdbc/questionnaire"
         type="javax.sql.DataSource"
 		username="root"
 		password=""
 		driverClassName="com.mysql.jdbc.Driver"
-		url="jdbc:mysql://localhost:3306/nouas"              
-		maxTotal="100"
+		url="jdbc:mysql://localhost:3306/questionnaire"              
+		maxTotal="5"
 		maxWaitMillis="10000"
-		MaxIdle="30" />
+		MaxIdle="2" />
 </Context>
