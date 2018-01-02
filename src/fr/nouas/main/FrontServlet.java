@@ -2,8 +2,6 @@ package fr.nouas.main;
 
 import java.io.IOException;
 
-
-
 @WebServlet("/FrontServlet")
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
