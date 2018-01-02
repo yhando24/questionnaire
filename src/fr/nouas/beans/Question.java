@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 
 
@@ -22,20 +24,33 @@ public class Question {
 	private String question;
 	
 	@Column(nullable=false)
-	private List <String> reponses;
+	@OneToMany(mappedBy="question")
+	private List <Reponse> reponses;
+	
+	@Column (nullable = true)
+	@ManyToOne
+	private Questionnaire questionnaire;
 
 	public Question () {}
-	public Question(String question, List<String> reponse) {		
+
+	public Question(int id, String question, List<Reponse> reponses, Questionnaire questionnaire) {
 		super();
+		this.id = id;
 		this.question = question;
-		this.reponses = reponse;
+		this.reponses = reponses;
+		this.questionnaire = questionnaire;
 	}
 	
-	public Question(int id, String question, List<String> reponse) {
-			this.id = id;
-			this.question = question;
-			this.reponses = reponse;
-		}
+	public Question(String question, List<Reponse> reponses, Questionnaire questionnaire) {
+		super();
+		this.question = question;
+		this.reponses = reponses;
+		this.questionnaire = questionnaire;
+	}
+
+
+
+
 	public int getId() {
 		return id;
 	}
@@ -46,13 +61,13 @@ public class Question {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public List<String> getReponses() {
+	public List<Reponse> getReponses() {
 		return reponses;
 	}
-	public void setReponses(List<String> reponse) {
+	public void setReponses(List<Reponse> reponse) {
 		this.reponses = reponse;
 	}
-	public void addReponse(String reponse) {
+	public void addReponse(Reponse reponse) {
 		this.reponses.add(reponse);
 	}
 }
