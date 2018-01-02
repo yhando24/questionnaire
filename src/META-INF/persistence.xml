@@ -6,6 +6,9 @@
 		
 		<class>fr.nouas.beans.User</class>
 		 <class>fr.nouas.beans.Question</class>
+		 <class>fr.nouas.beans.Questionnaire</class>
+		 <class>fr.nouas.beans.Reponse</class>
+		 <class>fr.nouas.beans.Category</class>
 		<properties>
 			<!-- <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
