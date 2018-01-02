@@ -23,11 +23,9 @@ public class Question {
 	@Column(length=150, nullable=false)
 	private String question;
 	
-	@Column(nullable=false)
 	@OneToMany(mappedBy="question")
 	private List <Reponse> reponses;
 	
-	@Column (nullable = true)
 	@ManyToOne
 	private Questionnaire questionnaire;
 

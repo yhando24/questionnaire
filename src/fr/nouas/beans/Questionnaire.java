@@ -2,6 +2,7 @@ package fr.nouas.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,9 +22,9 @@ public class Questionnaire {
 	private String nom;
 
 	@OneToMany(mappedBy="questionnaire")
-	private List <Question> questions;
+	private List<Question> questions;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Category category;
 
 	public Questionnaire () {};
@@ -60,7 +61,7 @@ public class Questionnaire {
 	}
 
 	public void setQuestions(List<Question> questions) {
-		questions = questions;
+		this.questions = questions;
 	}
 	public void addQuestion(Question question) {
 		this.questions.add(question);

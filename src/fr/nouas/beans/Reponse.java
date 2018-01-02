@@ -18,12 +18,18 @@ private int id;
 private String reponse;
 
 
-private boolean exacte; 
+private boolean correct; 
 
 @ManyToOne
-private int idUser;
-@ManyToOne
 private Question question;
+
+public boolean isCorrect() {
+	return correct;
+}
+
+public void setCorrect(boolean correct) {
+	this.correct = correct;
+}
 
 
 }

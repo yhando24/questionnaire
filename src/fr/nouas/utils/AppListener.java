@@ -29,7 +29,7 @@ public class AppListener implements ServletContextListener {
 		System.out.println("application ouverte");
 		
 		// creation de lentity manager factory au lancement de lapplication
-		 emf = Persistence.createEntityManagerFactory("LibraryHibernate"); 
+		 emf = Persistence.createEntityManagerFactory("questionnaire"); 
 		
 		
 	}
