@@ -22,13 +22,10 @@ public class Questionnaire {
 	@Column(length=150, nullable=false)
 	private String name;
 
-<<<<<<< HEAD
+
 	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST,mappedBy="questionnaire")
 	private List <Question> questions;
-=======
-	@OneToMany(mappedBy="questionnaire")
-	private List<Question> questions;
->>>>>>> 0ba90beff02ed30e4fe03c010e4adf2215cb1f6e
+
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Category category;

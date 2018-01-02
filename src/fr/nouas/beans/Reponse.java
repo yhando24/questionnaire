@@ -20,7 +20,7 @@ private String reponse;
 //@ManyToOne
 //private int idUser;
 
-<<<<<<< HEAD
+
 
 private boolean correct; 
 
@@ -68,20 +68,6 @@ public void setQuestion(Question question) {
 	this.question = question;
 }
 
-=======
-private boolean correct; 
-
-@ManyToOne
-private Question question;
-
-public boolean isCorrect() {
-	return correct;
-}
-
-public void setCorrect(boolean correct) {
-	this.correct = correct;
-}
->>>>>>> 0ba90beff02ed30e4fe03c010e4adf2215cb1f6e
-
 
 }
+

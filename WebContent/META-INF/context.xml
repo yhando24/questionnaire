@@ -8,11 +8,9 @@
 		password=""
 		driverClassName="com.mysql.jdbc.Driver"
 		url="jdbc:mysql://localhost:3306/questionnaire"              
-<<<<<<< HEAD
+
 		maxTotal="5"
-=======
-		maxTotal="100"
->>>>>>> 0ba90beff02ed30e4fe03c010e4adf2215cb1f6e
+
 		maxWaitMillis="10000"
 		MaxIdle="2" />
 </Context>
