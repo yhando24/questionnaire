@@ -22,6 +22,9 @@ public class User {
 	private String password;
 	@Column(length=20, nullable=false)
 	private String role;
+
+	@Column(length=20, nullable=false)
+	private int version = 0;
 	
 	public User() {}
 	
@@ -84,6 +87,14 @@ public class User {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 	
 	

@@ -21,6 +21,9 @@ public class Questionnaire {
 	
 	@Column(length=150, nullable=false)
 	private String name;
+	
+	@Column(length=150, nullable=true)
+	private String description;
 
 
 	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST,mappedBy="questionnaire")
@@ -29,6 +32,7 @@ public class Questionnaire {
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Category category;
+	
 
 	public Questionnaire () {};
 	
@@ -40,10 +44,10 @@ public class Questionnaire {
 		this.category = category;
 	}
 	
-	public Questionnaire(String nom, List<Question> questions, Category category) {
+	public Questionnaire(String name, String description, Category category) {
 		super();
 		this.name = name;
-		this.questions = questions;
+		this.description = description;
 		this.category = category;
 	}
 
@@ -76,6 +80,14 @@ public class Questionnaire {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

@@ -25,25 +25,21 @@ public class Category {
 	
 	@Column(length=90, nullable=true, unique=true)
 	private String color;
-
-	@Column(length=90, nullable=true)
-	private String description;
 	
 	public Category () {};
 	
-	public Category(int id, String name, List<Questionnaire> questionnaires, String color, String description) {
+	public Category(int id, String name, List<Questionnaire> questionnaires, String color) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.questionnaires = questionnaires;
 		this.color = color;
-		this.description = description;
+		
 	}
 	
-	public Category(String name, List<Questionnaire> questionnaires, String color, String description) {
+	public Category(String name, String color) {
 		super();
 		this.name = name;
-		this.questionnaires = questionnaires;
 		this.color = color;
 	}
 
@@ -80,12 +76,5 @@ public class Category {
 		this.color = color;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
 	
 }

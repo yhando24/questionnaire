@@ -6,37 +6,48 @@
 <title>Questionnaire</title>
 </head>
 <body>
-<h1>Test de positionnement</h1>
-<section>
-<c:forEach items="${categories}" var="category">
+<h1>Test de positionnement</h1> 
 
-	<p><span style="background-color:${category.color}"></span> <a href='<c:url value="/${category.name}" />'>${category.name}</a></p>
 
-	<c:forEach items="${category.questionnaires}" var="questionnaire">
-		<article>
-		<h2 style="background-color:${category.color}">${category.name}</h2>
-		<h3>${questionnaire.name}</h3>
-		<p>${questionnaire.description}</p>
-		</article>
+<!-- RAJOUT DE CATEGORY -->
+
+<c:import url="/resources/fragments/addCategory.jsp"></c:import>
+
+<!-- RAJOUT DE QUESTIONNAIRE   -->
+
+<c:import url="/resources/fragments/addQuestionnaire.jsp"></c:import>
+
+
+
+
+
+	<section>
+	<c:forEach items="${categories}" var="category">
+		
+			<p><span style="background-color:${category.color}"></span> ${category.name}</p>
 	</c:forEach>
-	
-</c:forEach>
-<p>
-<span style="background-color:blue"></span> <a href='<c:url value="/mathematique" />'>Mathématique</a>
-<span style="background-color:green"></span> <a href='<c:url value="/francais" />'>Français</a>
-</p>
+		<c:forEach items="${categories}" var="category">
+		
+			<c:forEach items="${category.questionnaires}" var="questionnaire">
+				<article>
+				
+				<h2 style="background-color:${category.color}">${category.name}</h2>
+				<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+				<h3>${questionnaire.name}</h3>
+				<p>${questionnaire.description}</p></a>
+				</article>
+				<hr>
+			</c:forEach>
+			
+		</c:forEach>
 
-<article>
-	<h2 style="background-color:blue">Mathématique</h2>
-	<h3>Géométrie</h3>
-	<p>Test de géométrie générale</p>
-</article>
+	</section>
 
-<article>
-	<h2 style="background-color:green">Français</h2>
-	<h3>Conjugaison</h3>
-	<p>Test de conjugaison générale</p>
-</article>
-</section>
+
+
+
+
+
+
 </body>
 </html>

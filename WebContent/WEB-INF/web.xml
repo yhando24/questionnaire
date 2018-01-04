@@ -3,6 +3,9 @@
   <display-name>questionnaire</display-name>
   <description>Plateforme de questionnaire pour nouas</description>
   
+  
+
+  
     <jsp-config>
   	<jsp-property-group>
   		<url-pattern>*.jsp</url-pattern>

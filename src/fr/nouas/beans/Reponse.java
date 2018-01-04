@@ -17,8 +17,8 @@ private int id;
 @Column(length=150, nullable=false)
 private String reponse;
 
-//@ManyToOne
-//private int idUser;
+@ManyToOne
+private User user;
 
 
 
@@ -26,6 +26,9 @@ private boolean correct;
 
 @ManyToOne
 private Question question;
+
+@Column(length=20, nullable=false)
+private int version = 0;
 
 public Reponse() {};
 public Reponse(int id, String reponse, boolean correct, Question question) {
@@ -66,6 +69,12 @@ public Question getQuestion() {
 }
 public void setQuestion(Question question) {
 	this.question = question;
+}
+public int getVersion() {
+	return version;
+}
+public void setVersion(int version) {
+	this.version = version;
 }
 
 

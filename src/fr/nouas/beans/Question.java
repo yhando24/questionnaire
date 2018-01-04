@@ -2,10 +2,8 @@ package fr.nouas.beans;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +29,9 @@ public class Question {
 	
 	@ManyToOne
 	private Questionnaire questionnaire;
+	
+	@Column(length=20, nullable=false)
+	private int version = 0;
 
 	public Question () {}
 
@@ -54,6 +55,24 @@ public class Question {
 
 	public int getId() {
 		return id;
+	}
+
+	
+	
+	public Questionnaire getQuestionnaire() {
+		return questionnaire;
+	}
+
+	public void setQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaire = questionnaire;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public String getQuestion() {
