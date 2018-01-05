@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.nouas.main.action.AddQuestion;
 import fr.nouas.pojo.utils.ActionManager;
 
 @WebServlet(name="/FrontServlet",
@@ -45,6 +46,7 @@ public class FrontServlet extends HttpServlet {
 				switch(actionName)
 				{
 				case "questionnaire":
+				
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "AddQuestion":
@@ -68,9 +70,15 @@ public class FrontServlet extends HttpServlet {
 		
 			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
-
-			response.sendRedirect(request.getContextPath() + "/" + actionName);
-
+			System.out.println("dans le switch: " + actionName);
+			switch(actionName)
+			{
+			case "addQuestion":
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				System.out.println("dans le case addquestion");
+		
+			
+			}
 		}
 	}
 	
@@ -80,5 +88,9 @@ public class FrontServlet extends HttpServlet {
 		return uri;
 	}
 	
+	private int getQueryString(HttpServletRequest req) {
+		int QueryString = Integer.parseInt(req.getQueryString());
+		return QueryString;
+	}
 
 }

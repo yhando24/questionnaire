@@ -17,11 +17,8 @@
 			<property name="hibernate.connection.datasource" value="java:comp/env/jdbc/questionnaire"/>	
 			<!-- ne pas utiliser en prod -->
 
-<<<<<<< HEAD
 			<!--  <property name="hibernate.hbm2ddl.auto" value="create"/>  --> 
-=======
-			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
->>>>>>> 6b787836eb06eb51065f81f3c4c0793f3f69d3f9
+
 
 			<property name="hibernate.show_sql" value="false"/>
 		</properties>

@@ -16,23 +16,24 @@ import fr.nouas.utils.JpaUtil;
 
 
 public class AddQuestion extends Action {
-
+	
+	int idQuestionnaire = 0;
+	
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
 		if(request.getMethod().equals("POST")) {
 			
-			int id = Integer.parseInt(request.getParameter("questionnaire_id"));
-
+			
+			 idQuestionnaire = Integer.parseInt(request.getParameter("questionnaire"));
+		
+			
 			
 			List <Reponse> reponses = new ArrayList();
-			Reponse bonneReponse = new Reponse(
-					request.getParameter("Correct"),
-					true,
-					null);
+			
 			EntityManager em = JpaUtil.getEntityManager();
 			EntityTransaction tr = em.getTransaction();
 			
-			Questionnaire questionnaire = em.find(Questionnaire.class, id);
+			Questionnaire questionnaire = em.find(Questionnaire.class, idQuestionnaire);
 			System.out.println("je suis dans le post dadd question pour le questionnaire : " + questionnaire.getName());
 			
 //			pour les qcm faire le if
@@ -40,10 +41,15 @@ public class AddQuestion extends Action {
 				
 			System.out.println("c'est bien un QCM ! ");
 				
+			Reponse bonneReponse = new Reponse(
+					request.getParameter("correctQcm"),
+					true,
+					null);
 				
 				
 			Question question = new Question(
-					request.getParameter("question"),
+					
+					request.getParameter("questionQcm"),
 					TypeQuestion.valueOf(request.getParameter("type")),
 					bonneReponse,	
 					reponses,
@@ -53,19 +59,57 @@ public class AddQuestion extends Action {
 			
 			
 			Reponse mauvaiseReponse1 = new Reponse(
-					request.getParameter("NotCorrect"),
+					request.getParameter("notCorrectQcm1"),
 					false,
 					question);
 			reponses.add(mauvaiseReponse1);
+			
+			Reponse mauvaiseReponse2 = new Reponse(
+					request.getParameter("notCorrectQcm2"),
+					false,
+					question);
+			reponses.add(mauvaiseReponse2);
+			
+			Reponse mauvaiseReponse3 = new Reponse(
+					request.getParameter("notCorrectQcm3"),
+					false,
+					question);
+			reponses.add(mauvaiseReponse3);
+		
+			
 		
 			tr.begin();
 			em.persist(question);
 			em.persist(bonneReponse);
 			em.persist(mauvaiseReponse1);
+			em.persist(mauvaiseReponse2);
+			em.persist(mauvaiseReponse3);
 			tr.commit();
 			
-			return false;
 			}
+			if(request.getParameter("type").equals("QUESTION_SIMPLE")) {
+				
+				System.out.println("c'est bien une question simple ! ");
+					
+				Reponse bonneReponse = new Reponse(
+						request.getParameter("reponse"),
+						true,
+						null);	
+					
+				Question question = new Question(
+						request.getParameter("questionSimple"),
+						TypeQuestion.valueOf(request.getParameter("type")),
+						bonneReponse,	
+						questionnaire	
+				);
+				bonneReponse.setQuestion(question);
+						
+				tr.begin();
+				em.persist(question);
+				em.persist(bonneReponse);
+				tr.commit();
+				
+				}
 //
 //			Questionnaire questionnaire = new Questionnaire (
 //					request.getParameter("name_questionnaire"),
@@ -96,9 +140,11 @@ public class AddQuestion extends Action {
 //		
 //			
 //			
+			return false;
 		
 //		};
 }
 		return false;
 	} 
+
 }
