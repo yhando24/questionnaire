@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import fr.nouas.main.action.AddCategory;
+import fr.nouas.main.action.AddQuestion;
 import fr.nouas.main.action.AddQuestionnaire;
 import fr.nouas.main.action.HomeAction;
 import fr.nouas.main.action.ShowQuestionnaire;
@@ -28,7 +29,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	static {
 		actions = new HashMap<String, Action>(); 
 		actions.put(ACTION_HOME, new HomeAction());
-		// actions.put(ACTION_ADD_QUESTION, new AddQuestion());
+		actions.put(ACTION_ADD_QUESTION, new AddQuestion());
 		actions.put(ACTION_ADD_CATEGORY, new AddCategory());
 		actions.put(ACTION_ADD_QUESTIONNAIRE, new AddQuestionnaire());
 		actions.put(ACTION_SHOW_QUESTIONNAIRE, new ShowQuestionnaire());

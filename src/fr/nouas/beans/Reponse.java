@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Reponse {
 
@@ -20,9 +22,28 @@ private String reponse;
 @ManyToOne
 private User user;
 
+@Column(columnDefinition = "TINYINT", nullable=true)
+@Type(type = "org.hibernate.type.NumericBooleanType")
+private boolean correct;
 
 
-private boolean correct; 
+public Reponse(int id, String reponse, User user, Question question, int version) {
+	super();
+	this.id = id;
+	this.reponse = reponse;
+	this.user = user;
+	this.question = question;
+	this.version = version;
+}
+
+public Reponse(String reponse, boolean correct, Question question) {
+	super();
+	this.reponse = reponse;
+	this.correct = correct;
+
+	this.question = question;
+
+}
 
 @ManyToOne
 private Question question;
@@ -31,21 +52,7 @@ private Question question;
 private int version = 0;
 
 public Reponse() {};
-public Reponse(int id, String reponse, boolean correct, Question question) {
-	super();
-	this.id = id;
-	this.reponse = reponse;
-	this.correct = correct;
-	this.question = question;
-}
 
-public Reponse(String reponse, boolean correct, Question question) {
-	super();
-
-	this.reponse = reponse;
-	this.correct = correct;
-	this.question = question;
-}
 public int getId() {
 	return id;
 }
@@ -58,12 +65,25 @@ public String getReponse() {
 public void setReponse(String reponse) {
 	this.reponse = reponse;
 }
+
+
+
+public User getUser() {
+	return user;
+}
+
+public void setUser(User user) {
+	this.user = user;
+}
+
 public boolean isCorrect() {
 	return correct;
 }
+
 public void setCorrect(boolean correct) {
 	this.correct = correct;
 }
+
 public Question getQuestion() {
 	return question;
 }

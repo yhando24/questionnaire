@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import fr.nouas.pojo.utils.ActionManager;
 
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire"}
+		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion"}
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE_HOME = "/WEB-INF/index.jsp";
-	private static final String PAGE_QUESTIONNAIRE ="/resources/fragments/questionnaire.jsp";
+	private static final String PAGE_QUESTIONNAIRE ="/WEB-INF/questionnaire.jsp";
 	
     public FrontServlet() {}
 
@@ -37,13 +37,18 @@ public class FrontServlet extends HttpServlet {
 				case "questionnaire":
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
+				case "AddQuestion":
+					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
+					break;
 				default :
-					response.sendRedirect(request.getContextPath() + "/home");
+					response.sendRedirect(request.getContextPath() +"/home");
 				}
 			}
 		
 	}
 
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String actionName = getActionName(request);
