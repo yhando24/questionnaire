@@ -18,10 +18,9 @@
 			<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>
 			<h3>${questionnaire.name}</h3>
 			<p>${questionnaire.description}</p>
-		</article>
-		<article>
+		
 			<select name="type" id="type" form="formQuestion">
-				<option value="DEFAULT" selected>Choix type question</option>
+				<option value="DEFAULT" selected disabled>Choix type question</option>
 				<option value="QCM">QCM</option>
 				<option value="QUESTION_SIMPLE">Question Simple</option>
 			</select>

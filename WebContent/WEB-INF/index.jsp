@@ -6,33 +6,29 @@
 <title>Questionnaire</title>
 </head>
 <body>
-	<h1>Test de positionnement</h1>
-
-
+	<section id="home">
+	<aside>
 	<!-- RAJOUT DE CATEGORY -->
+	
 
-	<c:import url="/resources/fragments/addCategory.jsp"></c:import>
+	<c:import url="/resources/fragments/addCategory.jsp" /><c:import url="/resources/fragments/addQuestionnaire.jsp" />
 
 	<!-- RAJOUT DE QUESTIONNAIRE   -->
 
-	<c:import url="/resources/fragments/addQuestionnaire.jsp"></c:import>
+	
 
-
-
-
-
-	<section id="home">
+	</aside>
+	<nav>
+		<a style="background-color:rgb(75, 45, 162)" href='<c:url value="home" />'>All</a>
 		<c:forEach items="${categories}" var="category">
-
-			<p>
-				<a href='<c:url value="categorie?categorie=${category.id}" />'><span
-					style="background-color:${category.color}"></span> ${category.name}</a>
-			</p>
+				<a style="background-color:${category.color}" href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
 		</c:forEach>
-
+	</nav>
+	</section>
+	<section id="listCategorie">
+	
 		<c:choose>
 			<c:when test="${ !empty categorie}">
-			yololo
 				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
 					<article>
 						<a
@@ -61,7 +57,7 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-
+	
 
 	</section>
 

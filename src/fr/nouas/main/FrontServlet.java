@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.nouas.pojo.utils.ActionManager;
-
+		
 @WebServlet(name="/FrontServlet",
 		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie"}
 		)
@@ -72,8 +72,6 @@ public class FrontServlet extends HttpServlet {
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
 				System.out.println("dans le case addquestion");
-		
-			
 			}
 		}
 	}
