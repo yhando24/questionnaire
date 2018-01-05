@@ -28,10 +28,16 @@ public class Question {
 	@Column(length=150, nullable=false)
 	private String question;
 	
+<<<<<<< HEAD
 	@OneToOne
 	private Reponse bonneReponse;
 	
 
+=======
+	@Column(length=150, nullable=false)
+	private String reponse;
+	
+>>>>>>> 6b787836eb06eb51065f81f3c4c0793f3f69d3f9
 	@OneToMany(mappedBy="question")
 	private List <Reponse> reponses;
 	

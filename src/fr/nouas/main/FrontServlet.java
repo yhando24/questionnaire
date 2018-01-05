@@ -22,6 +22,16 @@ public class FrontServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+//		String userName = request.getParameter("userName").trim();
+//		if(userName == null || "".equals(userName)){
+//			userName = "Guest";
+//		}
+//		
+//		String greetings = "Hello " + userName;
+		
+//		response.setContentType("text/plain");
+//		response.getWriter().write("toto");
+		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
 		System.out.println("action name : " + actionName);
