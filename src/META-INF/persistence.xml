@@ -9,6 +9,7 @@
 		 <class>fr.nouas.beans.Questionnaire</class>
 		 <class>fr.nouas.beans.Reponse</class>
 		 <class>fr.nouas.beans.Category</class>
+		 
 		<properties>
 			
 			<property name="hibernate.format_sql" value="true" />
@@ -16,7 +17,9 @@
 			<property name="hibernate.connection.datasource" value="java:comp/env/jdbc/questionnaire"/>	
 			<!-- ne pas utiliser en prod -->
 
+
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
+
 
 			<property name="hibernate.show_sql" value="false"/>
 		</properties>
