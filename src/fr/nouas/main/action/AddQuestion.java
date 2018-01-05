@@ -16,13 +16,17 @@ import fr.nouas.utils.JpaUtil;
 
 
 public class AddQuestion extends Action {
-
+	
+	int idQuestionnaire = 0;
+	
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
 		if(request.getMethod().equals("POST")) {
 			
-			int id = Integer.parseInt(request.getParameter("questionnaire_id"));
-
+			
+			 idQuestionnaire = Integer.parseInt(request.getParameter("questionnaire"));
+		
+			
 			
 			List <Reponse> reponses = new ArrayList();
 			Reponse bonneReponse = new Reponse(
@@ -32,7 +36,7 @@ public class AddQuestion extends Action {
 			EntityManager em = JpaUtil.getEntityManager();
 			EntityTransaction tr = em.getTransaction();
 			
-			Questionnaire questionnaire = em.find(Questionnaire.class, id);
+			Questionnaire questionnaire = em.find(Questionnaire.class, idQuestionnaire);
 			System.out.println("je suis dans le post dadd question pour le questionnaire : " + questionnaire.getName());
 			
 //			pour les qcm faire le if
@@ -64,7 +68,6 @@ public class AddQuestion extends Action {
 			em.persist(mauvaiseReponse1);
 			tr.commit();
 			
-			return false;
 			}
 //
 //			Questionnaire questionnaire = new Questionnaire (
@@ -96,9 +99,11 @@ public class AddQuestion extends Action {
 //		
 //			
 //			
+			return false;
 		
 //		};
 }
 		return false;
 	} 
+
 }

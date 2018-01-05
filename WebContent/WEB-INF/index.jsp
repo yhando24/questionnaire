@@ -6,40 +6,62 @@
 <title>Questionnaire</title>
 </head>
 <body>
-<h1>Test de positionnement</h1> 
+	<h1>Test de positionnement</h1>
 
 
-<!-- RAJOUT DE CATEGORY -->
+	<!-- RAJOUT DE CATEGORY -->
 
-<c:import url="/resources/fragments/addCategory.jsp"></c:import>
+	<c:import url="/resources/fragments/addCategory.jsp"></c:import>
 
-<!-- RAJOUT DE QUESTIONNAIRE   -->
+	<!-- RAJOUT DE QUESTIONNAIRE   -->
 
-<c:import url="/resources/fragments/addQuestionnaire.jsp"></c:import>
-
-
+	<c:import url="/resources/fragments/addQuestionnaire.jsp"></c:import>
 
 
 
-	<section>
-	<c:forEach items="${categories}" var="category">
-		
-			<p><span style="background-color:${category.color}"></span> ${category.name}</p>
-	</c:forEach>
+
+
+	<section id="home">
 		<c:forEach items="${categories}" var="category">
-		
-			<c:forEach items="${category.questionnaires}" var="questionnaire">
-				<article>
-				
-				<h2 style="background-color:${category.color}">${category.name}</h2>
-				<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-				<h3>${questionnaire.name}</h3>
-				<p>${questionnaire.description}</p></a>
-				</article>
-				<hr>
-			</c:forEach>
-			
+
+			<p>
+				<a href='<c:url value="categorie?categorie=${category.id}" />'><span
+					style="background-color:${category.color}"></span> ${category.name}</a>
+			</p>
 		</c:forEach>
+
+		<c:choose>
+			<c:when test="${ !empty categorie}">
+			yololo
+				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
+					<article>
+						<a
+							href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+							<h2 style="background-color:${categorie.color}">${categorie.name}</h2>
+							<h3>${questionnaire.name}</h3>
+							<p>${questionnaire.description}</p>
+						</a>
+					</article>
+					<hr>
+				</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<c:forEach items="${categories}" var="category">
+					<c:forEach items="${category.questionnaires}" var="questionnaire">
+						<article>
+							<a
+								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<h2 style="background-color:${category.color}">${category.name}</h2>
+								<h3>${questionnaire.name}</h3>
+								<p>${questionnaire.description}</p>
+							</a>
+						</article>
+						<hr>
+					</c:forEach>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+
 
 	</section>
 

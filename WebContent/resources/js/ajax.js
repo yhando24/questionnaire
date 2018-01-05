@@ -5,8 +5,8 @@ $(document).ready(function() {
 	
 	$('#type').change(function() {
 	    var type = $('#type option:selected').val();
-	    var qcm = '<form action="" method="POST" id="formQcm"><input type="text" placeholder="Ajouter une question" id="question" name="question" /><input type="text" placeholder="Ajouter une reponse" name="reponse" class="reponse" /><input type="button" value="+" class="addReponse" /><input type="submit" value="envoyer" id="send"/></form>';
-	    var questionSimple = '<form action="" method="POST" id="formQuestionSimple"><input type="text" placeholder="Entrer la question" id="question" name="question" /><input type="text" placeholder="Entrer la reponse" name="reponse" class="reponse" /><input type="submit" value="envoyer" /> </form>';
+	    var qcm = '<input type="text" placeholder="Ajouter une question" name="questionQcm" form="formQuestion"/> <input type="text" name="correctQcm" placeholder="Bonne réponse" form="formQuestion" /><input type="text" name="notCorrectQcm1" placeholder="Mauvaise réponse 1" form="formQuestion"/><input type="text" name="notCorrectQcm2" placeholder="Mauvaise réponse 2" form="formQuestion"/><input type="text" name="notCorrectQcm3" placeholder="Mauvaise réponse 3" form="formQuestion"/><input type="submit" value="Ajouter question" form="formQuestion"/>';
+	    var questionSimple = '<input type="text" placeholder="Entrer la question" id="questionSimple" name="questionSimple" form="formQuestion"/><input type="text" placeholder="Entrer la reponse" name="reponse" class="reponse" form="formQuestion" /><input type="submit" value="envoyer"  form="formQuestion"/>';
 	    $.ajax({
 	        url : '/questionnaire',
 	        data: type,

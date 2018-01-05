@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.nouas.pojo.utils.ActionManager;
 
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion"}
+		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie"}
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,9 +45,7 @@ public class FrontServlet extends HttpServlet {
 				switch(actionName)
 				{
 				case "questionnaire":
-					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
-					break;
-				case "AddQuestion":
+				
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				default :
@@ -68,9 +66,15 @@ public class FrontServlet extends HttpServlet {
 		
 			response.sendRedirect(request.getContextPath() + "/home");
 		} else {
-
-			response.sendRedirect(request.getContextPath() + "/" + actionName);
-
+			System.out.println("dans le switch: " + actionName);
+			switch(actionName)
+			{
+			case "addQuestion":
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				System.out.println("dans le case addquestion");
+		
+			
+			}
 		}
 	}
 	
@@ -80,5 +84,9 @@ public class FrontServlet extends HttpServlet {
 		return uri;
 	}
 	
+	private int getQueryString(HttpServletRequest req) {
+		int QueryString = Integer.parseInt(req.getQueryString());
+		return QueryString;
+	}
 
 }
