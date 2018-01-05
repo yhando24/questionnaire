@@ -23,7 +23,9 @@ public class Question {
 	@Column(length=150, nullable=false)
 	private String question;
 	
-
+	@Column(length=150, nullable=false)
+	private String reponse;
+	
 	@OneToMany(mappedBy="question")
 	private List <Reponse> reponses;
 	

@@ -16,11 +16,21 @@ import fr.nouas.pojo.utils.ActionManager;
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE_HOME = "/WEB-INF/index.jsp";
-	private static final String PAGE_QUESTIONNAIRE ="/resources/fragments/questionnaire.jsp";
+	private static final String PAGE_QUESTIONNAIRE ="/WEB-INF/questionnaire.jsp";
 	
     public FrontServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+//		String userName = request.getParameter("userName").trim();
+//		if(userName == null || "".equals(userName)){
+//			userName = "Guest";
+//		}
+//		
+//		String greetings = "Hello " + userName;
+		
+//		response.setContentType("text/plain");
+//		response.getWriter().write("toto");
 		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);

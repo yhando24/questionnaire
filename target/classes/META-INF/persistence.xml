@@ -16,9 +16,9 @@
 			<property name="hibernate.connection.datasource" value="java:comp/env/jdbc/questionnaire"/>	
 			<!-- ne pas utiliser en prod -->
 
-			<!--  <property name="hibernate.hbm2ddl.auto" value="create"/>  -->
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
 
-			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.show_sql" value="false"/>
 		</properties>
 	
 	</persistence-unit>
