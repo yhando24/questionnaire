@@ -8,11 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.nouas.main.action.AddQuestion;
 import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie"}
+		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie", "/deleteQuestionnaire", "/editQuestionnaire"}
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

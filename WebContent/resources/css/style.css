@@ -104,3 +104,10 @@ article a {
 #pageAdmin article {
 	width: 75vw;
 }
+.edit input[type="text"], .edit select {
+	border: 0.1em solid black;
+	margin:0.5em 0;
+}
+.edit input[typer="submit"] {
+	margin-bottom: 0.5em;
+}
