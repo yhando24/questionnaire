@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
 <link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Questionnaire</title>
 </head>
@@ -38,7 +39,6 @@
 							<p>${questionnaire.description}</p>
 						</a>
 					</article>
-					<hr>
 				</c:forEach>
 			</c:when>
 			<c:otherwise>
@@ -52,7 +52,6 @@
 								<p>${questionnaire.description}</p>
 							</a>
 						</article>
-						<hr>
 					</c:forEach>
 				</c:forEach>
 			</c:otherwise>
