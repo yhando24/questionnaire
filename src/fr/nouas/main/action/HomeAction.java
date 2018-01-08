@@ -24,8 +24,7 @@ public class HomeAction extends Action {
 		List<Category> categories = q.getResultList();
 		
 		// renvoi des categories
-		request.setAttribute("categories", categories);
-	
+		request.getSession().setAttribute("categories", categories);
 		return true;
 
 	}

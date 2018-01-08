@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.nouas.main.action.AddQuestion;
 import fr.nouas.pojo.utils.ActionManager;
-
+		
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion"}
+		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie"}
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -47,9 +47,11 @@ public class FrontServlet extends HttpServlet {
 				{
 				case "questionnaire":
 				
+
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "AddQuestion":
+
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				default :
@@ -76,8 +78,7 @@ public class FrontServlet extends HttpServlet {
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
 				System.out.println("dans le case addquestion");
-		
-			
+
 			}
 		}
 	}
