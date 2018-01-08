@@ -83,16 +83,13 @@
 		<c:choose>
 			<c:when test="${ !empty categorie}">
 				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
-
 					<c:if test="${questionnaireid != questionnaire.id}">
 						<article>
-							<a
-								href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
-							<a
-								href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+							<h2 style="background-color:${categorie.color}">${categorie.name}
+							<a href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+							<a href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a></h2>
 							<a
 								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-								<h2 style="background-color:${categorie.color}">${categorie.name}</h2>
 								<h3>${questionnaire.name}</h3>
 								<p>${questionnaire.description}</p>
 							</a>
@@ -122,16 +119,16 @@
 					<c:forEach items="${category.questionnaires}" var="questionnaire">
 						<c:if test="${questionnaireid != questionnaire.id}">
 							<article>
-								<a
-									href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-									<h2 style="background-color:${category.color}">${category.name}</h2>
-									<h3>${questionnaire.name}</h3>
-									<p>${questionnaire.description}</p>
-								</a> <a
-									href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
-								<a
-									href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
-							</article>
+							<h2 style="background-color:${category.color}">${category.name}
+							<a href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+							<a href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+							</h2>
+							<a
+								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<h3>${questionnaire.name}</h3>
+								<p>${questionnaire.description}</p>
+							</a>
+						</article>
 						</c:if>
 						<c:if test="${questionnaireid == questionnaire.id}">
 							<article class="edit">
@@ -148,7 +145,6 @@
 									name="questionnaire-description" form="form-editquestionnaire" /><br />
 								<input type="submit" value="Editer"
 									form="form-editquestionnaire" />
-									${bugeditquestionnaire}
 							</article>
 						</c:if>
 					</c:forEach>

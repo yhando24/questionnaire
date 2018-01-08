@@ -12,6 +12,7 @@ import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
 
+
 		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie",
 				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/deleteQuestionnaire", "/editQuestionnaire"}
 

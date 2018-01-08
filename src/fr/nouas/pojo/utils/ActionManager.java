@@ -7,11 +7,9 @@ import fr.nouas.main.action.AddCategory;
 import fr.nouas.main.action.AddQuestion;
 import fr.nouas.main.action.AddQuestionnaire;
 import fr.nouas.main.action.DeleteCategory;
-import fr.nouas.main.action.EditCategory;
-
 import fr.nouas.main.action.DeleteQuestionnaire;
+import fr.nouas.main.action.EditCategory;
 import fr.nouas.main.action.EditQuestionnaire;
-
 import fr.nouas.main.action.HomeAction;
 import fr.nouas.main.action.LogIn;
 import fr.nouas.main.action.LogOut;

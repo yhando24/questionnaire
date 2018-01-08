@@ -43,6 +43,7 @@ aside option, aside select, aside input[type="submit"] {
 section {
 	text-align:center;
 }
+<<<<<<< HEAD
 #listCategorie {
 	display:flex;
 	flex-flow: row wrap;
@@ -70,24 +71,34 @@ section {
 #listCategorie article a {
 	color:black;
 }
+=======
+>>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
 nav {
 	margin:2em 0;
 	display:flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	align-content: flex-start;
+	align-content: flex-start;	
 	align-items:center;
 }
 nav article {
 	margin: 0.5em;
+<<<<<<< HEAD
 }
 nav article a {
 	display:block;
+=======
+	border-radius:1em;
+}
+nav article a {
+	display:inline-block;
+>>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
 	width:12vw;
 	padding:0.2em 1em;
 	font-size:1.5em;
 	font-weight: bold;
 	color: white;
+<<<<<<< HEAD
 	border-radius:1em;
 }
 nav article a:nth-child(2), nav article a:nth-child(3) {
@@ -96,6 +107,52 @@ nav article a:nth-child(2), nav article a:nth-child(3) {
 	padding:0;
 	float:right;
 	color:rgb(75, 45, 162);
+=======
+	
+>>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+}
+nav article a:nth-child(2), nav article a:nth-child(3) {
+	width:2vw;
+	margin:0;
+	margin-right:0.3em;
+	padding:0;
+}
+nav article a:nth-child(3) {
+	margin-right:0.5em;
+}
+<<<<<<< HEAD
+=======
+#listCategorie {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content:center;
+	align-content: flex-start;
+	align-items:center;
+	
+}
+#listCategorie article {
+	background-color:rgb(255, 255, 255);
+	width:20vw;
+	color:black;
+	margin:0.5em;
+	margin-bottom:5vh;
+	border-radius: 1em;
+}
+
+#listCategorie article h2 {
+	margin-top:0;
+	padding:0.2em 0;
+	color:white;
+	border-top-left-radius: 0.7em;
+	border-top-right-radius: 0.7em;
+}
+#listCategorie article h2 a {
+	float:right;
+	color:white;
+	margin-right:0.5em;
+}
+#listCategorie article a {
+	color:black;
 }
 #home article {
 	cursor:  pointer;
@@ -103,6 +160,7 @@ nav article a:nth-child(2), nav article a:nth-child(3) {
 #home a, article a {
 	text-decoration:none;
 }
+>>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
 #pageAdmin article:first-child {
 	width: 25vw;
 }
@@ -113,6 +171,11 @@ nav article a:nth-child(2), nav article a:nth-child(3) {
 	border: 0.1em solid black;
 	margin:0.5em 0;
 }
-.edit input[typer="submit"] {
+.edit input[type="submit"] {
 	margin-bottom: 0.5em;
+<<<<<<< HEAD
 }
+=======
+	
+}
+>>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
