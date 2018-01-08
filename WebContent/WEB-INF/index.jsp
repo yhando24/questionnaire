@@ -11,7 +11,7 @@
 	<aside>
 	<!-- RAJOUT DE CATEGORY -->
 <c:choose>
-<c:when test="${empty user }"> 
+<c:when test="${empty user }"> </c:when>
 
 <c:import url="/resources/fragments/login.jsp" />
 
