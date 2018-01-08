@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie", "/deleteQuestionnaire", "/editQuestionnaire"}
+
+		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", "/addQuestion", "/categorie",
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
+
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -22,15 +25,7 @@ public class FrontServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		String userName = request.getParameter("userName").trim();
-//		if(userName == null || "".equals(userName)){
-//			userName = "Guest";
-//		}
-//		
-//		String greetings = "Hello " + userName;
-		
-//		response.setContentType("text/plain");
-//		response.getWriter().write("toto");
+
 		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);

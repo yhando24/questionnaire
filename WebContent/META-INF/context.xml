@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
+
 <Valve className="org.apache.catalina.valves.rewrite.RewriteValve"/>
 <Resource
       	name="jdbc/questionnaire"
@@ -11,4 +12,5 @@
 		maxTotal="100"
 		maxWaitMillis="10000"
 		/>
+
 </Context>
