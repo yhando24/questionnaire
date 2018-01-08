@@ -12,7 +12,8 @@ import fr.nouas.main.action.AddQuestion;
 import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie"}
+		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie",
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,15 +24,7 @@ public class FrontServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-//		String userName = request.getParameter("userName").trim();
-//		if(userName == null || "".equals(userName)){
-//			userName = "Guest";
-//		}
-//		
-//		String greetings = "Hello " + userName;
-		
-//		response.setContentType("text/plain");
-//		response.getWriter().write("toto");
+
 		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);

@@ -13,33 +13,31 @@ public class User {
 	private int id;
 	
 	@Column(length=70, nullable=false)
-	private String nom;
+	private String lastname;
 	@Column(length=70, nullable=false)
-	private String prenom;
+	private String firstname;
 	@Column(length=90, nullable=false, unique=true)
 	private String email;
 	@Column(length=40, nullable=false)
 	private String password;
-	@Column(length=20, nullable=false)
+	@Column(length=20, nullable=true)
 	private String role;
 
-	@Column(length=20, nullable=false)
-	private int version = 0;
 	
 	public User() {}
 	
-	public User(String nom, String prenom, String email, String password, String role) {
-		this.nom = nom;
-		this.prenom = prenom;
+	public User(String lastname, String firstname, String email, String password) {
+		this.lastname = lastname;
+		this.firstname = firstname;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		
 	}
 	
-	public User(int id, String nom, String prenom, String email, String password, String role) {
+	public User(int id, String lastname, String firstname, String email, String password, String role) {
 		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
+		this.lastname = lastname;
+		this.firstname = firstname;
 		this.email = email;
 		this.password = password;
 		this.role = role;
@@ -49,20 +47,20 @@ public class User {
 		return id;
 	}
 
-	public String getNom() {
-		return nom;
+	public String getlastname() {
+		return lastname;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNom(String lastname) {
+		this.lastname = lastname;
 	}
 
-	public String getPrenom() {
-		return prenom;
+	public String getfirstname() {
+		return firstname;
 	}
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
+	public void setfirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getEmail() {
@@ -89,13 +87,7 @@ public class User {
 		this.role = role;
 	}
 
-	public int getVersion() {
-		return version;
-	}
 
-	public void setVersion(int version) {
-		this.version = version;
-	}
 	
 	
 }
