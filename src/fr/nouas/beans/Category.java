@@ -72,7 +72,7 @@ public class Category {
 		return color;
 	}
 
-	public void setCoolor(String color) {
+	public void setColor(String color) {
 		this.color = color;
 	}
 
