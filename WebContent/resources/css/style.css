@@ -43,48 +43,35 @@ aside option, aside select, aside input[type="submit"] {
 section {
 	text-align:center;
 }
-article {
-	background-color:rgb(255, 255, 255);
-	width:20vw;
-	color:black;
-	margin-bottom:5vh;
-	border-radius: 2.5em;
-}
-
-article h2 {
-	margin-top:0;
-	padding:0.2em 0;
-	color:white;
-	border-top-left-radius: 12em;
-	border-top-right-radius: 12em;
-}
-article a {
-	color:black;
-}
-#home nav {
+nav {
 	margin:2em 0;
 	display:flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	align-content: flex-start;
+	align-content: flex-start;	
 	align-items:center;
 }
-#home nav a {
-	display:block;
-	width:12vw;
+nav article {
 	margin: 0.5em;
+	border-radius:1em;
+}
+nav article a {
+	display:inline-block;
+	width:12vw;
 	padding:0.2em 1em;
 	font-size:1.5em;
 	font-weight: bold;
 	color: white;
-	border-radius:1em;
 	
 }
-#home article {
-	cursor:  pointer;
+nav article a:nth-child(2), nav article a:nth-child(3) {
+	width:2vw;
+	margin:0;
+	margin-right:0.3em;
+	padding:0;
 }
-#home a, article a {
-	text-decoration:none;
+nav article a:nth-child(3) {
+	margin-right:0.5em;
 }
 #listCategorie {
 	display:flex;
@@ -95,8 +82,34 @@ article a {
 	
 }
 #listCategorie article {
+	background-color:rgb(255, 255, 255);
+	width:20vw;
+	color:black;
 	margin:0.5em;
-	
+	margin-bottom:5vh;
+	border-radius: 1em;
+}
+
+#listCategorie article h2 {
+	margin-top:0;
+	padding:0.2em 0;
+	color:white;
+	border-top-left-radius: 0.7em;
+	border-top-right-radius: 0.7em;
+}
+#listCategorie article h2 a {
+	float:right;
+	color:white;
+	margin-right:0.5em;
+}
+#listCategorie article a {
+	color:black;
+}
+#home article {
+	cursor:  pointer;
+}
+#home a, article a {
+	text-decoration:none;
 }
 #pageAdmin article:first-child {
 	width: 25vw;
@@ -108,6 +121,7 @@ article a {
 	border: 0.1em solid black;
 	margin:0.5em 0;
 }
-.edit input[typer="submit"] {
+.edit input[type="submit"] {
 	margin-bottom: 0.5em;
+	
 }
