@@ -43,49 +43,6 @@ aside option, aside select, aside input[type="submit"] {
 section {
 	text-align:center;
 }
-article {
-	background-color:rgb(255, 255, 255);
-	width:20vw;
-	color:black;
-	margin-bottom:5vh;
-	border-radius: 2.5em;
-}
-
-article h2 {
-	margin-top:0;
-	padding:0.2em 0;
-	color:white;
-	border-top-left-radius: 12em;
-	border-top-right-radius: 12em;
-}
-article a {
-	color:black;
-}
-#home nav {
-	margin:2em 0;
-	display:flex;
-	flex-flow: row wrap;
-	justify-content: center;
-	align-content: flex-start;
-	align-items:center;
-}
-#home nav a {
-	display:block;
-	width:12vw;
-	margin: 0.5em;
-	padding:0.2em 1em;
-	font-size:1.5em;
-	font-weight: bold;
-	color: white;
-	border-radius:1em;
-	
-}
-#home article {
-	cursor:  pointer;
-}
-#home a, article a {
-	text-decoration:none;
-}
 #listCategorie {
 	display:flex;
 	flex-flow: row wrap;
@@ -95,12 +52,67 @@ article a {
 	
 }
 #listCategorie article {
+	background-color:rgb(255, 255, 255);
+	width:20vw;
+	color:black;
 	margin:0.5em;
-	
+	margin-bottom:5vh;
+	border-radius: 2.5em;
+}
+
+#listCategorie article h2 {
+	margin-top:0;
+	padding:0.2em 0;
+	color:white;
+	border-top-left-radius: 12em;
+	border-top-right-radius: 12em;
+}
+#listCategorie article a {
+	color:black;
+}
+nav {
+	margin:2em 0;
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: flex-start;
+	align-items:center;
+}
+nav article {
+	margin: 0.5em;
+}
+nav article a {
+	display:block;
+	width:12vw;
+	padding:0.2em 1em;
+	font-size:1.5em;
+	font-weight: bold;
+	color: white;
+	border-radius:1em;
+}
+nav article a:nth-child(2), nav article a:nth-child(3) {
+	width:2vw;
+	margin:0;
+	padding:0;
+	float:right;
+	color:rgb(75, 45, 162);
+}
+#home article {
+	cursor:  pointer;
+}
+#home a, article a {
+	text-decoration:none;
 }
 #pageAdmin article:first-child {
 	width: 25vw;
 }
 #pageAdmin article {
 	width: 75vw;
+}
+.edit input[type="text"], .edit select {
+	border: 0.1em solid black;
+	margin:0.5em 0;
+}
+.edit input[typer="submit"] {
+	margin-bottom: 0.5em;
 }
