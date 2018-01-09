@@ -2,10 +2,12 @@ package fr.nouas.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,10 +36,10 @@ public class Question {
 	
 
 
-	@OneToMany(mappedBy="question")
+	@OneToMany(mappedBy="question", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
 	private List <Reponse> reponses;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Questionnaire questionnaire;
 	
 	@Enumerated(EnumType.STRING)

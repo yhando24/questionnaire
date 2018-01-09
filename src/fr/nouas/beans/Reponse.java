@@ -1,5 +1,6 @@
 package fr.nouas.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,9 @@ private String reponse;
 
 @ManyToOne
 private User user;
+
+@ManyToOne
+private Question question;
 
 @Column(columnDefinition = "TINYINT", nullable=true)
 @Type(type = "org.hibernate.type.NumericBooleanType")
@@ -45,8 +49,7 @@ public Reponse(String reponse, boolean correct, Question question) {
 
 }
 
-@ManyToOne
-private Question question;
+
 
 @Column(length=20, nullable=false)
 private int version = 0;

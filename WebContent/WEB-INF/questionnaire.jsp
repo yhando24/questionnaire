@@ -31,7 +31,7 @@
 		</article>
 		<article>
 			<c:forEach items="${questionnaire.questions}" var="question" varStatus="count">
-
+					<a href="<c:url value='/deleteQuestion?idquestion=${question.id}' />" title="Supprimer">&#10006;</a>
 					<h3>${count.count}) ${question.question}</h3>
 					<c:choose>
 					<c:when test="${question.type=='QCM'}">

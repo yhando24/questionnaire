@@ -7,6 +7,7 @@ import fr.nouas.main.action.AddCategory;
 import fr.nouas.main.action.AddQuestion;
 import fr.nouas.main.action.AddQuestionnaire;
 import fr.nouas.main.action.DeleteCategory;
+import fr.nouas.main.action.DeleteQuestion;
 import fr.nouas.main.action.DeleteQuestionnaire;
 import fr.nouas.main.action.EditCategory;
 import fr.nouas.main.action.EditQuestionnaire;
@@ -34,7 +35,9 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	    public static final String ACTION_SIGN_IN = "signIn";
 	    public static final String ACTION_LOG_IN = "logIn";
 	    public static final String ACTION_LOG_OUT = "logOut";
-	   
+	    public static final String ACTION_DELETE_QUESTION = "deleteQuestion";
+
+	    
 
 
 		
@@ -57,6 +60,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 		actions.put(ACTION_SIGN_IN, new SignIn());
 		actions.put(ACTION_LOG_IN, new LogIn());
 		actions.put(ACTION_LOG_OUT, new LogOut());
+		actions.put(ACTION_DELETE_QUESTION, new DeleteQuestion());
 		
 		
 	}

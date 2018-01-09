@@ -18,31 +18,44 @@ public class EditQuestionnaire extends Action {
 			int id = Integer.parseInt(request.getParameter("id"));
 			request.getSession().setAttribute("questionnaireid", id);
 		} else {
-			EntityManager em = JpaUtil.getEntityManager();
-			EntityTransaction tr = em.getTransaction();
 			
-			int id = Integer.parseInt(request.getParameter("id"));
-			System.out.println("post_id : " + request.getParameter("id"));
-			Questionnaire questionnaire = em.find(Questionnaire.class, id);
-			String categoryStr = request.getParameter("questionnaire-category");	
-			int categoryId = Integer.parseInt(categoryStr);
-			Category category = em.find(Category.class, categoryId);
-			questionnaire.setName(request.getParameter("questionnaire-name"));
-			questionnaire.setDescription(request.getParameter("questionnaire-description"));
-			questionnaire.setCategory(category);
-			
-			try {
-				tr.begin();
-				em.persist(questionnaire);
-				tr.commit();				
-			} catch (RollbackException e) {
-				em.getTransaction().rollback();
-				e.printStackTrace();
+			String categoryStr = request.getParameter("questionnaire-category");
+			if( categoryStr != null) {
+				
+				EntityManager em = JpaUtil.getEntityManager();
+				EntityTransaction tr = em.getTransaction();
+				
+				int id = Integer.parseInt(request.getParameter("id"));
+				System.out.println("post_id : " + request.getParameter("id"));
+				Questionnaire questionnaire = em.find(Questionnaire.class, id);
+				
+				System.out.println(categoryStr);
+				int categoryId = Integer.parseInt(categoryStr);
+				Category category = em.find(Category.class, categoryId);
+				questionnaire.setName(request.getParameter("questionnaire-name"));
+				questionnaire.setDescription(request.getParameter("questionnaire-description"));
+				questionnaire.setCategory(category);
+				
+				try {
+					tr.begin();
+					em.persist(questionnaire);
+					tr.commit();				
+				} catch (RollbackException | java.lang.NumberFormatException e) {
+					
+					
+					e.printStackTrace();
+					em.getTransaction().rollback();
+				}
+	
+				request.getSession().setAttribute("questionnaireid", -1);
+				request.getSession().removeAttribute("editquestionnaireerror");
 			}
-
-			request.getSession().setAttribute("questionnaireid", -1);
+			if( categoryStr == null) {
+				request.getSession().setAttribute("editquestionnaireerror", "Veuillez choisir votre categorie");
+				return true;
+			}
+			
 		}
-		
-		return true;
-	}
+			return true;
+		}
 }

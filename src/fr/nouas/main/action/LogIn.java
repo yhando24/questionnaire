@@ -53,7 +53,7 @@ public class LogIn extends Action {
                 return redirect;
             }
         }
-        return false;
+        return true;
     }
 
 }

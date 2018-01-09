@@ -12,4 +12,6 @@
 
 
 <input type="submit" value="Ajouter Questionnaire" />
+<br>
+${addquestionnaireerror}
 </form>
