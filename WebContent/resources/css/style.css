@@ -2,25 +2,17 @@ body {
 	background-color:rgb(225, 225, 225);
 	font-family: 'Lato', sans-serif;	
 }
-form {
-	margin-bottom:1em;
-}
-span {
-	display:inline-block;
-	border-radius:10em;
-	width:1em;
-	height:1em;	
-}
 option {
 	font-family: 'Lato', sans-serif;
 	color:white;
 }
 
-input {
+input, input[type="submit"], select {
 	font-family: 'Lato', sans-serif;
 	border-radius:1em;
 	border:none;
-	padding:0.2em 0.5em;
+	padding:0 0.5em;
+	height: 1.5em;
 }
 select {
 	border-top-left-radius: 12em;
@@ -34,6 +26,9 @@ input[type="submit"] {
 	font-weight:bold;
 	font-family: 'Lato', sans-serif;
 }
+aside form {
+	margin-bottom:1em;
+}	
 aside input, aside option, aside select {
 	font-size:1em;
 }
@@ -48,12 +43,21 @@ nav {
 	display:flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	align-content: flex-start;	
+	align-content: center;	
 	align-items:center;
 }
 nav article {
 	margin: 0.5em;
 	border-radius:1em;
+	display:flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+nav article form {
+	margin_bottom:0;
+}
+nav article input, nav article select, nav article input[type="submit"] {
+	height:2em;
 }
 nav article a {
 	display:inline-block;

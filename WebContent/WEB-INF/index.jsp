@@ -33,7 +33,6 @@
 						<article>
 							<form method="post"
 								action="<c:url value='/editCategory?id=${categoryid }'/>">
-								<input type="text" value="${category.name}" name="category-name" />
 								<select name="category-color">
 									<option value="" selected disabled>Couleur</option>
 									<option style="background-color: rgb(59, 153, 217)"
@@ -52,7 +51,8 @@
 										value="rgb(119, 48, 44)">marron</option>
 									<option style="background-color: rgb(41, 41, 41)"
 										value="rgb(41, 41, 41)">noir</option>
-								</select> <input type="submit" value="go" />
+								<input type="text" value="${category.name}" name="category-name" />
+								</select> <input type="submit" value="Editer" />
 							</form>
 						</article>
 					</c:when>
@@ -92,7 +92,7 @@
 							<input type="submit" value="Editer" form="form-editquestionnaire" />
 							<select name="questionnaire-category" id="questionnaire-category"
 								form="form-editquestionnaire">
-								<option value="" selected disabled>Catégorie</option>
+								<option value="" selected disabled>Catï¿½gorie</option>
 								<c:forEach items="${categories}" var="category">
 									<option style="background-color:${category.color}"
 										value="${category.id}">${category.name}</option>
@@ -126,7 +126,7 @@
 							<article class="edit">
 								<select name="questionnaire-category"
 									id="questionnaire-category" form="form-editquestionnaire">
-									<option value="" selected disabled>Catégorie</option>
+									<option value="" selected disabled>Catï¿½gorie</option>
 									<c:forEach items="${categories}" var="category">
 										<option style="background-color:${category.color}"
 											value="${category.id}">${category.name}</option>
