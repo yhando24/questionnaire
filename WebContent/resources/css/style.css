@@ -26,18 +26,30 @@ input[type="submit"] {
 	font-weight:bold;
 	font-family: 'Lato', sans-serif;
 }
+section {
+	text-align:center;
+}
+.edit input[type="text"], .edit select {
+	border: 0.1em solid black;
+	margin:0.5em 0;
+}
+.edit input[type="submit"] {
+	margin-bottom: 0.5em;
+	
+}
+/*ASIDE*/
 aside form {
 	margin-bottom:1em;
 }	
 aside input, aside option, aside select {
 	font-size:1em;
+	margin-bottom:1em;
 }
 aside option, aside select, aside input[type="submit"] {
 	cursor:  pointer;	
 }
-section {
-	text-align:center;
-}
+
+/*NAV*/
 nav {
 	margin:2em 0;
 	display:flex;
@@ -77,6 +89,16 @@ nav article a:nth-child(2), nav article a:nth-child(3) {
 nav article a:nth-child(3) {
 	margin-right:0.5em;
 }
+
+/* #HOME */
+#home article {
+	cursor:  pointer;
+}
+#home a, article a {
+	text-decoration:none;
+}
+
+/* #LISTCATEGORIE */
 #listCategorie {
 	display:flex;
 	flex-flow: row wrap;
@@ -109,23 +131,35 @@ nav article a:nth-child(3) {
 #listCategorie article a {
 	color:black;
 }
-#home article {
-	cursor:  pointer;
+
+/* #QUESTIONNAIRE */
+#questionnaire {
+	width:75vw;
+	margin:0 auto;
+	background: white;
+	font-family: 'Lato', sans-serif;
+	border-radius: 1em;
 }
-#home a, article a {
-	text-decoration:none;
+#questionnaire article {
+	border-radius: 1em;
 }
-#pageAdmin article:first-child {
-	width: 25vw;
+#questionnaire article h2 {
+	color:white;
+	border-top-left-radius: 0.7em;
+	border-top-right-radius: 0.7em;
 }
-#pageAdmin article {
-	width: 75vw;
+#questionnaire input {
+	padding:0.2em 0.5em;
 }
-.edit input[type="text"], .edit select {
-	border: 0.1em solid black;
-	margin:0.5em 0;
-}
-.edit input[type="submit"] {
-	margin-bottom: 0.5em;
+#questionnaire select, #questionnaire input {
+	border: 0.1em solid grey;
+	margin:1em 0.2em;
 	
+}
+#questionnaire input[type="submit"] {
+	border:none;
+	height:2em;
+}
+#afficheQuestionnaire {
+	border-radius: 1em;
 }

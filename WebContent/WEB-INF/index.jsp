@@ -2,8 +2,7 @@
 <html lang="fr">
 <head>
 <link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
-<link href="https://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Questionnaire</title>
 </head>
@@ -12,15 +11,32 @@
 
 		<aside>
 			<!-- RAJOUT DE CATEGORY -->
+			<c:choose>
 
+				<c:when test="${empty user}">
+					<%-- <c:import url='<c:url value="/resources/fragments/login.jsp" />' /> --%>
+					<c:if test="${actionName == 'home'}">
+					<c:import url="/resources/fragments/login.jsp" />
+					<a href="<c:url value='/signIn'/>">Inscription</a>
+					</c:if>
+					<c:if test="${actionName == 'signIn'}">
+					<c:import url="/resources/fragments/signin.jsp" />
+					</c:if>
+					
+				</c:when>
+				<c:otherwise>
+				<c:if test="${!empty user }">
+					<a href="<c:url value='/logOut'/>"><input type="button"
+						value="Deconnection" /></a>
+				</c:if>
 
-
-			<c:import url="/resources/fragments/addCategory.jsp" />
-			<c:import url="/resources/fragments/addQuestionnaire.jsp" />
-
+				<c:if test="${user.role == 'admin' }">
+					<c:import url="/resources/fragments/addCategory.jsp" />
+					<c:import url="/resources/fragments/addQuestionnaire.jsp" />
+				</c:if>
+				</c:otherwise>
+			</c:choose>
 			<!-- RAJOUT DE QUESTIONNAIRE   -->
-
-
 		</aside>
 		<nav>
 			<article style="background-color: rgb(75, 45, 162)">
@@ -51,16 +67,19 @@
 										value="rgb(119, 48, 44)">marron</option>
 									<option style="background-color: rgb(41, 41, 41)"
 										value="rgb(41, 41, 41)">noir</option>
-								<input type="text" value="${category.name}" name="category-name" />
+									<input type="text" value="${category.name}"
+									name="category-name" />
 								</select> <input type="submit" value="Editer" />
 							</form>
 						</article>
 					</c:when>
 					<c:otherwise>
 						<article style="background-color:${category.color}">
-							<a href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a><a
-								href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a><a
-								href='<c:url value="deleteCategory?categorie=${category.id}" /> '>&#10006;</a>
+							<a href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
+							<c:if test="${user.role == 'admin' }">
+								<a title="Editer" href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a>
+								<a title="Supprimer" href='<c:url value="deleteCategory?categorie=${category.id}" /> '>&#10006;</a>							
+							</c:if>
 						</article>
 					</c:otherwise>
 				</c:choose>
@@ -73,13 +92,17 @@
 			action="<c:url value='/editQuestionnaire?id=${questionnaireid}'/>"
 			id="form-editquestionnaire"></form>
 		<c:choose>
+		
 			<c:when test="${ !empty categorie}">
 				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
 					<c:if test="${questionnaireid != questionnaire.id}">
 						<article>
 							<h2 style="background-color:${categorie.color}">${categorie.name}
-							<a href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
-							<a href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a></h2>
+							<c:if test="${user.role == 'admin' }">
+								<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+								<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+							</c:if>
+							</h2>
 							<a
 								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
 								<h3>${questionnaire.name}</h3>
@@ -111,16 +134,18 @@
 					<c:forEach items="${category.questionnaires}" var="questionnaire">
 						<c:if test="${questionnaireid != questionnaire.id}">
 							<article>
-							<h2 style="background-color:${category.color}">${category.name}
-							<a href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
-							<a href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
-							</h2>
-							<a
-								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-								<h3>${questionnaire.name}</h3>
-								<p>${questionnaire.description}</p>
-							</a>
-						</article>
+								<h2 style="background-color:${category.color}">${category.name}
+								<c:if test="${user.role == 'admin' }">
+									<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+									<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+								</c:if>
+								</h2>
+								<a
+									href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+									<h3>${questionnaire.name}</h3>
+									<p>${questionnaire.description}</p>
+								</a>
+							</article>
 						</c:if>
 						<c:if test="${questionnaireid == questionnaire.id}">
 							<article class="edit">

@@ -2,6 +2,7 @@ package fr.nouas.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.nouas.enums.TypeQuestion;
+import fr.nouas.beans.Questionnaire;
 
 
 
@@ -34,7 +36,7 @@ public class Question {
 	
 
 
-	@OneToMany(mappedBy="question")
+	@OneToMany(mappedBy="question", cascade=CascadeType.REMOVE, orphanRemoval = true)
 	private List <Reponse> reponses;
 	
 	@ManyToOne
