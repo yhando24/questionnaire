@@ -13,7 +13,7 @@ import fr.nouas.pojo.utils.ActionManager;
 @WebServlet(name="/FrontServlet",
 
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
-				"/addQuestion", "/categorie", "/deleteQuestion",
+				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
 				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
 
 		)
@@ -51,7 +51,7 @@ public class FrontServlet extends HttpServlet {
 					break;
 				case "deleteQuestion":
 
-					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
+					getServletContext().getRequestDispatcher("/questionnaire?"+request.getQueryString()).forward(request, response);
 					break;
 				default :
 					response.sendRedirect(request.getContextPath() +"/home");
@@ -77,7 +77,11 @@ public class FrontServlet extends HttpServlet {
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
 				System.out.println("dans le case addquestion");
-
+			break;
+			case "deleteQuestion":
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				System.out.println("dans le case addquestion");
+			break;
 			}
 		}
 	}

@@ -31,7 +31,7 @@ public class Question {
 	private String question;
 	
 
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private Reponse bonneReponse;
 	
 

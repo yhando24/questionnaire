@@ -20,7 +20,7 @@ select {
 	border:none;
 	font-family: 'Lato', sans-serif;
 }
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
 	background: rgb(75, 45, 162);
 	color:white;
 	font-weight:bold;
@@ -147,6 +147,13 @@ nav article a:nth-child(3) {
 	color:white;
 	border-top-left-radius: 0.7em;
 	border-top-right-radius: 0.7em;
+}
+#questionnaire article h3 {
+	display:inline-block;
+	margin:0;
+}
+#questionnaire article a {
+	margin-left:0.5em;
 }
 #questionnaire input {
 	padding:0.2em 0.5em;

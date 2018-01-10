@@ -15,9 +15,9 @@
 
 				<c:when test="${empty user}">
 					<%-- <c:import url='<c:url value="/resources/fragments/login.jsp" />' /> --%>
-					<c:if test="${actionName == 'home'}">
-					<c:import url="/resources/fragments/login.jsp" />
-					<a href="<c:url value='/signIn'/>">Inscription</a>
+					<c:if test="${actionName == 'home' || actionName == 'categorie' }">
+					<c:import url="/resources/fragments/login.jsp" /><a href="<c:url value='/signIn'/>"> <input type="button" value="Inscription"/></a>
+					
 					</c:if>
 					<c:if test="${actionName == 'signIn'}">
 					<c:import url="/resources/fragments/signin.jsp" />
@@ -26,6 +26,7 @@
 				</c:when>
 				<c:otherwise>
 				<c:if test="${!empty user }">
+					Bienvenue ${user.firstname} ${user.lastname}
 					<a href="<c:url value='/logOut'/>"><input type="button"
 						value="Deconnection" /></a>
 				</c:if>
@@ -115,7 +116,7 @@
 							<input type="submit" value="Editer" form="form-editquestionnaire" />
 							<select name="questionnaire-category" id="questionnaire-category"
 								form="form-editquestionnaire">
-								<option value="" selected disabled>Cat�gorie</option>
+								<option value="" selected disabled>Cat&eacute;gorie</option>
 								<c:forEach items="${categories}" var="category">
 									<option style="background-color:${category.color}"
 										value="${category.id}">${category.name}</option>
@@ -151,7 +152,7 @@
 							<article class="edit">
 								<select name="questionnaire-category"
 									id="questionnaire-category" form="form-editquestionnaire">
-									<option value="" selected disabled>Cat�gorie</option>
+									<option value="" selected disabled>Cat&eacute;gorie</option>
 									<c:forEach items="${categories}" var="category">
 										<option style="background-color:${category.color}"
 											value="${category.id}">${category.name}</option>

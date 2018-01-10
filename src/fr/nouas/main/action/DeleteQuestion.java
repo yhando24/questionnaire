@@ -11,17 +11,16 @@ import fr.nouas.utils.JpaUtil;
 public class DeleteQuestion extends Action {
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
-		
+
 		String idStr = request.getParameter("question");
 		System.out.println(idStr);
 		if (idStr != null) {
 			try {
 				int id = Integer.parseInt(idStr);
-				
+
 				EntityManager em = JpaUtil.getEntityManager();
 				EntityTransaction tr = em.getTransaction();
-				
-				
+
 				try {
 					Question question = em.find(Question.class, id);
 					tr.begin();
@@ -34,8 +33,10 @@ public class DeleteQuestion extends Action {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+
 		
+		}
+
 		return false;
 	}
 }
