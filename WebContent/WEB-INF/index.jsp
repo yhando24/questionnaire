@@ -40,10 +40,11 @@
 			<!-- RAJOUT DE QUESTIONNAIRE   -->
 		</aside>
 		<nav>
+		<c:if test="${!empty user }">
 			<article style="background-color: rgb(75, 45, 162)">
 				<a href='<c:url value="home" />'>All</a>
 			</article>
-
+		
 			<c:forEach items="${categories}" var="category">
 				<c:choose>
 					<c:when test="${categoryid == category.id}">
@@ -85,8 +86,9 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
+		</c:if>
 		</nav>
-
+		
 	</section>
 	<section id="listCategorie">
 		<form method="POST"

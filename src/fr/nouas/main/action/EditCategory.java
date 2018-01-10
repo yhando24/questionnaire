@@ -9,7 +9,7 @@ import fr.nouas.pojo.utils.Action;
 import fr.nouas.utils.JpaUtil;
 
 public class EditCategory extends Action {
-
+ // TODO Gerer edition de mÃªme couleur
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
 		if(request.getMethod().equals("GET")) {
@@ -18,7 +18,7 @@ public class EditCategory extends Action {
 			System.out.println("dans le get");
 			request.getSession().setAttribute("categoryid", id);
 		}else {
-			// connection a la base de donnée, recuperation de l EMF grace a jpa util. la creation de EMF est faite au lancement de lappli7
+			// connection a la base de donnï¿½e, recuperation de l EMF grace a jpa util. la creation de EMF est faite au lancement de lappli7
 			// grace a un ecouteur devenement	
 			EntityManager em = JpaUtil.getEntityManager();
 			EntityTransaction tr = em.getTransaction();
@@ -33,7 +33,7 @@ public class EditCategory extends Action {
 			category.setColor(request.getParameter("category-color"));
 			
 			tr.begin();
-			em.persist(category);
+			em.merge(category);
 			tr.commit();
 			System.out.println("dans le post");
 			request.getSession().setAttribute("categoryid", -1);
