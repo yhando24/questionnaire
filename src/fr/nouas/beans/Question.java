@@ -129,6 +129,13 @@ public class Question {
 	public void addReponse(Reponse reponse) {
 		this.reponses.add(reponse);
 	}
+	public void deleteReponse(Reponse reponse) {
+		this.reponses.remove(reponse);
+	}
+	
+	public void deleteAllReponses() {
+		this.reponses.removeAll(getReponses());
+	}
 
 	public TypeQuestion getType() {
 		return type;

@@ -75,6 +75,9 @@ public class Questionnaire {
 	public void addQuestion(Question question) {
 		this.questions.add(question);
 	}
+	public void deleteQuestion(Question question) {
+		this.questions.remove(question);
+	}
 
 	public Category getCategory() {
 		return category;

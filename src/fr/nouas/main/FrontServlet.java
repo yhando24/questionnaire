@@ -14,7 +14,7 @@ import fr.nouas.pojo.utils.ActionManager;
 
 
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
-				"/addQuestion", "/categorie", "/deleteQuestion",
+				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
 				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
 
 
@@ -52,10 +52,15 @@ public class FrontServlet extends HttpServlet {
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "deleteQuestion":
-
-					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
+					System.out.println("dans le case deletequestion " +request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
 					break;
-			
+					
+				case "editQuestion":
+					System.out.println("dans le case editQuestion");
+					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					break;
+					
 				default :
 					response.sendRedirect(request.getContextPath() +"/home");
 				}
@@ -79,6 +84,14 @@ public class FrontServlet extends HttpServlet {
 			{
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+
+				System.out.println("dans le case addquestion");
+			break;
+			case "editQuestion":
+				System.out.println("dans le case editQuestion");
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+				
+			break;
 
 			}
 		}
