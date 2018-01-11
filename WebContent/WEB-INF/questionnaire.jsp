@@ -41,12 +41,12 @@
 				varStatus="count">
 				<c:if test="${questionid != question.id}">
 
-					<h3>${count.count}°. ${question.question}</h3>
+					<h3>${count.count}. ${question.question}</h3>
 					<c:if test="${user.role == 'admin' }">
 						<a title="Editer"
-							href='<c:url value="editQuestion?question=${question.id}" /> '>&#128393;</a>
+							href='<c:url value="editQuestion?question=${question.id}&questionnaire=${questionnaire.id}" /> '>&#128393;</a>
 						<a title="Supprimer"
-							href='<c:url value="/deleteQuestion?question=${question.id}" />'>&#10006;</a>
+							href='<c:url value="/deleteQuestion?question=${question.id}&questionnaire=${questionnaire.id}" />'>&#10006;</a>
 					</c:if>
 					<br />
 
@@ -68,7 +68,7 @@
 
 				</c:if>
 				<c:if test="${questionid == question.id}">
-			${count.count}°. <input type="text" value="${question.question}" name="question-question" form="editQuestion" />
+			${count.count}. <input type="text" value="${question.question}" name="question-question" form="editQuestion" />
 					<br />
 					<c:choose>
 						<c:when test="${question.type=='QCM'}">

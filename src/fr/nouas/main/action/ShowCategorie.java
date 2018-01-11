@@ -1,9 +1,10 @@
-package fr.nouas.pojo.utils;
+package fr.nouas.main.action;
 
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.Category;
+import fr.nouas.pojo.utils.Action;
 import fr.nouas.utils.JpaUtil;
 
 public class ShowCategorie extends Action {

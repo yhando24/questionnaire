@@ -46,13 +46,16 @@ public class FrontServlet extends HttpServlet {
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "addQuestion":
-
+					
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "deleteQuestion":
 
-					getServletContext().getRequestDispatcher("/questionnaire?"+request.getQueryString()).forward(request, response);
-					break;
+                    System.out.println("dans le case deletequestion " +request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+
+                    response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+
+                    break;
 				default :
 					response.sendRedirect(request.getContextPath() +"/home");
 				}

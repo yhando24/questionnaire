@@ -48,7 +48,7 @@ public class EditQuestion extends Action {
 				em.persist(question);
 				tr.commit();
 				System.out.println("dans le post");
-				request.getSession().setAttribute("categoryid", -1);				
+				request.getSession().setAttribute("questionid", -1);				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

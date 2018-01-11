@@ -154,6 +154,8 @@ nav article a:nth-child(3) {
 }
 #questionnaire article a {
 	margin-left:0.5em;
+	text-decoration: none;
+	color:black;
 }
 #questionnaire input {
 	padding:0.2em 0.5em;

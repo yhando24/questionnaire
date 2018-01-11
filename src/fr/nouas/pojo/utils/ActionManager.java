@@ -16,6 +16,7 @@ import fr.nouas.main.action.EditQuestionnaire;
 import fr.nouas.main.action.HomeAction;
 import fr.nouas.main.action.LogIn;
 import fr.nouas.main.action.LogOut;
+import fr.nouas.main.action.ShowCategorie;
 import fr.nouas.main.action.ShowQuestionnaire;
 import fr.nouas.main.action.SignIn;
 

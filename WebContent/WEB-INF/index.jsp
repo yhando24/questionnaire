@@ -40,7 +40,7 @@
 			<!-- RAJOUT DE QUESTIONNAIRE   -->
 		</aside>
 		<nav>
-		<c:if test="${!empty user }">
+		
 			<article style="background-color: rgb(75, 45, 162)">
 				<a href='<c:url value="home" />'>All</a>
 			</article>
@@ -86,7 +86,7 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-		</c:if>
+		
 		</nav>
 		
 	</section>
