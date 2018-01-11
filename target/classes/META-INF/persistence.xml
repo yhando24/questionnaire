@@ -18,7 +18,11 @@
 			<!-- ne pas utiliser en prod -->
 
 
-			  <property name="hibernate.hbm2ddl.auto" value="create"/>   
+
+
+			<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+
+
 
 
 			<property name="hibernate.show_sql" value="false"/>

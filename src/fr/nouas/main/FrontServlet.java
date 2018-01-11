@@ -13,9 +13,10 @@ import fr.nouas.pojo.utils.ActionManager;
 @WebServlet(name="/FrontServlet",
 
 
-		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie",
-				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/deleteQuestionnaire", "/editQuestionnaire"
-				,"/deleteQuestion"}
+		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
+				"/addQuestion", "/categorie", "/deleteQuestion",
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
+
 
 		)
 public class FrontServlet extends HttpServlet {
@@ -46,7 +47,11 @@ public class FrontServlet extends HttpServlet {
 
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
-				case "AddQuestion":
+				case "addQuestion":
+
+					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
+					break;
+				case "deleteQuestion":
 
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
@@ -58,7 +63,7 @@ public class FrontServlet extends HttpServlet {
 		
 	}
 
-	
+		
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

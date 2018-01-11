@@ -2,25 +2,17 @@ body {
 	background-color:rgb(225, 225, 225);
 	font-family: 'Lato', sans-serif;	
 }
-form {
-	margin-bottom:1em;
-}
-span {
-	display:inline-block;
-	border-radius:10em;
-	width:1em;
-	height:1em;	
-}
 option {
 	font-family: 'Lato', sans-serif;
 	color:white;
 }
 
-input {
+input, input[type="submit"], select {
 	font-family: 'Lato', sans-serif;
 	border-radius:1em;
 	border:none;
-	padding:0.2em 0.5em;
+	padding:0 0.5em;
+	height: 1.5em;
 }
 select {
 	border-top-left-radius: 12em;
@@ -34,12 +26,29 @@ input[type="submit"] {
 	font-weight:bold;
 	font-family: 'Lato', sans-serif;
 }
+section {
+	text-align:center;
+}
+.edit input[type="text"], .edit select {
+	border: 0.1em solid black;
+	margin:0.5em 0;
+}
+.edit input[type="submit"] {
+	margin-bottom: 0.5em;
+	
+}
+/*ASIDE*/
+aside form {
+	margin-bottom:1em;
+}	
 aside input, aside option, aside select {
 	font-size:1em;
+	margin-bottom:1em;
 }
 aside option, aside select, aside input[type="submit"] {
 	cursor:  pointer;	
 }
+<<<<<<< HEAD
 section {
 	text-align:center;
 }
@@ -71,45 +80,43 @@ section {
 #listCategorie article a {
 	color:black;
 }
-=======
->>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+
+
+/*NAV*/
+
 nav {
 	margin:2em 0;
 	display:flex;
 	flex-flow: row wrap;
 	justify-content: center;
-	align-content: flex-start;	
+	align-content: center;	
 	align-items:center;
 }
 nav article {
 	margin: 0.5em;
-<<<<<<< HEAD
-}
-nav article a {
-	display:block;
-=======
+
 	border-radius:1em;
+	display:flex;
+	flex-flow: row wrap;
+	align-items: center;
+}
+nav article form {
+	margin_bottom:0;
+}
+nav article input, nav article select, nav article input[type="submit"] {
+	height:2em;
 }
 nav article a {
 	display:inline-block;
->>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+
 	width:12vw;
 	padding:0.2em 1em;
 	font-size:1.5em;
 	font-weight: bold;
 	color: white;
-<<<<<<< HEAD
-	border-radius:1em;
-}
-nav article a:nth-child(2), nav article a:nth-child(3) {
-	width:2vw;
-	margin:0;
-	padding:0;
-	float:right;
-	color:rgb(75, 45, 162);
-=======
+
 	
->>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+
 }
 nav article a:nth-child(2), nav article a:nth-child(3) {
 	width:2vw;
@@ -120,8 +127,19 @@ nav article a:nth-child(2), nav article a:nth-child(3) {
 nav article a:nth-child(3) {
 	margin-right:0.5em;
 }
-<<<<<<< HEAD
-=======
+
+
+
+/* #HOME */
+#home article {
+	cursor:  pointer;
+}
+#home a, article a {
+	text-decoration:none;
+}
+
+/* #LISTCATEGORIE */
+
 #listCategorie {
 	display:flex;
 	flex-flow: row wrap;
@@ -154,28 +172,51 @@ nav article a:nth-child(3) {
 #listCategorie article a {
 	color:black;
 }
-#home article {
-	cursor:  pointer;
+
+/* #QUESTIONNAIRE */
+#questionnaire {
+	width:75vw;
+	margin:0 auto;
+	background: white;
+	font-family: 'Lato', sans-serif;
+	border-radius: 1em;
 }
-#home a, article a {
-	text-decoration:none;
-}
->>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+
 #pageAdmin article:first-child {
 	width: 25vw;
+=======
+#questionnaire article {
+	border-radius: 1em;
+
 }
-#pageAdmin article {
-	width: 75vw;
+#questionnaire article h2 {
+	color:white;
+	border-top-left-radius: 0.7em;
+	border-top-right-radius: 0.7em;
 }
-.edit input[type="text"], .edit select {
-	border: 0.1em solid black;
-	margin:0.5em 0;
+#questionnaire input {
+	padding:0.2em 0.5em;
 }
+
 .edit input[type="submit"] {
 	margin-bottom: 0.5em;
-<<<<<<< HEAD
+
 }
 =======
 	
 }
 >>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+=======
+#questionnaire select, #questionnaire input {
+	border: 0.1em solid grey;
+	margin:1em 0.2em;
+	
+}
+#questionnaire input[type="submit"] {
+	border:none;
+	height:2em;
+}
+#afficheQuestionnaire {
+	border-radius: 1em;
+}
+

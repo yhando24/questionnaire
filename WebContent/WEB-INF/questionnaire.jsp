@@ -1,19 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
-<script src="http://code.jquery.com/jquery-1.10.2.js"
-	type="text/javascript"></script>
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
 <script src='<c:url value="/resources/js/ajax.js" />'
 	type="text/javascript"></script>
 <title>Questionnaire</title>
 </head>
 <body>
-	<section id="pageAdmin">
+	<section id="questionnaire">
 		<article>
 			<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>
 			<h3>${questionnaire.name}</h3>
@@ -26,13 +24,15 @@
 			</select>
 		</article>
 
-		<article id="questionnaire">
+		<article id="afficheQuestionnaire">
 			<form action="<c:url value='/addQuestion?questionnaire=${questionnaire.id}'/>" method="POST" id="formQuestion"></form>
 		</article>
 		<article>
 			<c:forEach items="${questionnaire.questions}" var="question" varStatus="count">
-					<a href="<c:url value='/deleteQuestion?idquestion=${question.id}' />" title="Supprimer">&#10006;</a>
-					<h3>${count.count}) ${question.question}</h3>
+
+						
+					<h3>${count.count}°. ${question.question}</h3><a title="Supprimer" href='<c:url value="/deleteQuestion?question=${question.id}" />'>&#10006;</a>
+
 					<c:choose>
 					<c:when test="${question.type=='QCM'}">
 					 

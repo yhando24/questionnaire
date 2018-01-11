@@ -2,8 +2,7 @@
 <html lang="fr">
 <head>
 <link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
-<link href="https://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Questionnaire</title>
 </head>
@@ -14,12 +13,18 @@
 			<!-- RAJOUT DE CATEGORY -->
 			<c:choose>
 
-				<c:when test="${empty user && actionName== 'home' }">
-					<c:import url="/resources/fragments/login.jsp" />
-				</c:when>
 
-				<c:when test="${empty user && actionName== 'signIn' }">
+				<c:when test="${empty user}">
+					<%-- <c:import url='<c:url value="/resources/fragments/login.jsp" />' /> --%>
+					<c:if test="${actionName == 'home'}">
+					<c:import url="/resources/fragments/login.jsp" />
+					<a href="<c:url value='/signIn'/>">Inscription</a>
+					</c:if>
+					<c:if test="${actionName == 'signIn'}">
 					<c:import url="/resources/fragments/signin.jsp" />
+					</c:if>
+					
+
 				</c:when>
 				<c:otherwise>
 				<c:if test="${!empty user }">
@@ -27,7 +32,9 @@
 						value="Deconnection" /></a>
 				</c:if>
 
-				<c:if test="${!empty user }">
+
+				<c:if test="${user.role == 'admin' }">
+
 					<c:import url="/resources/fragments/addCategory.jsp" />
 					<c:import url="/resources/fragments/addQuestionnaire.jsp" />
 				</c:if>
@@ -73,9 +80,11 @@
 					<c:otherwise>
 						<article style="background-color:${category.color}">
 							<a href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
-							<c:if test="${!empty user}">
-								<a href='<c:url value="/editCategory?categorie=${category.id}" /> '>&#128393;</a>
-								<a href='<c:url value="/deleteCategory?categorie=${category.id}" /> '>&#10006;</a>							
+
+							<c:if test="${user.role == 'admin' }">
+								<a title="Editer" href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a>
+								<a title="Supprimer" href='<c:url value="deleteCategory?categorie=${category.id}" /> '>&#10006;</a>							
+
 							</c:if>
 						</article>
 					</c:otherwise>
@@ -95,9 +104,11 @@
 					<c:if test="${questionnaireid != questionnaire.id}">
 						<article>
 							<h2 style="background-color:${categorie.color}">${categorie.name}
-							<c:if test="${!empty user }">
-								<a href="<c:url value='/editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
-								<a href="<c:url value='/deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+
+							<c:if test="${user.role == 'admin' }">
+								<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+								<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+
 							</c:if>
 							</h2>
 							<a
@@ -133,9 +144,11 @@
 						<c:if test="${questionnaireid != questionnaire.id}">
 							<article>
 								<h2 style="background-color:${category.color}">${category.name}
-								<c:if test="${!empty user }">
-									<a href="<c:url value='/deleteQuestionnaire?id=${questionnaire.id}' />" title="Supprimer">&#10006;</a>
-									<a href="<c:url value='/editQuestionnaire?id=${questionnaire.id}' />" title="Editer">&#128393;</a>
+
+								<c:if test="${user.role == 'admin' }">
+									<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+									<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+
 								</c:if>
 								</h2>
 								<a

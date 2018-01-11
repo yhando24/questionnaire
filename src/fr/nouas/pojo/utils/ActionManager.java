@@ -24,6 +24,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	
 		public static final String ACTION_HOME ="home";
 	    public static final String ACTION_ADD_QUESTION = "addQuestion";
+	    public static final String ACTION_DELETE_QUESTION = "deleteQuestion";
 	    public static final String ACTION_ADD_CATEGORY = "addCategory";
 	    public static final String ACTION_EDIT_CATEGORY = "editCategory";
 	    public static final String ACTION_DELETE_CATEGORY = "deleteCategory";
@@ -35,7 +36,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	    public static final String ACTION_SIGN_IN = "signIn";
 	    public static final String ACTION_LOG_IN = "logIn";
 	    public static final String ACTION_LOG_OUT = "logOut";
-	    public static final String ACTION_DELETE_QUESTION = "deleteQuestion";
+	   
 
 	    
 
@@ -49,6 +50,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 		actions = new HashMap<String, Action>(); 
 		actions.put(ACTION_HOME, new HomeAction());
 		actions.put(ACTION_ADD_QUESTION, new AddQuestion());
+		actions.put(ACTION_DELETE_QUESTION, new DeleteQuestion());
 		actions.put(ACTION_ADD_CATEGORY, new AddCategory());
 		actions.put(ACTION_DELETE_CATEGORY, new DeleteCategory());
 		actions.put(ACTION_EDIT_CATEGORY, new EditCategory());

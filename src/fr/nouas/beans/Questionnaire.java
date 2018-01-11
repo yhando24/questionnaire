@@ -26,11 +26,13 @@ public class Questionnaire {
 	private String description;
 
 
-	@OneToMany(fetch = FetchType.EAGER,cascade={CascadeType.PERSIST, CascadeType.REMOVE},mappedBy="questionnaire", orphanRemoval=true)
+
+	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE, mappedBy="questionnaire", orphanRemoval = true)
+
 	private List <Question> questions;
 
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne
 	private Category category;
 	
 

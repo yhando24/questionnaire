@@ -29,6 +29,7 @@ public class SignIn extends Action {
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
         
         // hachage du mot de passe
         Md5 md = new Md5(password);
@@ -40,8 +41,10 @@ public class SignIn extends Action {
             
             // creation de lutilisateur grace au information du formulaire
         
-            User user = new User(lastname, firstname,email, password);
-            user.setRole("user");
+
+            User user = new User(lastname, firstname,email, password, role);
+        
+
             EntityManager em = JpaUtil.getEntityManager();
             EntityTransaction transaction = em.getTransaction();
             boolean redirect = false;

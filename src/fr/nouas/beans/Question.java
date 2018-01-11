@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.nouas.enums.TypeQuestion;
+import fr.nouas.beans.Questionnaire;
 
 
 
@@ -36,7 +37,9 @@ public class Question {
 	
 
 
-	@OneToMany(mappedBy="question", cascade={CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval=true)
+
+	@OneToMany(mappedBy="question", cascade=CascadeType.REMOVE, orphanRemoval = true)
+
 	private List <Reponse> reponses;
 	
 	@ManyToOne(cascade=CascadeType.ALL)
