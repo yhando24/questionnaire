@@ -27,7 +27,7 @@ public class Questionnaire {
 
 
 
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE, mappedBy="questionnaire", orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
 
 	private List <Question> questions;
 

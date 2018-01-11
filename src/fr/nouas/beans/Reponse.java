@@ -48,6 +48,12 @@ public Reponse(String reponse, boolean correct, Question question) {
 	this.question = question;
 
 }
+public Reponse(String reponse, Question question) {
+	super();
+	this.reponse = reponse;
+	this.question = question;
+
+}
 
 
 

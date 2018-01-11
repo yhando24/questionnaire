@@ -38,7 +38,7 @@ public class Question {
 
 
 
-	@OneToMany(mappedBy="question", cascade=CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy="question",cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
 
 	private List <Reponse> reponses;
 	
