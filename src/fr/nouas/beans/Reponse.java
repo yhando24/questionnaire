@@ -23,6 +23,9 @@ private String reponse;
 @ManyToOne
 private User user;
 
+@ManyToOne
+private Question question;
+
 @Column(columnDefinition = "TINYINT", nullable=true)
 @Type(type = "org.hibernate.type.NumericBooleanType")
 private boolean correct;
@@ -45,9 +48,14 @@ public Reponse(String reponse, boolean correct, Question question) {
 	this.question = question;
 
 }
+public Reponse(String reponse, Question question) {
+	super();
+	this.reponse = reponse;
+	this.question = question;
 
-@ManyToOne
-private Question question;
+}
+
+
 
 @Column(length=20, nullable=false)
 private int version = 0;

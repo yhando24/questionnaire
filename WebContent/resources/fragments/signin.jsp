@@ -1,4 +1,5 @@
 
+
 <form method="post" action="<c:url value='/signIn' />">
 	<input type="text" name="firstname" placeholder="Prenom" />
 	<input type="text" name="lastname" placeholder="Nom" />
@@ -7,3 +8,4 @@
 	<input type="text" name="role" placeholder="Role" />
 	<input type="submit" value="Creation compte" />
 </form>
+

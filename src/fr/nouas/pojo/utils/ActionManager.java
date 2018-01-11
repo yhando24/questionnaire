@@ -12,13 +12,13 @@ import fr.nouas.main.action.DeleteQuestionnaire;
 import fr.nouas.main.action.EditCategory;
 import fr.nouas.main.action.EditQuestion;
 import fr.nouas.main.action.EditQuestionnaire;
-
 import fr.nouas.main.action.HomeAction;
 import fr.nouas.main.action.LogIn;
 import fr.nouas.main.action.LogOut;
 import fr.nouas.main.action.ShowCategorie;
 import fr.nouas.main.action.ShowQuestionnaire;
 import fr.nouas.main.action.SignIn;
+import fr.nouas.main.action.ValidQuestionnaire;
 
 
 
@@ -32,7 +32,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	    public static final String ACTION_ADD_CATEGORY = "addCategory";
 	    public static final String ACTION_EDIT_CATEGORY = "editCategory";
 	    public static final String ACTION_DELETE_CATEGORY = "deleteCategory";
-	    public static final String ACTION_ADD_QUESTIONNAIRE = "addQuestionnaire";
+	    public static final String ACTION_ADD_QUESTIONNAIRE  = "addQuestionnaire";
 	    public static final String ACTION_SHOW_QUESTIONNAIRE = "questionnaire";
 	    public static final String ACTION_EDIT_QUESTIONNAIRE = "editQuestionnaire";
 	    public static final String ACTION_DELETE_QUESTIONNAIRE = "deleteQuestionnaire";
@@ -40,7 +40,10 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	    public static final String ACTION_SIGN_IN = "signIn";
 	    public static final String ACTION_LOG_IN = "logIn";
 	    public static final String ACTION_LOG_OUT = "logOut";
+	    public static final String ACTION_VALID_QUESTIONNAIRE = "validQuestionnaire";
 	   
+
+	    
 
 
 		
@@ -65,6 +68,9 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 		actions.put(ACTION_SIGN_IN, new SignIn());
 		actions.put(ACTION_LOG_IN, new LogIn());
 		actions.put(ACTION_LOG_OUT, new LogOut());
+		actions.put(ACTION_DELETE_QUESTION, new DeleteQuestion());
+		actions.put(ACTION_VALID_QUESTIONNAIRE, new ValidQuestionnaire());
+		
 		
 		
 	}

@@ -26,7 +26,9 @@ public class Questionnaire {
 	private String description;
 
 
-	@OneToMany(fetch = FetchType.EAGER, cascade=CascadeType.REMOVE, mappedBy="questionnaire", orphanRemoval = true)
+
+	@OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
+
 	private List <Question> questions;
 
 	
@@ -72,6 +74,9 @@ public class Questionnaire {
 	}
 	public void addQuestion(Question question) {
 		this.questions.add(question);
+	}
+	public void deleteQuestion(Question question) {
+		this.questions.remove(question);
 	}
 
 	public Category getCategory() {

@@ -12,9 +12,11 @@ import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
 
+
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
 				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
-				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire"}
+
 
 		)
 public class FrontServlet extends HttpServlet {
@@ -51,11 +53,15 @@ public class FrontServlet extends HttpServlet {
 					break;
 				case "deleteQuestion":
 
-                    System.out.println("dans le case deletequestion " +request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					System.out.println("dans le case deletequestion " +request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					break;
+					
+				case "editQuestion":
+					System.out.println("dans le case editQuestion");
+					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					break;
 
-                    response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
-
-                    break;
 				default :
 					response.sendRedirect(request.getContextPath() +"/home");
 				}
@@ -79,12 +85,15 @@ public class FrontServlet extends HttpServlet {
 			{
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+
 				System.out.println("dans le case addquestion");
 			break;
-			case "deleteQuestion":
-				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
-				System.out.println("dans le case addquestion");
+			case "editQuestion":
+				System.out.println("dans le case editQuestion");
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+				
 			break;
+
 			}
 		}
 	}

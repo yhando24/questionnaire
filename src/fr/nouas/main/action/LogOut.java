@@ -10,6 +10,7 @@ public class LogOut extends Action {
 	public boolean executeAction(HttpServletRequest request) {
 		// deconnection = suppression du user
 		        
+				System.out.println("je me deconnecte");
 		        request.getSession().setAttribute("user", null);
 		        
 		        // redirection vers l'acceuil

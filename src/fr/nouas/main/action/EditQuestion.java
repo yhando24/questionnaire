@@ -34,23 +34,42 @@ public class EditQuestion extends Action {
 			// edition grace au formulaire
 			question.setQuestion(request.getParameter("question-question"));
 			if(question.getType() == TypeQuestion.valueOf("QCM")) {
+				String reponses[] = {
+						request.getParameter("question-reponse1"),
+						request.getParameter("question-reponse2"),
+						request.getParameter("question-reponse3"),
+						request.getParameter("question-reponse4")
+				};
+//				String reponse1 = request.getParameter("question-reponse1");
+//				String reponse2 = request.getParameter("question-reponse2");
+//				String reponse3 = request.getParameter("question-reponse3");
+//				String reponse4 = request.getParameter("question-reponse4");
 				
 				
-			} else if (question.getType() == TypeQuestion.valueOf("QUESTION_SIMPLE")) {
-				String reponseStr = request.getParameter("question-bonnereponse");
-				System.out.println(reponseStr);
-				Reponse reponse = new Reponse();
-				reponse.setReponse(reponseStr);
-				question.setBonneReponse(reponse);
+				
+				for(int i = 0; i<question.getReponses().size(); i++) {
+					question.getReponses().get(i).setReponse(reponses[i]);
+				}
+				
 			}
+				else if (question.getType() == TypeQuestion.valueOf("QUESTION_SIMPLE")) {
+				String reponseStr = request.getParameter("question-bonnereponse");
+				question.getBonneReponse().setReponse(reponseStr);
+			}
+			System.out.println("JE VAIS TRY");
 			try {
 				tr.begin();
 				em.persist(question);
 				tr.commit();
+<<<<<<< HEAD
 				System.out.println("dans le post");
+=======
+				System.out.println("DSHDUIUISKDSUIDHUIDHUISHIDSHDQHISHS LAS");
+>>>>>>> a822c522b5184c8c12009c51495d3bdd51f1d953
 				request.getSession().setAttribute("questionid", -1);				
 			} catch (Exception e) {
 				e.printStackTrace();
+				System.out.println("DANS LE CATCH");
 			}
 		}
 			

@@ -17,7 +17,7 @@ public class SignIn extends Action {
         
         request.setAttribute("title", "page d'inscription");
         
-        
+        System.out.println("dans le sign");
         
         if(request.getMethod().equals("POST")) {
             
@@ -41,8 +41,10 @@ public class SignIn extends Action {
             
             // creation de lutilisateur grace au information du formulaire
         
+
             User user = new User(lastname, firstname,email, password, role);
         
+
             EntityManager em = JpaUtil.getEntityManager();
             EntityTransaction transaction = em.getTransaction();
             boolean redirect = false;

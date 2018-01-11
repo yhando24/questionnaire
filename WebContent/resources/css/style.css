@@ -48,8 +48,42 @@ aside input, aside option, aside select {
 aside option, aside select, aside input[type="submit"] {
 	cursor:  pointer;	
 }
+<<<<<<< HEAD
+section {
+	text-align:center;
+}
+<<<<<<< HEAD
+#listCategorie {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content:center;
+	align-content: flex-start;
+	align-items:center;
+	
+}
+#listCategorie article {
+	background-color:rgb(255, 255, 255);
+	width:20vw;
+	color:black;
+	margin:0.5em;
+	margin-bottom:5vh;
+	border-radius: 2.5em;
+}
+
+#listCategorie article h2 {
+	margin-top:0;
+	padding:0.2em 0;
+	color:white;
+	border-top-left-radius: 12em;
+	border-top-right-radius: 12em;
+}
+#listCategorie article a {
+	color:black;
+}
+
 
 /*NAV*/
+
 nav {
 	margin:2em 0;
 	display:flex;
@@ -60,6 +94,7 @@ nav {
 }
 nav article {
 	margin: 0.5em;
+
 	border-radius:1em;
 	display:flex;
 	flex-flow: row wrap;
@@ -73,12 +108,15 @@ nav article input, nav article select, nav article input[type="submit"] {
 }
 nav article a {
 	display:inline-block;
+
 	width:12vw;
 	padding:0.2em 1em;
 	font-size:1.5em;
 	font-weight: bold;
 	color: white;
+
 	
+
 }
 nav article a:nth-child(2), nav article a:nth-child(3) {
 	width:2vw;
@@ -90,6 +128,8 @@ nav article a:nth-child(3) {
 	margin-right:0.5em;
 }
 
+
+
 /* #HOME */
 #home article {
 	cursor:  pointer;
@@ -99,6 +139,7 @@ nav article a:nth-child(3) {
 }
 
 /* #LISTCATEGORIE */
+
 #listCategorie {
 	display:flex;
 	flex-flow: row wrap;
@@ -140,8 +181,13 @@ nav article a:nth-child(3) {
 	font-family: 'Lato', sans-serif;
 	border-radius: 1em;
 }
+
+#pageAdmin article:first-child {
+	width: 25vw;
+=======
 #questionnaire article {
 	border-radius: 1em;
+
 }
 #questionnaire article h2 {
 	color:white;
@@ -160,6 +206,16 @@ nav article a:nth-child(3) {
 #questionnaire input {
 	padding:0.2em 0.5em;
 }
+
+.edit input[type="submit"] {
+	margin-bottom: 0.5em;
+
+}
+=======
+	
+}
+>>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
+=======
 #questionnaire select, #questionnaire input {
 	border: 0.1em solid grey;
 	margin:1em 0.2em;
@@ -172,3 +228,4 @@ nav article a:nth-child(3) {
 #afficheQuestionnaire {
 	border-radius: 1em;
 }
+

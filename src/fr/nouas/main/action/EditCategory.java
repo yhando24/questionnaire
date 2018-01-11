@@ -5,6 +5,7 @@ import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.Category;
+import fr.nouas.beans.User;
 import fr.nouas.pojo.utils.Action;
 import fr.nouas.utils.JpaUtil;
 
@@ -31,16 +32,24 @@ public class EditCategory extends Action {
 			// edition grace au formulaire
 			category.setName(request.getParameter("category-name"));
 			category.setColor(request.getParameter("category-color"));
-			
+			 try {	
 			tr.begin();
 			em.merge(category);
 			tr.commit();
-			System.out.println("dans le post");
+			 request.getSession().removeAttribute("bugeditquestionnaire");
 			request.getSession().setAttribute("categoryid", -1);
-		}
-			
+			 }
+			 catch (Exception e) { 
+			request.getSession().setAttribute("bugeditquestionnaire", "Veuillez choisir votre categorie");
+			 e.printStackTrace();
+			 }
+	        
+		     }
 			return true;
-		}
+	
+         
 
+     }
+ 
 
 }

@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,15 +32,17 @@ public class Question {
 	private String question;
 	
 
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne
 	private Reponse bonneReponse;
 	
 
 
-	@OneToMany(mappedBy="question", cascade=CascadeType.REMOVE, orphanRemoval = true)
+
+	@OneToMany(mappedBy="question",cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+
 	private List <Reponse> reponses;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Questionnaire questionnaire;
 	
 	@Enumerated(EnumType.STRING)
@@ -125,6 +128,13 @@ public class Question {
 	}
 	public void addReponse(Reponse reponse) {
 		this.reponses.add(reponse);
+	}
+	public void deleteReponse(Reponse reponse) {
+		this.reponses.remove(reponse);
+	}
+	
+	public void deleteAllReponses() {
+		this.reponses.removeAll(getReponses());
 	}
 
 	public TypeQuestion getType() {
