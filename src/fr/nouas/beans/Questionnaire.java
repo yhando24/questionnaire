@@ -1,14 +1,19 @@
 package fr.nouas.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -25,7 +30,14 @@ public class Questionnaire {
 	@Column(length=150, nullable=true)
 	private String description;
 
-
+	
+	@JoinTable(
+			name="questionnaires_users",
+			joinColumns=@JoinColumn(name="questionnaire_id", referencedColumnName="id",foreignKey=@ForeignKey(name="fk_questionnaire")),
+			inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_user")))
+			
+	@ManyToMany
+	private List <User> users = new ArrayList <User>();
 
 	@OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
 
@@ -52,9 +64,23 @@ public class Questionnaire {
 		this.description = description;
 		this.category = category;
 	}
-
+	
 	public int getId() {
 		return id;
+	}
+	
+	
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public void addUser(User user) {
+		this.users.add(user);
+	}
+	
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
 
 	public String getName() {

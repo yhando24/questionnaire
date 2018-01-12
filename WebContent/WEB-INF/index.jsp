@@ -105,20 +105,30 @@
 			<c:when test="${ !empty categorie}">
 				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
 					<c:if test="${questionnaireid != questionnaire.id}">
-						<article>
+						<article> 
 							<h2 style="background-color:${categorie.color}">${categorie.name}
-
+					
 							<c:if test="${user.role == 'admin' }">
 								<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
 								<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
 
 							</c:if>
+	
 							</h2>
-							<a
-								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
 								<h3>${questionnaire.name}</h3>
 								<p>${questionnaire.description}</p>
-							</a>
+								<c:forEach items="${questionnaire.users}" var="userquestionnaire" varStatus="theCount">
+								
+								<c:if test="${userquestionnaire.id == user.id}">
+						
+								<h4>Questionnaire Effectue</h4></c:if>
+							
+								</c:forEach>
+								</a>	
+								
+							
+					
 						</article>
 					</c:if>
 					<c:if test="${questionnaireid == questionnaire.id}">
@@ -154,10 +164,16 @@
 
 								</c:if>
 								</h2>
-								<a
-									href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-									<h3>${questionnaire.name}</h3>
-									<p>${questionnaire.description}</p>
+								<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<h3>${questionnaire.name}</h3>
+								<p>${questionnaire.description}</p>
+								<c:forEach items="${questionnaire.users}" var="userquestionnaire" varStatus="theCount">
+								
+								<c:if test="${userquestionnaire.id == user.id}">
+						
+								<h4>Questionnaire Effectue</h4></c:if>
+							
+								</c:forEach>
 								</a>
 							</article>
 						</c:if>

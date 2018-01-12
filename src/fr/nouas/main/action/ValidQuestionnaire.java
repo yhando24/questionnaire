@@ -42,23 +42,27 @@ public class ValidQuestionnaire extends Action {
 						Reponse [] reponses = new Reponse [intNbQuestion];
 						System.out.println("question : ");
 						for (int i = 0; i < intNbQuestion; i++ ) {
-							 reponses[0] = new Reponse (
+							 reponses[i] = new Reponse (
 									 request.getParameter("reponseEleve"+(i+1)), 
 									 em.find(Question.class, Integer.parseInt(request.getParameter("question"+(i+1)))));
 							
-							reponses[0].setUser(user);
+							reponses[i].setUser(user);
+							questionnaire.addUser(user);
+							
 								try {
 									tr.begin();
-									em.persist(reponses[0]);
+									em.persist(reponses[i]);
+									
 							
 									tr.commit();
 								} catch (Exception e) {
 									tr.rollback();
 									e.printStackTrace();
 								}
-							
+								
 							
 						}
+						
 							
 							
 						}
