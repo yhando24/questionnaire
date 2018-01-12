@@ -68,8 +68,8 @@ public class CreatePdf extends Action {
 		
 		try {
 			PdfDocument pdf = new PdfDocument(new PdfWriter(dest));
-			PageSize pagesize = PageSize.A4;
-			Document document = new Document(pdf, pagesize);
+			
+			Document document = new Document(pdf);
 			document.add(new Paragraph(user.getlastname()+" "+user.getfirstname()));
 			document.add(new Paragraph(category.getName()+" "+questionnaire.getName()));
 			document.add(new Paragraph(category.getName()+" "+questionnaire.getName()));
