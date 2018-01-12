@@ -48,11 +48,10 @@ aside input, aside option, aside select {
 aside option, aside select, aside input[type="submit"] {
 	cursor:  pointer;	
 }
-<<<<<<< HEAD
+
 section {
 	text-align:center;
 }
-<<<<<<< HEAD
 #listCategorie {
 	display:flex;
 	flex-flow: row wrap;
@@ -184,7 +183,7 @@ nav article a:nth-child(3) {
 
 #pageAdmin article:first-child {
 	width: 25vw;
-=======
+}
 #questionnaire article {
 	border-radius: 1em;
 
@@ -203,6 +202,16 @@ nav article a:nth-child(3) {
 	text-decoration: none;
 	color:black;
 }
+#questionnaire article label {
+	display:flex;
+	flex-flow: row wrap;
+	justify-content:flex-start;
+	align-content: flex-start;
+	align-items:center;
+	height:2em;
+	width:25vw;
+	margin:0 auto;
+}
 #questionnaire input {
 	padding:0.2em 0.5em;
 }
@@ -211,11 +220,7 @@ nav article a:nth-child(3) {
 	margin-bottom: 0.5em;
 
 }
-=======
-	
-}
->>>>>>> 6963714ec40d5fbb5ece0807a39df7ab623aff67
-=======
+
 #questionnaire select, #questionnaire input {
 	border: 0.1em solid grey;
 	margin:1em 0.2em;

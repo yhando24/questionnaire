@@ -61,14 +61,14 @@
 
 							<c:forEach items="${question.reponses}" var="reponse">
 								<label><input type="radio" name="reponseEleve${count.count }" value="${reponse.reponse}" form="validQuestionnaire" >${reponse.reponse}</label>
-								A CACHE		<input type="text" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
-								<br>
+								<input type="hidden" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
+								
 							</c:forEach>
 
 						</c:when>
 						<c:when test="${question.type=='QUESTION_SIMPLE'}">
 							<input type="text" placeholder="Votre reponse" name="reponseEleve${count.count }"  form="validQuestionnaire"/>
-							A CACHE		<input type="text" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
+							<input type="hidden" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
 							<br>
 						</c:when>
 
@@ -104,6 +104,15 @@
 			</c:forEach>
 			
 			<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
+			
+			
+			<form
+				action="<c:url value='/createPdf'/>"
+				method="POST" id="createPdf"></form>
+				<input type="hidden" name="category" form="createPdf" value="${questionnaire.category.id}">
+				<input type="hidden" name="questionnaire" form="createPdf" value="${questionnaire.id}">
+				<input type="hidden" name="user" form="createPdf" value="${user.id}">
+				<input type="submit" value="Exporter" form="createPdf" />
 		</article>
 
 

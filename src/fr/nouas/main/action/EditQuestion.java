@@ -61,11 +61,9 @@ public class EditQuestion extends Action {
 				tr.begin();
 				em.persist(question);
 				tr.commit();
-<<<<<<< HEAD
-				System.out.println("dans le post");
-=======
+
 				System.out.println("DSHDUIUISKDSUIDHUIDHUISHIDSHDQHISHS LAS");
->>>>>>> a822c522b5184c8c12009c51495d3bdd51f1d953
+
 				request.getSession().setAttribute("questionid", -1);				
 			} catch (Exception e) {
 				e.printStackTrace();
