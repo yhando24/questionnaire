@@ -120,8 +120,20 @@ public class CreatePdf extends Action {
 	
 	public void createPdf(URL url, String dest) throws IOException {
 		try {
+
 			HtmlConverter.convertToPdf(url.openStream(), new FileOutputStream(dest));			
 		} catch (Exception e) {
+//=======
+//			PdfDocument pdf = new PdfDocument(new PdfWriter(dest));
+//			
+//			Document document = new Document(pdf);
+//			document.add(new Paragraph(user.getlastname()+" "+user.getfirstname()));
+//			document.add(new Paragraph(category.getName()+" "+questionnaire.getName()));
+//			document.add(new Paragraph(category.getName()+" "+questionnaire.getName()));
+//			document.close();
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//>>>>>>> 73125d6
 			e.printStackTrace();
 		}
     }
