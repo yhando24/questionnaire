@@ -1,96 +1,128 @@
 package fr.nouas.main.action;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
 
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.html2pdf.HtmlConverter;
 import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.test.annotations.WrapToTest;
 
-import fr.nouas.beans.Category;
-import fr.nouas.beans.Question;
-import fr.nouas.beans.Questionnaire;
-import fr.nouas.beans.Reponse;
-import fr.nouas.beans.User;
+
 import fr.nouas.pojo.utils.Action;
-import fr.nouas.utils.JpaUtil;
 
-@WrapToTest
+
 public class CreatePdf extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
-		int questionnaireId = Integer.parseInt(request.getParameter("questionnaire"));
-		int categoryId = Integer.parseInt(request.getParameter("category"));
-		int userId = Integer.parseInt(request.getParameter("user"));
+	
+			 
+		/** The target folder for the result. */
+		final String ADDRESS = request.getParameter("url");
+		System.out.println(ADDRESS);
 
-		EntityManager em = JpaUtil.getEntityManager();
-		// EntityTransaction tr = em.getTransaction();
-
-		Questionnaire questionnaire = em.find(Questionnaire.class, questionnaireId);
-		Category category = em.find(Category.class, categoryId);
-		User user = em.find(User.class, userId);
-
-		String DEST = "/Pdf/" + user.getlastname() + "_" + user.getfirstname() + "/" + category.getName() + "/"
-				+ questionnaire.getName() + "_" + user.getlastname() + "-" + user.getfirstname() + ".pdf";
-		CreatePdf newPdf = new CreatePdf();
-		newPdf.createPdf(DEST, request);
-
-		return true;
-	}
-
-	private void createPdf(String dest, HttpServletRequest request) {
-		int questionnaireId = Integer.parseInt(request.getParameter("questionnaire"));
-		int categoryId = Integer.parseInt(request.getParameter("category"));
-		int userId = Integer.parseInt(request.getParameter("user"));
-
-		EntityManager em = JpaUtil.getEntityManager();
-		EntityTransaction tr = em.getTransaction();
-
-		Questionnaire questionnaire = em.find(Questionnaire.class, questionnaireId);
-		Category category = em.find(Category.class, categoryId);
-		User user = em.find(User.class, userId);
-
-		// Questionnaire questionnaireUser =
-		// questionnaire.getUsers().get(userId).getId();
-		List<Question> questions = questionnaire.getQuestions();
+		/** The path to the resulting PDF file. */
+		String DEST = "/Pdf/test.pdf";
 		
+		/**
+		 * The main method of this example.
+		 *
+		 * @param args no arguments are needed to run this example.
+		 * @throws IOException Signals that an I/O exception has occurred.
+		 */
+
+		URL url;
+		URL urlTemp;
 
 		try {
-			PdfDocument pdf = new PdfDocument(new PdfWriter(dest));
-			Document document = new Document(pdf);
-			int reponseUserId = 0;
-			document.add(new Paragraph(user.getlastname() + " " + user.getfirstname()));
-			document.add(new Paragraph(category.getName() + " " + questionnaire.getName()));
-			
-			for (Question question : questions) {
-				document.add(new Paragraph(question.getQuestion()));
-				System.out.println(question.getQuestion());
-				List<Reponse> reponses = question.getReponses();
-				for (Reponse reponse : reponses) {
-					reponseUserId = 1;
-					System.out.println("reponseUserId : "+reponseUserId);
-				if (reponseUserId == user.getId()) {
-					System.out.println("reponseUser : "+reponse.getReponse());
-					document.add(new Paragraph(reponse.getReponse()));
-					}
-				}
+			// get URL content
+			url = new URL(ADDRESS);
+			URLConnection conn = url.openConnection();
+
+			// open the stream and put it into BufferedReader
+			BufferedReader br = new BufferedReader(
+                               new InputStreamReader(conn.getInputStream()));
+
+			String inputLine;
+
+			//save to this filename
+			String fileName = "/Pdf/Temp/test.html";
+			File file = new File(fileName);
+
+			if (!file.exists()) {
+				file.createNewFile();
 			}
-			document.close();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
+			//use FileWriter to write file
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+
+			while ((inputLine = br.readLine()) != null) {
+				bw.write(inputLine);
+			}
+
+			bw.close();
+			br.close();
+
+			System.out.println("Done");
+
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	       
+	        File file = new File(DEST);
+	        
+	
+	      file.getParentFile().mkdirs(); 
+	      if (!file.exists()) {
+	          try {
+				file.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	      } 
+	        try {
+	        	String fileName = "file:///Pdf/Temp/test.html";
+	        	urlTemp = new URL(fileName);
+	        	System.out.println(urlTemp);
+				new CreatePdf().createPdf(urlTemp, DEST);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	 
 
+	    /**
+	     * Creates the PDF file.
+	     *
+	     * @param url the URL object for the web page
+	     * @param dest the path to the resulting PDF
+	     * @throws IOException Signals that an I/O exception has occurred.
+	     */
+	    
+		
+		
+		
+		return true;
 	}
+	
+	public void createPdf(URL url, String dest) throws IOException {
+		try {
+			HtmlConverter.convertToPdf(url.openStream(), new FileOutputStream(dest));			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 }

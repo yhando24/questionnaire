@@ -111,6 +111,7 @@
 			<form
 				action="<c:url value='/createPdf'/>"
 				method="POST" id="createPdf"></form>
+				<input type="hidden" name="url" form="createPdf" value="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/questionnaire?${pageContext.request.queryString}">
 				<input type="hidden" name="category" form="createPdf" value="${questionnaire.category.id}">
 				<input type="hidden" name="questionnaire" form="createPdf" value="${questionnaire.id}">
 				<input type="hidden" name="user" form="createPdf" value="${user.id}">
