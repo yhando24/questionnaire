@@ -18,6 +18,8 @@
 			<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>
 			<h3>${questionnaire.name}</h3>
 			<p>${questionnaire.description}</p>
+			
+			
 			<c:if test="${user.role == 'admin' }">
 				<select name="type" id="type" form="formQuestion">
 					<option value="DEFAULT" selected disabled>Choix type

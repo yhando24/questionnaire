@@ -1,10 +1,15 @@
 package fr.nouas.beans;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -22,7 +27,8 @@ public class User {
 	private String password;
 	@Column(length=20, nullable=true)
 	private String role;
-
+	@ManyToMany(mappedBy="users", cascade=CascadeType.PERSIST)
+	private List<Questionnaire> questionnaires = new ArrayList <Questionnaire>();
 	
 	public User() {}
 	
@@ -47,7 +53,36 @@ public class User {
 	public int getId() {
 		return id;
 	}
+	
+	
+	
+	public String getLastname() {
+		return lastname;
+	}
 
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public List<Questionnaire> getQuestionnaires() {
+		return questionnaires;
+	}
+
+	public void setQuestionnaires(List<Questionnaire> questionnaires) {
+		this.questionnaires = questionnaires;
+	}
+
+	public void addQuestionnaire(Questionnaire questionnaire) {
+		this.questionnaires.add(questionnaire);
+	}
 	public String getlastname() {
 		return lastname;
 	}
