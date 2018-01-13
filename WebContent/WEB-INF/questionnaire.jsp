@@ -10,6 +10,7 @@
 	type="text/javascript"></script>
 <script src='<c:url value="/resources/js/ajax.js" />'
 	type="text/javascript"></script>
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 <title>Questionnaire</title>
 </head>
@@ -116,31 +117,12 @@
 				<input type="hidden" name="category" form="createPdf" value="${questionnaire.category.id}">
 				<input type="hidden" name="questionnaire" form="createPdf" value="${questionnaire.id}">
 				<input type="hidden" name="user" form="createPdf" value="${user.id}">
-				<input type="submit" class="controls" value="Exporter" form="createPdf" />
+				<input type="submit" class="controls" value="Exporter" />
 		</article>
 
-<div id="editor"></div>
-<script type="text/javascript">
-var doc = new jsPDF();
-
-//We'll make our own renderer to skip this editor
-var specialElementHandlers = {
-	'#editor': function(element, renderer){
-		return true;
-	},
-	'.controls': function(element, renderer){
-		return true;
-	}
-};
-
-//All units are in the set measurement for the document
-//This can be changed to "pt" (points), "mm" (Default), "cm", "in"
-doc.fromHTML($('body').get(0), 15, 15, {
-	'width': 170, 
-	'elementHandlers': specialElementHandlers
-});
-doc.save('test.pdf');
-</script>
+<img id="screenshot-img" src="" alt="" />
+<script src='<c:url value="/resources/js/createPdf.js" />'
+	type="text/javascript"></script>
 	</section>
 </body>
 </html>
