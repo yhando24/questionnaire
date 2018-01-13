@@ -81,7 +81,7 @@
 				</c:if>
 				<c:if test="${questionid == question.id}">
 
-			${count.count}. <input type="text" value="${question.question}" name="question-question" form="editQuestion" />
+			${count.count}. <textarea name="question-question" form="editQuestion">${question.question}</textarea>
 
 					<br />
 					<c:choose>

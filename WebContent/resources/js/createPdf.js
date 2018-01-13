@@ -4,7 +4,7 @@ $(document).ready(function() {
 	$(document).on("click",".controls",function() {
 			
 		
-		var makeHighResScreenshot = function(srcEl, destIMG, dpi) {
+		var makeHighResScreenshot = function(srcEl, destIMG) {
 		    var scaleFactor = 1;
 		    // Save original size of element
 		    var originalWidth = srcEl.offsetWidth;
@@ -36,11 +36,11 @@ $(document).ready(function() {
 		        onrendered: function(canvas) {
 		            destIMG.src = canvas.toDataURL("image/png");
 		            srcElWrapper.style.display = "none";
-		            var doc = new jsPDF('p', 'mm', [canvas.height, canvas.width]);
+		            var doc = new jsPDF('p', 'mm', [canvas.width, canvas.height]);
 //					   var width = doc.internal.pageSize.width;    
 //					   var height = doc.internal.pageSize.height;
 					   
-					   doc.addImage(img,'JPEG', 0, 0, canvas.width, canvas.height);
+					   doc.addImage(img,'JPEG', 0, 0, originalWidth, originalHeight);
 					   doc.save('test.pdf');
 		            // Reset height/width constraints
 		            document.body.style.width = originalBodyWidth + "px";
@@ -51,7 +51,7 @@ $(document).ready(function() {
 		};
 		var src = document.getElementById('questionnaire');
 		var img = document.getElementById("screenshot-img");
-		makeHighResScreenshot(src, img, 96);
+		makeHighResScreenshot(src, img);
 		
 		
 //		var w = window.innerWidth;	

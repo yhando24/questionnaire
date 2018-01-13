@@ -20,6 +20,11 @@ select {
 	border:none;
 	font-family: 'Lato', sans-serif;
 }
+textarea {
+	border-radius:1em;
+	padding:0.5em;
+	font-family: 'Lato', sans-serif;
+}
 input[type="submit"], input[type="button"] {
 	background: rgb(75, 45, 162);
 	color:white;
@@ -29,12 +34,13 @@ input[type="submit"], input[type="button"] {
 section {
 	text-align:center;
 }
-.edit input[type="text"], .edit select {
+.edit input[type="text"], .edit select, textarea {
 	border: 0.1em solid black;
 	margin:0.5em 0;
 }
 .edit input[type="submit"] {
 	margin-bottom: 0.5em;
+	
 	
 }
 /*ASIDE*/
@@ -58,7 +64,6 @@ section {
 	justify-content:center;
 	align-content: flex-start;
 	align-items:center;
-	
 }
 #listCategorie article {
 	background-color:rgb(255, 255, 255);
@@ -221,7 +226,7 @@ nav article a:nth-child(3) {
 
 }
 
-#questionnaire select, #questionnaire input {
+#questionnaire select, #questionnaire input, #questionnaire textarea {
 	border: 0.1em solid grey;
 	margin:1em 0.2em;
 	
