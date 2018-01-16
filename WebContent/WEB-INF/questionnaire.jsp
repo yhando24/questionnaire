@@ -14,102 +14,70 @@
 </head>
 <body>
 	<section id="questionnaire">
+	
+	<!-- LA BASE -->
 		<article>
+		<a title="Acceuil" href='<c:url value="/home" />'> GO home</a>
 			<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>
 			<h3>${questionnaire.name}</h3>
 			<p>${questionnaire.description}</p>
 			
 			
-			<c:if test="${user.role == 'admin' }">
-				<select name="type" id="type" form="formQuestion">
-					<option value="DEFAULT" selected disabled>Choix type
-						question</option>
-					<option value="QCM">QCM</option>
-					<option value="QUESTION_SIMPLE">Question Simple</option>
-				</select>
-			</c:if>
-		</article>
-
-		<article id="afficheQuestionnaire">
-			<form
-				action="<c:url value='/addQuestion?questionnaire=${questionnaire.id}'/>"
-				method="POST" id="formQuestion"></form>
-			<form
-				action="<c:url value='/editQuestion?question=${questionid}&questionnaire=${questionnaire.id}"'/>"
-				method="POST" id="editQuestion"></form>
-				<form
-				action="<c:url value='/validQuestionnaire?question=${question.id}&questionnaire=${questionnaire.id}&user=${user.id}"'/>"
-				method="POST" id="validQuestionnaire"></form>
-		</article>
-		<article>
-			A CACHE		<input type="text" name="nbQuestion" form="validQuestionnaire" value="${fn:length(questionnaire.questions)}">
-			<c:forEach items="${questionnaire.questions}" var="question"
-				varStatus="count">
-				
-				<c:if test="${questionid != question.id}">
-
-					<h3>${count.count}°. ${question.question}</h3>
-					<c:if test="${user.role == 'admin' }">
-						<a title="Editer"
-							href='<c:url value="editQuestion?question=${question.id}&questionnaire=${questionnaire.id}" /> '>&#128393;</a>
-						<a title="Supprimer"
-							href='<c:url value="/deleteQuestion?question=${question.id}&questionnaire=${questionnaire.id}" />'>&#10006;</a>
-					</c:if>
-					<br />
-
-
-					<c:choose>
-						<c:when test="${question.type=='QCM'}">
-
-							<c:forEach items="${question.reponses}" var="reponse">
-								<label><input type="radio" name="reponseEleve${count.count }" value="${reponse.reponse}" form="validQuestionnaire" >${reponse.reponse}</label>
-								A CACHE		<input type="text" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
-								<br>
-							</c:forEach>
-
-						</c:when>
-						<c:when test="${question.type=='QUESTION_SIMPLE'}">
-							<input type="text" placeholder="Votre reponse" name="reponseEleve${count.count }"  form="validQuestionnaire"/>
-							A CACHE		<input type="text" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
-							<br>
-						</c:when>
-
-					</c:choose>
-
-				</c:if>
-				<c:if test="${questionid == question.id}">
-				
 			
-						
-			${count.count}°. <input type="text" value="${question.question}" name="question-question" form="editQuestion" />
-					<br />
-					<c:choose>
-						<c:when test="${question.type=='QCM'}">
-
-							
-							
-							<c:forEach items="${question.reponses}" var="reponse" varStatus="countreponse">
-							<input type="text" value="${reponse.reponse}" name="question-reponse${countreponse.count}" 
-						form="editQuestion">
-								
-								<br>
-							</c:forEach>
-
-						</c:when>
-						<c:when test="${question.type=='QUESTION_SIMPLE'}">
-							<input type="text" value="${question.bonneReponse.reponse}" name="question-bonnereponse" form="editQuestion"/>
-							<br>
-						</c:when>
-
-					</c:choose>
-					<input type="submit" value="Editer" form="editQuestion" /> <br />
-				</c:if>
-			</c:forEach>
-			
-			<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
 		</article>
+		
+		
+		<!-- 
+		QUAND IL A PAS DE VERSION-->
+
+	<c:if test="${ DoneQuestionnary == 'false' }">
+
+			
+			<c:import url="/resources/fragments/firstVersionQuestionnaire.jsp" />
+			
+			
+	</c:if>
+	
+		<!-- 	SI DEJA REPONDU -->
+		
+		
+		<c:if test="${ AddNewVersion == 'false' && DoneQuestionnary == 'true'}"> 
+		 
+		 <c:import url="/resources/fragments/lastReponses.jsp" />
+
+		</c:if>
 
 
+	<!-- 	SI IL VEUX REFAIRE LE QUESTIONNAIRE -->
+	
+		<c:if test="${ AddNewVersion == 'true' }">
+	
+		<c:import url="/resources/fragments/newVersionQuestionnaire.jsp" />
+		</c:if>
+	
+	<%-- <c:if test="${!empty checkVersion}"> 
+	 t la
+		<c:forEach items="${checkedreponsesVersion}" var="checkedReponsesVersions"
+				varStatus="countreponse">
+				
+				
+			<h1> Essaie numero : ${checkVersion + 1} </h1>
+					<p>Question ${countreponse.count}: <h3>   ${checkedReponsesVersions.question.question}</h3>
+					<br />
+					Votre reponse : <h5>   ${checkedReponsesVersions.reponse}</h5>
+					</p>
+					<hr>
+			
+			
+					
+		
+			<!-- FIN AFFICHAGE RESULTAT -->		
+
+				
+				
+		</c:forEach>
+		<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${nextVersion +1}&deleteChek=true&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a>
+		</c:if> --%>
 	</section>
 </body>
 </html>

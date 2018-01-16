@@ -25,6 +25,8 @@ public class HomeAction extends Action {
 		
 		// renvoi des categories
 		request.getSession().setAttribute("categories", categories);
+	
+		 request.getSession().setAttribute("checkVersion", null);
 		return true;
 
 	}

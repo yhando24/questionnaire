@@ -82,6 +82,10 @@ public class FrontServlet extends HttpServlet {
 			System.out.println("dans le switch: " + actionName);
 			switch(actionName)
 			{
+			case "questionnaire":
+				
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				break;
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
 

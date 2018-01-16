@@ -30,6 +30,8 @@ private Question question;
 @Type(type = "org.hibernate.type.NumericBooleanType")
 private boolean correct;
 
+@ManyToOne
+private Questionnaire questionnaire;
 
 public Reponse(int id, String reponse, User user, Question question, int version) {
 	super();
@@ -40,12 +42,13 @@ public Reponse(int id, String reponse, User user, Question question, int version
 	this.version = version;
 }
 
-public Reponse(String reponse, boolean correct, Question question) {
+public Reponse(String reponse, boolean correct, Question question, Questionnaire questionnaire) {
 	super();
 	this.reponse = reponse;
 	this.correct = correct;
 
 	this.question = question;
+	this.questionnaire = questionnaire;
 
 }
 public Reponse(String reponse, Question question) {
@@ -53,6 +56,16 @@ public Reponse(String reponse, Question question) {
 	this.reponse = reponse;
 	this.question = question;
 
+}
+
+
+
+public Questionnaire getQuestionnaire() {
+	return questionnaire;
+}
+
+public void setQuestionnaire(Questionnaire questionnaire) {
+	this.questionnaire = questionnaire;
 }
 
 
