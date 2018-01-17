@@ -9,6 +9,7 @@
 </select>
 <input type="text" name="name_questionnaire"placeholder="Nom questionnaire"/>
 <input type="text" name="description_questionnaire"placeholder="Description" />
+<input type="number" name="remake_questionnaire" min= "1" max= "100" placeholder="limite de version" />
 
 
 <input type="submit" value="Ajouter Questionnaire" />

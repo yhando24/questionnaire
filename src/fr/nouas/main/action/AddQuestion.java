@@ -1,6 +1,7 @@
 package fr.nouas.main.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -45,13 +46,7 @@ public class AddQuestion extends Action {
 
 				System.out.println("c'est bien un QCM ! ");
 
-				Reponse bonneReponse = new Reponse(
-
-						request.getParameter("correctQcm"),
-
-						true,
-
-						null);
+				Reponse bonneReponse = new Reponse(request.getParameter("correctQcm"), true, null, questionnaire);
 
 				Question question = new Question(
 
@@ -69,35 +64,15 @@ public class AddQuestion extends Action {
 
 				bonneReponse.setQuestion(question);
 
-				Reponse mauvaiseReponse1 = new Reponse(
-
-						request.getParameter("notCorrectQcm1"),
-
-						false,
-
-						question);
-
+				Reponse mauvaiseReponse1 = new Reponse(request.getParameter("notCorrectQcm1"), false, question,
+						questionnaire);
 				reponses.add(mauvaiseReponse1);
 
-				Reponse mauvaiseReponse2 = new Reponse(
-
-						request.getParameter("notCorrectQcm2"),
-
-						false,
-
-						question);
-
+				Reponse mauvaiseReponse2 = new Reponse(request.getParameter("notCorrectQcm2"), false, question,
+						questionnaire);
 				reponses.add(mauvaiseReponse2);
 
-				Reponse mauvaiseReponse3 = new Reponse(
-
-						request.getParameter("notCorrectQcm3"),
-
-						false,
-
-						question);
-
-				reponses.add(mauvaiseReponse3);
+				Collections.shuffle(reponses);
 
 				tr.begin();
 
@@ -109,8 +84,6 @@ public class AddQuestion extends Action {
 
 				em.persist(mauvaiseReponse2);
 
-				em.persist(mauvaiseReponse3);
-
 				tr.commit();
 
 			}
@@ -119,101 +92,22 @@ public class AddQuestion extends Action {
 
 				System.out.println("c'est bien une question simple ! ");
 
-				Reponse bonneReponse = new Reponse(
+				Reponse bonneReponse = new Reponse(request.getParameter("reponse"), true, null, questionnaire);
 
-						request.getParameter("reponse"),
-
-						true,
-
-						null);
-
-				Question question = new Question(
-
-						request.getParameter("questionSimple"),
-
-						TypeQuestion.valueOf(request.getParameter("type")),
-
-						bonneReponse,
-
-						questionnaire
-
-				);
-
+				Question question = new Question(request.getParameter("questionSimple"),
+						TypeQuestion.valueOf(request.getParameter("type")), bonneReponse, questionnaire);
 				bonneReponse.setQuestion(question);
+				System.out.println(request.getParameter("pourcentageNeed"));
+				question.setPourcentageNeed(Integer.parseInt(request.getParameter("pourcentageNeed")));
 
 				tr.begin();
-
 				em.persist(question);
-
 				em.persist(bonneReponse);
-
 				tr.commit();
 
 			}
 
-			//
-
-			// Questionnaire questionnaire = new Questionnaire (
-
-			// request.getParameter("name_questionnaire"),
-
-			// request.getParameter("description_questionnaire"),
-
-			// category);
-
-			//
-
-			//
-
-			// boolean add = false;
-
-			//
-
-			//
-
-			// List <Questionnaire> questionnaires = category.getQuestionnaires();
-
-			// for ( Questionnaire questionnairesCategory : questionnaires) {
-
-			// if(questionnairesCategory.getName() != questionnaire.getName() ||
-
-			// questionnairesCategory.getDescription() != questionnaire.getDescription() ) {
-
-			// add = true;
-
-			// }
-
-			//
-
-			// }
-
-			// if(add)
-
-			// {
-
-			// category.addQuestionnaire(questionnaire);
-
-			// }
-
-			//
-
-			// tr.begin();
-
-			// em.persist(questionnaire);
-
-			// em.persist(category);
-
-			// tr.commit();
-
-			//
-
-			//
-
-			//
-
 			return false;
-
-			// };
 
 		}
 

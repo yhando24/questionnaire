@@ -12,6 +12,8 @@ public class LogOut extends Action {
 		        
 				System.out.println("je me deconnecte");
 		        request.getSession().setAttribute("user", null);
+		        request.getSession().setAttribute("userid", null);
+		        
 		        
 		        // redirection vers l'acceuil
 		    

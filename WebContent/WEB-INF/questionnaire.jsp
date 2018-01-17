@@ -10,119 +10,204 @@
 	type="text/javascript"></script>
 <script src='<c:url value="/resources/js/ajax.js" />'
 	type="text/javascript"></script>
-	<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 <title>Questionnaire</title>
 </head>
 <body>
 	<section id="questionnaire">
+
+		<!-- LA BASE -->
 		<article>
+			<a title="Acceuil" href='<c:url value="/home" />'> GO home</a>
 			<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>
 			<h3>${questionnaire.name}</h3>
 			<p>${questionnaire.description}</p>
-			
-			
-			<c:if test="${user.role == 'admin' }">
-				<select name="type" id="type" form="formQuestion">
-					<option value="DEFAULT" selected disabled>Choix type
-						question</option>
-					<option value="QCM">QCM</option>
-					<option value="QUESTION_SIMPLE">Question Simple</option>
-				</select>
-			</c:if>
+
+
+
 		</article>
 
-		<article id="afficheQuestionnaire">
-			<form
-				action="<c:url value='/addQuestion?questionnaire=${questionnaire.id}'/>"
-				method="POST" id="formQuestion"></form>
-			<form
-				action="<c:url value='/editQuestion?question=${questionid}&questionnaire=${questionnaire.id}"'/>"
-				method="POST" id="editQuestion"></form>
-				<form
-				action="<c:url value='/validQuestionnaire?question=${question.id}&questionnaire=${questionnaire.id}&user=${user.id}"'/>"
-				method="POST" id="validQuestionnaire"></form>
-		</article>
-		<article>
-				<input type="hidden" name="nbQuestion" form="validQuestionnaire" value="${fn:length(questionnaire.questions)}">
-			<c:forEach items="${questionnaire.questions}" var="question"
-				varStatus="count">
-				
-				<c:if test="${questionid != question.id}">
 
-					<h3>${count.count}. ${question.question}</h3>
-					<c:if test="${user.role == 'admin' }">
-						<a title="Editer"
-							href='<c:url value="editQuestion?question=${question.id}&questionnaire=${questionnaire.id}" /> '>&#128393;</a>
-						<a title="Supprimer"
-							href='<c:url value="/deleteQuestion?question=${question.id}&questionnaire=${questionnaire.id}" />'>&#10006;</a>
+		<c:choose>
+			<c:when test="${!empty userTocheck }">
+
+				<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
+				<c:if test="${user.role == 'admin' }">
+					<form
+						action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>"
+						method="POST">
+						<input type="hidden" name="userForReponse"
+							value="${userTocheck.id }"> Version <select
+							name="checkVersion">
+							<c:forEach items="${ReponsesUser}" var="reponse"
+								varStatus="countreponse">
+								<c:if test="${countreponse.first }">
+									<c:forEach begin="2" end="${VersionMaxUser +1  }"
+										varStatus="loop">
+
+
+										<option value="${loop.index-1 }">${loop.index -1}</option>
+									</c:forEach>
+								</c:if>
+							</c:forEach>
+
+						</select> <input type="submit" value="Chercher Version">
+					</form>
+				</c:if>
+
+				<c:set var="point" value="0" scope="page" />
+				<c:set var="nbQuestion" value="0" scope="page" />
+
+				<c:forEach items="${ReponsesUser}" var="reponse"
+					varStatus="countreponse">
+					<c:if test="${countreponse.first }">
+						<c:if test="${questionnaire.version != 1 }">
+							<h4>Version du test : numéro ${reponse.version }</h4>
+						</c:if>
 					</c:if>
-					<br />
+					<c:set var="nbQuestion" value="${nbQuestion + 1}" scope="page" />
+					<c:forEach items="${bonneReponsesUser}" var="bonnereponse"
+						varStatus="countbonnereponse">
 
 
-					<c:choose>
-						<c:when test="${question.type=='QCM'}">
 
-							<c:forEach items="${question.reponses}" var="reponse">
-								<label><input type="radio" name="reponseEleve${count.count }" value="${reponse.reponse}" form="validQuestionnaire" >${reponse.reponse}</label>
-								<input type="hidden" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
-								
+
+
+
+		<c:if test="${reponse.question == bonnereponse.question }">
+							<p>Question
+							<h3>${reponse.question.question}</h3>
+							<br />
+					Votre reponse : <h5>${reponse.reponse}</h5>
+							<c:if test="${reponse.question.type == 'QCM' }">
+								<c:choose>
+									<c:when test="${reponse.reponse == bonnereponse.reponse}">
+										<c:set var="point" value="${point + 1}" scope="page" />
+
+
+
+
+									</c:when>
+
+
+								</c:choose>
+
+							</c:if>
+
+							<c:if test="${reponse.question.type == 'QUESTION_SIMPLE' }">
+
+
+								<c:set var="ReussitMotCle" value="0" scope="page" />
+
+								<c:set var="Splitreponses"
+									value="${fn:split(bonnereponse.reponse, ' ')}" />
+					 
+					 mots cles attendu : ${fn:length(Splitreponses)}
+			
+
+								<c:forEach items="${Splitreponses}" var="Splitreponse">
+
+
+									<c:if
+										test="${fn:contains(fn:toLowerCase(reponse.reponse),fn:toLowerCase(Splitreponse))}">
+										<c:set var="ReussitMotCle" value="${ReussitMotCle + 1}"
+											scope="page" />
+									</c:if>
+								</c:forEach>
+
+								<c:if
+									test="${ReussitMotCle * 100 / fn:length(Splitreponses) >= reponse.question.pourcentageNeed }">
+									<c:set var="point" value="${point + 1}" scope="page" />
+								</c:if>
+
+
+
+
+
+
+
+							</c:if>
+						</c:if>
+
+
+
+					
+						<hr>
+
+
+
+					</c:forEach>
+
+
+				</c:forEach>
+				<h4>note : ${point * 100 / nbQuestion}%</h4>
+
+
+
+
+			</c:when>
+
+			<c:when test="${empty userTocheck }">
+				<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
+
+
+
+				<c:if test="${user.role == 'admin' }">
+					<form
+						action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>"
+						method="POST">
+						Etudiant :<select name="userForReponse">
+							<c:forEach items="${UsersQuestionnaire}" var="UserQuestionnaire">
+								<option value="${UserQuestionnaire.id }">${UserQuestionnaire.firstname}
+									${UserQuestionnaire.lastname }</option>
+
 							</c:forEach>
+						</select> <input type="submit" value="Chercher Resultat">
+					</form>
+				</c:if>
 
-						</c:when>
-						<c:when test="${question.type=='QUESTION_SIMPLE'}">
-							<input type="text" placeholder="Votre reponse" name="reponseEleve${count.count }"  form="validQuestionnaire"/>
-							<input type="hidden" name="question${count.count }" form="validQuestionnaire" value="${question.id}">
-							<br>
-						</c:when>
+				<!-- QUAND IL EST SUR LA PAGE DE LUSER ET CHOISIT LES VERSIONS  -->
 
-					</c:choose>
+
+
+
+				<!-- 
+		QUAND IL A PAS DE VERSION-->
+
+				<c:if test="${ DoneQuestionnary == 'false' }">
+
+
+					<c:import url="/resources/fragments/firstVersionQuestionnaire.jsp" />
+
 
 				</c:if>
-				<c:if test="${questionid == question.id}">
 
-			${count.count}. <textarea name="question-question" form="editQuestion">${question.question}</textarea>
+				<!-- 	SI DEJA REPONDU -->
 
-					<br />
-					<c:choose>
-						<c:when test="${question.type=='QCM'}">
 
-							
-							
-							<c:forEach items="${question.reponses}" var="reponse" varStatus="countreponse">
-							<input type="text" value="${reponse.reponse}" name="question-reponse${countreponse.count}" 
-						form="editQuestion">
-								
-								<br>
-							</c:forEach>
+				<c:if
+					test="${ AddNewVersion == 'false' && DoneQuestionnary == 'true'}">
 
-						</c:when>
-						<c:when test="${question.type=='QUESTION_SIMPLE'}">
-							<input type="text" value="${question.bonneReponse.reponse}" name="question-bonnereponse" form="editQuestion"/>
-							<br>
-						</c:when>
+					<c:import url="/resources/fragments/lastReponses.jsp" />
 
-					</c:choose>
-					<input type="submit" value="Editer" form="editQuestion" /> <br />
 				</c:if>
-			</c:forEach>
-			
-			<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
-			
-			
-			<form
-				action="<c:url value='/createPdf'/>"
-				method="POST" id="createPdf"></form>
-				<input type="hidden" name="url" form="createPdf" value="http://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/questionnaire?${pageContext.request.queryString}">
-				<input type="hidden" name="category" form="createPdf" value="${questionnaire.category.id}">
-				<input type="hidden" name="questionnaire" form="createPdf" value="${questionnaire.id}">
-				<input type="hidden" name="user" form="createPdf" value="${user.id}">
-				<input type="submit" class="controls" value="Exporter" />
-		</article>
 
-<img id="screenshot-img" src="" alt="" />
-<script src='<c:url value="/resources/js/createPdf.js" />'
-	type="text/javascript"></script>
+
+				<!-- 	SI IL VEUX REFAIRE LE QUESTIONNAIRE -->
+
+				<c:if test="${ AddNewVersion == 'true' }">
+
+					<c:import url="/resources/fragments/newVersionQuestionnaire.jsp" />
+				</c:if>
+
+			</c:when>
+		</c:choose>
+
+
+
+
 	</section>
 </body>
 </html>

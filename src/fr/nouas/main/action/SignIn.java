@@ -54,6 +54,7 @@ public class SignIn extends Action {
                 em.persist(user);
                 transaction.commit();
                 request.getSession().setAttribute("user", user);
+                request.getSession().setAttribute("userid", user.getId());
                 redirect = true;
             } catch (Exception e) {
                 transaction.rollback();

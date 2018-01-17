@@ -100,8 +100,11 @@
 		<form method="POST"
 			action="<c:url value='/editQuestionnaire?id=${questionnaireid}'/>"
 			id="form-editquestionnaire"></form>
+			
+			
+			<!-- RECHERCHE PAR CATEGORIE -->
 		<c:choose>
-		
+						
 			<c:when test="${ !empty categorie}">
 				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
 					<c:if test="${questionnaireid != questionnaire.id}">
@@ -121,10 +124,12 @@
 								<c:forEach items="${questionnaire.users}" var="userquestionnaire" varStatus="theCount">
 								
 								<c:if test="${userquestionnaire.id == user.id}">
-						
-								<h4>Questionnaire Effectue</h4></c:if>
-							
+								<h4>Questionnaire Effectué</h4>
+								
+								</c:if>
+								
 								</c:forEach>
+								
 								</a>	
 								
 							
@@ -151,7 +156,10 @@
 				</c:forEach>
 			</c:when>
 
+
+			
 			<c:otherwise>
+			<!-- TOUT LES CATEGORIES -->
 				<c:forEach items="${categories}" var="category">
 					<c:forEach items="${category.questionnaires}" var="questionnaire">
 						<c:if test="${questionnaireid != questionnaire.id}">
@@ -170,10 +178,11 @@
 								<c:forEach items="${questionnaire.users}" var="userquestionnaire" varStatus="theCount">
 								
 								<c:if test="${userquestionnaire.id == user.id}">
-						
-								<h4>Questionnaire Effectue</h4></c:if>
+								<h4>Questionnaire Effectue</h4>
+								</c:if>
 							
 								</c:forEach>
+								
 								</a>
 							</article>
 						</c:if>

@@ -1,10 +1,10 @@
 package fr.nouas.main.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.Question;
@@ -20,20 +20,40 @@ public class ValidQuestionnaire extends Action {
 	public boolean executeAction(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		String idStr = request.getParameter("questionnaire");
+		int idUser = Integer.parseInt(request.getSession().getAttribute("userid").toString());
+		
 		System.out.println(idStr);
+		System.out.println(idUser);
 		if (idStr != null) {
-			
+			System.out.println("tesy 1");
 				int id = Integer.parseInt(idStr);
 				
 				EntityManager em = JpaUtil.getEntityManager();
 				EntityTransaction tr = em.getTransaction();
 				
-				
+//				VERIFICATION VERSION EXISTANTE
+				  int NewVersion = 0;
+		    		 Query q = em.createQuery("SELECT R FROM Reponse R Where user_id=:idUser AND questionnaire_id=:idquestionnaire" 
+		    		 			      		  +" AND version = (SELECT MAX(version) FROM Reponse WHERE user_id=:idUser AND questionnaire_id=:idquestionnaire )");
+				   q.setParameter("idUser", idUser); 
+		    	   q.setParameter("idquestionnaire", id); 	
+		    	   List <Reponse> VersionReponses = (List <Reponse>) q.getResultList();
+		    	   
+		    	   if(!VersionReponses.isEmpty()) {
+		    		   System.out.println("il y a une reponses");
+		    		  
+			    		 for ( Reponse reponse : VersionReponses) {
+			    			 if(reponse.getVersion() > NewVersion) {
+			    				 NewVersion = reponse.getVersion();
+			    			 }
+			    		 }
+		    	   }	
+		    	   System.out.println("NEW VERSION ::" + NewVersion );
 				
 					Questionnaire questionnaire = em.find(Questionnaire.class, id);
 					String nbQuestion = request.getParameter("nbQuestion");
-					int iduser = Integer.parseInt(request.getParameter("user"));
-					User user = em.find(User.class, iduser);
+					
+					User user = em.find(User.class, idUser);
 				
 					System.out.println(nbQuestion);
 					
@@ -47,22 +67,29 @@ public class ValidQuestionnaire extends Action {
 									 em.find(Question.class, Integer.parseInt(request.getParameter("question"+(i+1)))));
 							
 							reponses[i].setUser(user);
-							questionnaire.addUser(user);
+							reponses[i].setQuestionnaire(questionnaire);
 							
+							System.out.println("VERSION //// " + NewVersion);
+							reponses[i].setVersion(NewVersion + 1 );
+							if(!questionnaire.getUsers().contains(user)) {
+							questionnaire.addUser(user);
+							}
 								try {
+									System.out.println("tesy 3");
 									tr.begin();
 									em.persist(reponses[i]);
 									
 							
 									tr.commit();
 								} catch (Exception e) {
+									System.out.println("tesy 4");
 									tr.rollback();
 									e.printStackTrace();
 								}
 								
 							
 						}
-						
+					
 							
 							
 						}
@@ -75,13 +102,11 @@ public class ValidQuestionnaire extends Action {
 					
 					
 					
-		
+				
 			}
 		
-			
 		
-		
-		return true;
+			return true;
 	}
 }
 			

@@ -7,7 +7,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import fr.nouas.enums.TypeQuestion;
-import fr.nouas.beans.Questionnaire;
 
 
 
@@ -35,7 +33,8 @@ public class Question {
 	@OneToOne
 	private Reponse bonneReponse;
 	
-
+	@Column(length=150, nullable=true)
+	private int pourcentageNeed;
 
 
 	@OneToMany(mappedBy="question",cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
@@ -98,6 +97,18 @@ public class Question {
 
 	
 	
+	public int getPourcentageNeed() {
+		return pourcentageNeed;
+	}
+
+
+
+	public void setPourcentageNeed(int pourcentageNeed) {
+		this.pourcentageNeed = pourcentageNeed;
+	}
+
+
+
 	public Questionnaire getQuestionnaire() {
 		return questionnaire;
 	}
