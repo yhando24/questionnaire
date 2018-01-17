@@ -1,6 +1,7 @@
 package fr.nouas.main.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -50,7 +51,7 @@ public class AddQuestion extends Action {
 				Reponse mauvaiseReponse2 = new Reponse(request.getParameter("notCorrectQcm2"), false, question, questionnaire);
 				reponses.add(mauvaiseReponse2);
 
-				
+				Collections.shuffle(reponses);
 
 				tr.begin();
 				em.persist(question);

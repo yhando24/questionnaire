@@ -41,7 +41,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 	    public static final String ACTION_LOG_IN = "logIn";
 	    public static final String ACTION_LOG_OUT = "logOut";
 	    public static final String ACTION_VALID_QUESTIONNAIRE = "validQuestionnaire";
-	   
+	    public static final String ACTION_CHECK_REPONSE = "checkReponse";
 
 	    
 
@@ -70,7 +70,7 @@ public final class ActionManager  { //final pour que personne puisse la modifier
 		actions.put(ACTION_LOG_OUT, new LogOut());
 		actions.put(ACTION_DELETE_QUESTION, new DeleteQuestion());
 		actions.put(ACTION_VALID_QUESTIONNAIRE, new ValidQuestionnaire());
-		
+		actions.put(ACTION_CHECK_REPONSE, new CheckReponse ());
 		
 		
 	}

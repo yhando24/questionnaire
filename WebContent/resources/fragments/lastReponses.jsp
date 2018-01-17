@@ -1,21 +1,24 @@
 
 <!--  FORMULAIRE DE CHOIX DES VERSIONS DE REPONSE -->
-<form
-	action="<c:url value='/questionnaire?questionnaire=${questionnaire.id}"'/>"
-	method="POST" id="SelectVersion"></form>
-<input type="submit" value="Chercher une Version" form="SelectVersion" />
-<select name="checkVersion" form="SelectVersion">
-	<c:forEach items="${reponses}" var="reponse" varStatus="countreponse">
-		<c:if test="${countreponse.first }">
-			<c:forEach begin="2" end="${lastVersion +1  }" varStatus="loop">
-
-
-				<option value="${loop.index-1 }">${loop.index -1}</option>
+<c:if test="${questionnaire.version != 1 }"><form
+		action="<c:url value='/questionnaire?questionnaire=${questionnaire.id}"'/>"
+		method="POST" id="SelectVersion"></form>
+		
+		<input type="submit" value="Chercher une Version" form="SelectVersion" />
+		<select name="checkVersion" form="SelectVersion">
+			<c:forEach items="${reponses}" var="reponse" varStatus="countreponse">
+				<c:if test="${countreponse.first }">
+					<c:forEach begin="2" end="${lastVersion +1  }" varStatus="loop">
+		
+		
+						<option value="${loop.index-1 }">${loop.index -1}</option>
+					</c:forEach>
+				</c:if>
 			</c:forEach>
-		</c:if>
-	</c:forEach>
-
-</select>
+		
+	</select>
+</c:if>
+	
 <!-- AFFICHAGE DES RESULTATS -->
 
 <c:set var="point" value="0" scope="page" />
@@ -23,7 +26,7 @@
 
 <c:forEach items="${reponses}" var="reponse" varStatus="countreponse">
 	<c:if test="${countreponse.first }">
-		<h4>Version de votre test : numéro ${reponse.version }</h4>
+	<c:if test="${questionnaire.version != 1 }">	<h4>Version de votre test : numéro ${reponse.version }</h4></c:if>
 	</c:if>
 	<c:set var="nbQuestion" value="${nbQuestion + 1}" scope="page" />
 	<c:forEach items="${bonneReponses}" var="bonnereponse"
@@ -94,4 +97,5 @@
 				
 		</c:forEach>
 		<h4>note : ${point * 100 / nbQuestion}%</h4> 
-		<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a>
+		<c:if test="${lastVersion < questionnaire.version }"><a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a></c:if>
+		

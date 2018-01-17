@@ -28,6 +28,9 @@ public class Questionnaire {
 	private String name;
 	
 	@Column(length=150, nullable=true)
+	private int version;
+	
+	@Column(length=150, nullable=true)
 	private String description;
 
 	
@@ -86,6 +89,22 @@ public class Questionnaire {
 	
 	public void setUsers(List<User> users) {
 		this.users = users;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public List<Reponse> getReponses() {
+		return reponses;
+	}
+
+	public void setReponses(List<Reponse> reponses) {
+		this.reponses = reponses;
 	}
 
 	public String getName() {

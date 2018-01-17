@@ -15,7 +15,7 @@ import fr.nouas.pojo.utils.ActionManager;
 
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
 				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
-				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire"}
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse"}
 
 
 		)
@@ -90,7 +90,13 @@ public class FrontServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
 
 				System.out.println("dans le case addquestion");
-			break;
+				break;
+			case "checkReponse":
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+
+				System.out.println("dans le case addquestion");
+				break;
+			
 			case "editQuestion":
 				System.out.println("dans le case editQuestion");
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));

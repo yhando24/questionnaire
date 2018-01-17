@@ -1,6 +1,5 @@
 package fr.nouas.main.action;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.Questionnaire;
 import fr.nouas.beans.Reponse;
+import fr.nouas.beans.User;
 import fr.nouas.pojo.utils.Action;
 import fr.nouas.utils.JpaUtil;
 
@@ -135,7 +135,13 @@ public class ShowQuestionnaire extends Action {
 	    		 request.setAttribute("bonneReponses", bonneReponses);
 	    		 System.out.println("LA PREMIERE REPONSE : " + bonneReponses.get(0).getReponse());
 	    	 }
-
+	    	 
+//          RECUPERATION DES USERS DU QUESTIONNAIRE 
+//	    	 Query q4 =  em.createQuery("SELECT U FROM User  U"
+//	    	 			+ "	INNER JOIN questionnaires_users  qu WHERE qu.questionnaire_id =:idquestionnaire");
+//	    	 q4.setParameter("idquestionnaire", id); 
+//	    	 List <User> UsersQuestionnaire = (List <User>) q4.getResultList();
+//	    	 request.setAttribute("UsersQuestionnaire", UsersQuestionnaire);
 	    	 
     	   return false;
 	}
