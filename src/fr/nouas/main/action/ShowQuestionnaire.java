@@ -18,15 +18,25 @@ public class ShowQuestionnaire extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
+		
+		
+		
+		
 		int id = Integer.parseInt(request.getParameter("questionnaire"));
 		String VersionSession = null;
 		int idUser = Integer.parseInt(request.getSession().getAttribute("userid").toString());
   	   System.out.println( "id user : " + idUser);
+  	 EntityManager em = JpaUtil.getEntityManager();
+  	 User user = em.find(User.class, idUser);
+  
+
+  	   
 //		String nextVersion= request.getParameter("nextVersion");
 //		String checkVersion;
 		if(request.getMethod().equals("POST")) {
 			 String checkVersion= request.getParameter("checkVersion");
 			  System.out.println( "checkVersion : " + checkVersion);
+		
 			  request.getSession().setAttribute("checkVersion", checkVersion);
 		}
 		
@@ -37,7 +47,7 @@ public class ShowQuestionnaire extends Action {
 			System.out.println("premier passage");
 		}
 		
-		   EntityManager em = JpaUtil.getEntityManager();
+		   
 		   
 		   Questionnaire questionnaire = em.find(Questionnaire.class, id);
 		   

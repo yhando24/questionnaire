@@ -11,15 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
-
-
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
 				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
-
 				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse", "/createPdf"}
-
-
-
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,8 +23,6 @@ public class FrontServlet extends HttpServlet {
     public FrontServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-
 		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
@@ -45,8 +37,6 @@ public class FrontServlet extends HttpServlet {
 				switch(actionName)
 				{
 				case "questionnaire":
-				
-
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "addQuestion":

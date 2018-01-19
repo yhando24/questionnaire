@@ -7,8 +7,11 @@
 				<article id="afficheQuestionnaire">
 					
 						<form
-						action="<c:url value='/validQuestionnaire?questionnaire=${questionnaire.id}&user=${user.id}"'/>"
-						method="POST" id="validQuestionnaire"></form>
+						action="<c:url value='/validQuestionnaire?questionnaire=${questionnaire.id}&user=${user.id}'/>"
+						method="POST" id="validQuestionnaire" ></form>
+						<form
+						action="<c:url value='/createPdf'/>"
+						method="POST" id="createPdf" ></form>
 				</article>
 			
 			
@@ -20,6 +23,7 @@
 					
 		
 							<h3>${count.count}°. ${question.question}</h3>
+							<input type="hidden" name="question${count.count}" value="${question.question}" form="createPdf"/>
 						
 							<br />
 		
@@ -49,6 +53,9 @@
 					</c:forEach>
 					
 					<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
+					<%-- <a title="Acceuil" href='<c:url value="/createPdf" />'></a> --%>
+					<input
+						type="button" class="export" value="exporter" />
 				</article>
 
 			

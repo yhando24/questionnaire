@@ -97,5 +97,8 @@
 				
 		</c:forEach>
 		<h4>note : ${point * 100 / nbQuestion}%</h4> 
-		<c:if test="${lastVersion < questionnaire.version }"><a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a></c:if>
+		<c:if test="${lastVersion < questionnaire.version }">
+			<input type="button" class="export" value="exporter" />
+			<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a>
+		</c:if>
 		

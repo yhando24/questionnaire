@@ -1,5 +1,5 @@
 <form  action="<c:url value='/addCategory'/>" method="POST" >
-<select name="color" >
+<select name="color" required>
 	<option value="" selected disabled>Couleur</option>
 	<option style="background-color:rgb(59, 153, 217)" value="rgb(59, 153, 217)" >bleu</option>
 	<option style="background-color:rgb(56, 202, 117)" value="rgb(56, 202, 117)" >vert</option>
@@ -11,7 +11,7 @@
 	<option style="background-color:rgb(41, 41, 41)" value="rgb(41, 41, 41)" >noir</option>
 
 </select>
-<input type="text" name="titre_categorie" placeholder="Nom categorie" />
-<input type="submit" value="Créer Catégorie" />
+<input type="text" name="titre_categorie" placeholder="Nom categorie" required/>
+<input type="submit" value="Créer Catégorie" required/>
 
 </form>

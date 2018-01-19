@@ -13,6 +13,11 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
+	<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.blueopal.min.css" />
+    <script src="http://kendo.cdn.telerik.com/2018.1.117/js/jquery.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2018.1.117/js/kendo.all.min.js"></script>
+    <script src='<c:url value="/resources/js/createPdf.js" />'></script>
 <title>Questionnaire</title>
 </head>
 <body>
@@ -20,13 +25,12 @@
 
 		<!-- LA BASE -->
 		<article>
-			<a title="Acceuil" href='<c:url value="/home" />'> GO home</a>
-			<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>
+			<h2 style="background-color:${questionnaire.category.color}">
+				<a title="Acceuil" href='<c:url value="/home" />'>&#11164;</a>
+				${questionnaire.category.name}
+			</h2>
 			<h3>${questionnaire.name}</h3>
 			<p>${questionnaire.description}</p>
-
-
-
 		</article>
 
 
@@ -76,7 +80,7 @@
 
 
 
-		<c:if test="${reponse.question == bonnereponse.question }">
+						<c:if test="${reponse.question == bonnereponse.question }">
 							<p>Question
 							<h3>${reponse.question.question}</h3>
 							<br />
@@ -133,7 +137,7 @@
 
 
 
-					
+
 						<hr>
 
 
@@ -198,7 +202,9 @@
 				<!-- 	SI IL VEUX REFAIRE LE QUESTIONNAIRE -->
 
 				<c:if test="${ AddNewVersion == 'true' }">
-
+					<%-- <a title="Acceuil" href='<c:url value="/createPdf" />'></a> --%>
+					<input
+						type="button" class="export" value="exporter" />
 					<c:import url="/resources/fragments/newVersionQuestionnaire.jsp" />
 				</c:if>
 
