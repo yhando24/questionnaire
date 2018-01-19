@@ -96,6 +96,7 @@
 		</nav>
 		
 	</section>
+	<c:if test="${actionName == 'home' }">
 	<section id="listCategorie">
 		<form method="POST"
 			action="<c:url value='/editQuestionnaire?id=${questionnaireid}'/>"
@@ -211,8 +212,36 @@
 
 
 	</section>
-
-
+	</c:if>
+	
+	<c:if test="${actionName == 'checkProfil' }">
+	<c:if test="${user.role == 'admin' }">
+	
+	<section>
+		<c:forEach items="${usertocheck.questionnaires}" var="questionnaire">
+					
+					
+							<article>
+					
+							<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>	
+							
+							
+								<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<h3>${questionnaire.name}</h3>
+								<p>${questionnaire.description}</p>
+							
+								
+								</a>
+								
+							</article>
+					
+				
+					</c:forEach>
+	</section>			
+	</c:if>
+	</c:if>
+	
+	
 
 
 

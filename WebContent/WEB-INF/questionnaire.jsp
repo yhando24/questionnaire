@@ -28,13 +28,16 @@
 		
 		
 		<c:choose>
-		<c:when test="${!empty userTocheck }">
-			
+		<c:when test="${!empty userToCheck }">
+		<c:if test="${user.role == 'admin' }">
+		Eleve : <a href='<c:url value="/checkProfil?profil=${userToCheck.id}" />'>${userToCheck.firstname} ${userToCheck.lastname }</a>
+		<a href='<c:url value="questionnaire?newUser=true&questionnaire=${questionnaire.id}" />'>Retour au questionnaire</a>
 			<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
-			<c:if test="${user.role == 'admin' }">
+			
+			
 			<form action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>" method="POST">
-			<input type="hidden" name="userForReponse" value="${userTocheck.id }">
-		Version 
+			<input type="hidden" name="userForReponse" value="${userToCheck.id }">
+	
 			<select name="checkVersion">
 			<c:forEach items="${ReponsesUser}" var="reponse" varStatus="countreponse">
 				<c:if test="${countreponse.first }">
@@ -49,7 +52,8 @@
 	</select>
 		<input type="submit" value="Chercher Version">
 		</form>
-			</c:if>
+	
+			
 		
 		<c:set var="point" value="0" scope="page" />
 <c:set var="nbQuestion" value="0" scope="page" />
@@ -70,7 +74,7 @@
 				Question
 				<h3>${reponse.question.question}</h3>
 						<br />
-					Votre reponse : <h5>   ${reponse.reponse}</h5>
+					 reponse eleve : <h5>   ${reponse.reponse}</h5>
 				<c:if test="${reponse.question.type == 'QCM' }">
 					<c:choose>
 						<c:when test="${reponse.reponse == bonnereponse.reponse}">
@@ -89,7 +93,7 @@
 					<c:set var="Splitreponses"
 						value="${fn:split(bonnereponse.reponse, ' ')}" />
 					 
-					 mots cles attendu : ${fn:length(Splitreponses)}
+					 mots cles attendu : ${ bonnereponse.reponse}
 			</p>
 
 			<c:forEach items="${Splitreponses}" var="Splitreponse">
@@ -130,7 +134,7 @@
 			
 			
 			
-		
+		</c:if>
 		</c:when>
 		
 		<c:when test="${empty userTocheck }">
@@ -141,12 +145,12 @@
 		<c:if test="${user.role == 'admin' }">
 			<form action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>" method="POST">
 		Etudiant :<select name="userForReponse">
-		<c:forEach items="${UsersQuestionnaire}" var="UserQuestionnaire">
+		<c:forEach items="${questionnaire.users}" var="UserQuestionnaire">
 		<option value="${UserQuestionnaire.id }">${UserQuestionnaire.firstname}  ${UserQuestionnaire.lastname }</option>
 		
 		</c:forEach>
 		</select>
-		<input type="submit" value="Chercher Resultat">
+		<input type="submit" value="Chercher Resultat Eleve">
 		</form>
 			</c:if>
 		
