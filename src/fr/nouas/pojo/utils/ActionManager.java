@@ -6,7 +6,9 @@ import java.util.Map;
 import fr.nouas.main.action.AddCategory;
 import fr.nouas.main.action.AddQuestion;
 import fr.nouas.main.action.AddQuestionnaire;
-import fr.nouas.main.action.CreatePdf;
+
+import fr.nouas.main.action.CheckProfil;
+
 import fr.nouas.main.action.DeleteCategory;
 import fr.nouas.main.action.DeleteQuestion;
 import fr.nouas.main.action.DeleteQuestionnaire;
@@ -21,28 +23,30 @@ import fr.nouas.main.action.ShowQuestionnaire;
 import fr.nouas.main.action.SignIn;
 import fr.nouas.main.action.ValidQuestionnaire;
 
-public final class ActionManager { // final pour que personne puisse la modifier et personne la prenne en heritage
+public final class ActionManager  { //final pour que personne puisse la modifier et personne la prenne en heritage
+		
+	
+		public static final String ACTION_HOME ="home";
+	    public static final String ACTION_ADD_QUESTION = "addQuestion";
+	    public static final String ACTION_EDIT_QUESTION = "editQuestion";
+	    public static final String ACTION_DELETE_QUESTION = "deleteQuestion";
+	    public static final String ACTION_ADD_CATEGORY = "addCategory";
+	    public static final String ACTION_EDIT_CATEGORY = "editCategory";
+	    public static final String ACTION_DELETE_CATEGORY = "deleteCategory";
+	    public static final String ACTION_ADD_QUESTIONNAIRE  = "addQuestionnaire";
+	    public static final String ACTION_SHOW_QUESTIONNAIRE = "questionnaire";
+	    public static final String ACTION_EDIT_QUESTIONNAIRE = "editQuestionnaire";
+	    public static final String ACTION_DELETE_QUESTIONNAIRE = "deleteQuestionnaire";
+	    public static final String ACTION_SHOW_CATEGORIE = "categorie";
+	    public static final String ACTION_SIGN_IN = "signIn";
+	    public static final String ACTION_LOG_IN = "logIn";
+	    public static final String ACTION_LOG_OUT = "logOut";
+	    public static final String ACTION_VALID_QUESTIONNAIRE = "validQuestionnaire";
+	    public static final String ACTION_CHECK_REPONSE = "checkReponse";
+	    public static final String ACTION_CHECK_PROFIL = "checkProfil";
 
-	public static final String ACTION_HOME = "home";
-	public static final String ACTION_ADD_QUESTION = "addQuestion";
-	public static final String ACTION_EDIT_QUESTION = "editQuestion";
-	public static final String ACTION_DELETE_QUESTION = "deleteQuestion";
-	public static final String ACTION_ADD_CATEGORY = "addCategory";
-	public static final String ACTION_EDIT_CATEGORY = "editCategory";
-	public static final String ACTION_DELETE_CATEGORY = "deleteCategory";
-	public static final String ACTION_ADD_QUESTIONNAIRE = "addQuestionnaire";
-	public static final String ACTION_SHOW_QUESTIONNAIRE = "questionnaire";
-	public static final String ACTION_EDIT_QUESTIONNAIRE = "editQuestionnaire";
-	public static final String ACTION_DELETE_QUESTIONNAIRE = "deleteQuestionnaire";
-	public static final String ACTION_SHOW_CATEGORIE = "categorie";
-	public static final String ACTION_SIGN_IN = "signIn";
-	public static final String ACTION_LOG_IN = "logIn";
-	public static final String ACTION_LOG_OUT = "logOut";
-	public static final String ACTION_VALID_QUESTIONNAIRE = "validQuestionnaire";
 
-	public static final String ACTION_CREATE_PDF = "createPdf";
 
-	public static final String ACTION_CHECK_REPONSE = "checkReponse";
 
 	private ActionManager() {
 	} // pour la protger et quon puisse pas linstancier
@@ -69,9 +73,10 @@ public final class ActionManager { // final pour que personne puisse la modifier
 		actions.put(ACTION_DELETE_QUESTION, new DeleteQuestion());
 		actions.put(ACTION_VALID_QUESTIONNAIRE, new ValidQuestionnaire());
 
-		actions.put(ACTION_CREATE_PDF, new CreatePdf());
-
-		actions.put(ACTION_CHECK_REPONSE, new CheckReponse());
+		actions.put(ACTION_CHECK_REPONSE, new CheckReponse ());
+		actions.put(ACTION_CHECK_PROFIL, new CheckProfil ());
+		
+		
 
 	}
 

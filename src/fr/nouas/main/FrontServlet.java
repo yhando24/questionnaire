@@ -13,7 +13,11 @@ import fr.nouas.pojo.utils.ActionManager;
 @WebServlet(name="/FrontServlet",
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
 				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
-				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse", "/createPdf"}
+
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse", "/checkProfil"}
+
+
+
 		)
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

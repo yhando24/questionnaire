@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,6 +29,11 @@ public class Question {
 	
 	@Column( nullable=false)
 	private String question;
+	
+	@Lob
+    @Column(name="BOOK_IMAGE", nullable=false, columnDefinition="mediumblob")
+    private byte[] image;
+ 
 	
 
 	@OneToOne
@@ -95,7 +101,13 @@ public class Question {
 		return id;
 	}
 
-	
+	 public byte[] getImage() {
+	        return image;
+	    }
+	 
+	    public void setImage(byte[] image) {
+	        this.image = image;
+	    }
 	
 	public int getPourcentageNeed() {
 		return pourcentageNeed;

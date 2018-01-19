@@ -35,31 +35,37 @@
 
 
 		<c:choose>
-			<c:when test="${!empty userTocheck }">
 
-				<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
-				<c:if test="${user.role == 'admin' }">
-					<form
-						action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>"
-						method="POST">
-						<input type="hidden" name="userForReponse"
-							value="${userTocheck.id }"> Version <select
-							name="checkVersion">
-							<c:forEach items="${ReponsesUser}" var="reponse"
-								varStatus="countreponse">
-								<c:if test="${countreponse.first }">
-									<c:forEach begin="2" end="${VersionMaxUser +1  }"
-										varStatus="loop">
-
-
-										<option value="${loop.index-1 }">${loop.index -1}</option>
-									</c:forEach>
-								</c:if>
-							</c:forEach>
-
-						</select> <input type="submit" value="Chercher Version">
-					</form>
+		<c:when test="${!empty userToCheck }">
+		<c:if test="${user.role == 'admin' }">
+		Eleve : <a href='<c:url value="/checkProfil?profil=${userToCheck.id}" />'>${userToCheck.firstname} ${userToCheck.lastname }</a>
+		<a href='<c:url value="questionnaire?newUser=true&questionnaire=${questionnaire.id}" />'>Retour au questionnaire</a>
+			<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
+			
+			
+			<form action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>" method="POST">
+			<input type="hidden" name="userForReponse" value="${userToCheck.id }">
+	
+			<select name="checkVersion">
+			<c:forEach items="${ReponsesUser}" var="reponse" varStatus="countreponse">
+				<c:if test="${countreponse.first }">
+					<c:forEach begin="2" end="${VersionMaxUser +1  }" varStatus="loop">
+		
+		
+						<option value="${loop.index-1 }">${loop.index -1}</option>
+					</c:forEach>
 				</c:if>
+			</c:forEach>
+		
+	</select>
+		<input type="submit" value="Chercher Version">
+		</form>
+	
+			
+		
+		<c:set var="point" value="0" scope="page" />
+<c:set var="nbQuestion" value="0" scope="page" />
+
 
 				<c:set var="point" value="0" scope="page" />
 				<c:set var="nbQuestion" value="0" scope="page" />
@@ -76,6 +82,18 @@
 						varStatus="countbonnereponse">
 
 
+
+
+		<c:if test="${reponse.question == bonnereponse.question }">
+			<p>
+				Question
+				<h3>${reponse.question.question}</h3>
+						<br />
+					 reponse eleve : <h5>   ${reponse.reponse}</h5>
+				<c:if test="${reponse.question.type == 'QCM' }">
+					<c:choose>
+						<c:when test="${reponse.reponse == bonnereponse.reponse}">
+							<c:set var="point" value="${point + 1}" scope="page" />
 
 
 
@@ -108,8 +126,10 @@
 								<c:set var="Splitreponses"
 									value="${fn:split(bonnereponse.reponse, ' ')}" />
 					 
-					 mots cles attendu : ${fn:length(Splitreponses)}
-			
+
+					 mots cles attendu : ${ bonnereponse.reponse}
+			</p>
+
 
 								<c:forEach items="${Splitreponses}" var="Splitreponse">
 
@@ -125,6 +145,7 @@
 									test="${ReussitMotCle * 100 / fn:length(Splitreponses) >= reponse.question.pourcentageNeed }">
 									<c:set var="point" value="${point + 1}" scope="page" />
 								</c:if>
+
 
 
 
@@ -178,6 +199,51 @@
 
 
 				<!-- 
+=======
+		</c:if>
+				
+				
+				
+					</p>
+					<hr>
+				
+					
+					
+		</c:forEach>
+				
+				
+		</c:forEach>
+		<h4>note : ${point * 100 / nbQuestion}%</h4> 	
+			
+			
+			
+		</c:if>
+		</c:when>
+		
+		<c:when test="${empty userTocheck }">
+			<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
+			
+
+		
+		<c:if test="${user.role == 'admin' }">
+			<form action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>" method="POST">
+		Etudiant :<select name="userForReponse">
+		<c:forEach items="${questionnaire.users}" var="UserQuestionnaire">
+		<option value="${UserQuestionnaire.id }">${UserQuestionnaire.firstname}  ${UserQuestionnaire.lastname }</option>
+		
+		</c:forEach>
+		</select>
+		<input type="submit" value="Chercher Resultat Eleve">
+		</form>
+			</c:if>
+		
+		<!-- QUAND IL EST SUR LA PAGE DE LUSER ET CHOISIT LES VERSIONS  -->
+		
+		
+		
+			
+					<!-- 
+>>>>>>> e5f684a8e3564099f6c5412ae11fd41783b9712e
 		QUAND IL A PAS DE VERSION-->
 
 				<c:if test="${ DoneQuestionnary == 'false' }">

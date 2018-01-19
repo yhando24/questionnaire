@@ -23,6 +23,12 @@ public class ShowQuestionnaire extends Action {
 		
 		
 		int id = Integer.parseInt(request.getParameter("questionnaire"));
+		Boolean newUser = Boolean.valueOf(request.getParameter("newUser"));
+		System.out.println(newUser + "test");
+		if(newUser == true) {
+			request.getSession().setAttribute("userToCheck", null);
+			System.out.println(newUser + "sa doit etre nul !");
+		}
 		String VersionSession = null;
 		int idUser = Integer.parseInt(request.getSession().getAttribute("userid").toString());
   	   System.out.println( "id user : " + idUser);
@@ -148,12 +154,7 @@ public class ShowQuestionnaire extends Action {
 	    		 System.out.println("LA PREMIERE REPONSE : " + bonneReponses.get(0).getReponse());
 	    	 }
 	    	 
-//          RECUPERATION DES USERS DU QUESTIONNAIRE 
-//	    	 Query q4 =  em.createQuery("SELECT U FROM User  U"
-//	    	 			+ "	INNER JOIN questionnaires_users  qu WHERE qu.questionnaire_id =:idquestionnaire");
-//	    	 q4.setParameter("idquestionnaire", id); 
-//	    	 List <User> UsersQuestionnaire = (List <User>) q4.getResultList();
-//	    	 request.setAttribute("UsersQuestionnaire", UsersQuestionnaire);
+
 	    	 
     	   return false;
 	}

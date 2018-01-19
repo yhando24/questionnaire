@@ -15,7 +15,7 @@
 <!-- 					enctype="multipart/form-data" -->
 					<form
 						action="<c:url value='/addQuestion?questionnaire=${questionnaire.id}'/>"
-						method="POST" id="formQuestion"></form>
+						method="POST"  enctype = "multipart/form-data" id="formQuestion"></form>
 					<form
 						action="<c:url value='/editQuestion?question=${questionid}&questionnaire=${questionnaire.id}'/>"
 						method="POST" id="editQuestion"></form>

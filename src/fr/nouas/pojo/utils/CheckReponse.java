@@ -19,16 +19,15 @@ public class CheckReponse extends Action {
 		String VersionSession = null;
 		int idUser = Integer.parseInt(request.getParameter("userForReponse"));
 		
-		Query q; 
+	
 		
 		 EntityManager em = JpaUtil.getEntityManager();
 		
-		q = em.createQuery("SELECT U FROM User U Where id=:idUser" );
-		 q.setParameter("idUser", idUser); 
-		 User userTocheck = (User) q.getSingleResult();
+
+		 User userTocheck = em.find(User.class, idUser);
 		request.getSession().setAttribute("userToCheck", userTocheck);
 		String checkVersion= request.getParameter("checkVersion");
-		
+		System.out.println("DANS LE CHECK REPONSE LA OU IL FAUT");
 		 
 		   
 		   Questionnaire questionnaire = em.find(Questionnaire.class, id);
@@ -51,6 +50,7 @@ public class CheckReponse extends Action {
 	    			 if(reponse.getVersion() > SendVersion) {
 	    				 SendVersion = reponse.getVersion();
 	    			 }
+	    			 System.out.println("la derniere version a envoyer :" + SendVersion);
 	    		 }
 	     		
 	     			request.getSession().setAttribute("VersionMaxUser", SendVersion);
@@ -66,8 +66,8 @@ public class CheckReponse extends Action {
 		    	    ReponsesUser = (List <Reponse>) q1.getResultList();
 	     	}
 	     
-	    	   
-	    	   request.setAttribute("ReponsesUser", ReponsesUser);
+	     	 System.out.println("DANS LE REPONSE USER" + ReponsesUser.get(0).getReponse());	
+	    	   request.getSession().setAttribute("ReponsesUser", ReponsesUser);
 	    	   
 //	    	  RECUPERATION BONNE REPONSES
 		    		 Query q3 =  em.createQuery("SELECT R FROM Reponse R Where"

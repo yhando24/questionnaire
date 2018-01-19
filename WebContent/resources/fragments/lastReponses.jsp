@@ -36,11 +36,7 @@
 
 
 		<c:if test="${reponse.question == bonnereponse.question }">
-			<p>
-				Question
-				<h3>${reponse.question.question}</h3>
-						<br />
-					Votre reponse : <h5>   ${reponse.reponse}</h5>
+			
 				<c:if test="${reponse.question.type == 'QCM' }">
 					<c:choose>
 						<c:when test="${reponse.reponse == bonnereponse.reponse}">
@@ -59,7 +55,7 @@
 					<c:set var="Splitreponses"
 						value="${fn:split(bonnereponse.reponse, ' ')}" />
 					 
-					 mots cles attendu : ${fn:length(Splitreponses)}
+					
 			</p>
 
 			<c:forEach items="${Splitreponses}" var="Splitreponse">

@@ -27,7 +27,7 @@ public class HomeAction extends Action {
 		request.getSession().setAttribute("categories", categories);
 	
 		 request.getSession().setAttribute("checkVersion", null);
-		 request.getSession().setAttribute("userTocheck", null);
+		 request.getSession().setAttribute("userToCheck", null);
 		 request.getSession().setAttribute("VersionMaxUser", null);
 		 request.getSession().setAttribute("bonneReponsesUser", null);
 		 
