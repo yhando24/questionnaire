@@ -40,8 +40,15 @@
 									href='<c:url value="/deleteQuestion?question=${question.id}&questionnaire=${questionnaire.id}" />'>&#10006;</a>
 							</c:if>
 							<br />
-		
-		
+							
+							<c:if test="${!empty question.image}">
+							
+				
+							<br /> 
+						
+							<img src="<c:url value='/resources/img/${question.image }' /> ">
+							
+							</c:if>
 							<c:choose>
 								<c:when test="${question.type=='QCM'}">
 		

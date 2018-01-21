@@ -22,7 +22,16 @@
 							<h3>${count.count}°. ${question.question}</h3>
 						
 							<br />
-		
+							
+							
+									<c:if test="${!empty question.image}">
+							
+				
+							<br /> 
+						
+							<img src="<c:url value='/resources/img/${question.image }' /> ">
+							
+							</c:if>
 		
 							<c:choose>
 								<c:when test="${question.type=='QCM'}">

@@ -3,6 +3,7 @@ package fr.nouas.main;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ import fr.nouas.pojo.utils.ActionManager;
 
 
 		)
+@MultipartConfig
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE_HOME = "/WEB-INF/index.jsp";
@@ -48,7 +50,7 @@ public class FrontServlet extends HttpServlet {
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "addQuestion":
-
+					
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "deleteQuestion":

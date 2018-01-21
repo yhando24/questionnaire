@@ -1,7 +1,9 @@
+<%@ page pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type"  content="text/html; charset=utf-8">
 
 <link rel="stylesheet" href='<c:url value="/resources/css/style.css" />' />
 <link href="https://fonts.googleapis.com/css?family=Lato"
@@ -60,7 +62,7 @@
 
 <c:forEach items="${ReponsesUser}" var="reponse" varStatus="countreponse">
 	<c:if test="${countreponse.first }">
-	<c:if test="${questionnaire.version != 1 }">	<h4>Version du test : numéro ${reponse.version }</h4></c:if>
+	<c:if test="${questionnaire.version != 1 }">	<h4>Version du test : numÃ©ro ${reponse.version }</h4></c:if>
 	</c:if>
 	<c:set var="nbQuestion" value="${nbQuestion + 1}" scope="page" />
 	<c:forEach items="${bonneReponsesUser}" var="bonnereponse"
