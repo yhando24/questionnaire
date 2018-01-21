@@ -21,10 +21,6 @@
 
 
 
-<<<<<<< HEAD
-=======
- 			 <property name="hibernate.hbm2ddl.auto" value="create"/>  
->>>>>>> e5f684a8e3564099f6c5412ae11fd41783b9712e
 
 <!-- <property name="hibernate.hbm2ddl.auto" value="create-drop"/> -->
 
