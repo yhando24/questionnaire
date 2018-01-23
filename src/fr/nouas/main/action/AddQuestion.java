@@ -59,6 +59,7 @@ public class AddQuestion extends Action {
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
 		 String chemin = "/Users/youce/eclipse-workspace/questionnaire/WebContent/resources/img/";
+	
 
 		if (request.getMethod().equals("POST")) {
 
@@ -72,58 +73,7 @@ public class AddQuestion extends Action {
 			Questionnaire questionnaire = em.find(Questionnaire.class, idQuestionnaire);
 			System.out.println("je suis dans le post dadd question pour le questionnaire : " + questionnaire.getName());
 
-//			// pour les qcm faire le if
-//			if (request.getParameter("type").equals("QCM")) {
-//
-//				System.out.println("c'est bien un QCM ! ");
-//
-//				Reponse bonneReponse = new Reponse(request.getParameter("correctQcm"), true, null, questionnaire);
-//
-//				Question question = new Question(
-//						request.getParameter("questionQcm"), TypeQuestion.valueOf(request.getParameter("type")),
-//						bonneReponse, reponses, questionnaire);
-//				bonneReponse.setQuestion(question);
-//
-//				Reponse mauvaiseReponse1 = new Reponse(request.getParameter("notCorrectQcm1"), false, question, questionnaire);
-//				reponses.add(mauvaiseReponse1);
-//
-//				Reponse mauvaiseReponse2 = new Reponse(request.getParameter("notCorrectQcm2"), false, question, questionnaire);
-//				reponses.add(mauvaiseReponse2);
-//
-//				Collections.shuffle(reponses);
-//
-//				tr.begin();
-//				em.persist(question);
-//				em.persist(bonneReponse);
-//				em.persist(mauvaiseReponse1);
-//				em.persist(mauvaiseReponse2);
-//		
-//				tr.commit();
-//
-//			}
-//			if (request.getParameter("type").equals("QUESTION_SIMPLE")) {
-//
-//				System.out.println("c'est bien une question simple ! ");
-//
-//				Reponse bonneReponse = new Reponse(request.getParameter("reponse"), true, null, questionnaire);
-//
-//				Question question = new Question(request.getParameter("questionSimple"),
-//						TypeQuestion.valueOf(request.getParameter("type")), bonneReponse, questionnaire);
-//				bonneReponse.setQuestion(question);
-//				System.out.println(request.getParameter("pourcentageNeed"));
-//				question.setPourcentageNeed(Integer.parseInt(request.getParameter("pourcentageNeed")));
-//
-//				tr.begin();
-//				em.persist(question);
-//				em.persist(bonneReponse);
-//				tr.commit();
-//
-//			}
-//			
-//			return false;
-//
-//		
-//		}
+
 
 	
 			Question question = new Question ();
@@ -216,24 +166,24 @@ public class AddQuestion extends Action {
 				
 				
 				    /*
-				     * Si la méthode a renvoyé quelque chose, il s'agit donc d'un champ
+				     * Si la mÃ©thode a renvoyÃ© quelque chose, il s'agit donc d'un champ
 				     * de type fichier (input type="file").
 				     */
 				    if ( nomFichierPart != null && !nomFichierPart.isEmpty() ) {
 				        String nomChamp = fichierPart.getName();
 				        /*
 				         * Antibug pour Internet Explorer, qui transmet pour une raison
-				         * mystique le chemin du fichier local à la machine du client...
+				         * mystique le chemin du fichier local Ã  la machine du client...
 				         * 
 				         * Ex : C:/dossier/sous-dossier/fichier.ext
 				         * 
-				         * On doit donc faire en sorte de ne sélectionner que le nom et
-				         * l'extension du fichier, et de se débarrasser du superflu.
+				         * On doit donc faire en sorte de ne sÃ©lectionner que le nom et
+				         * l'extension du fichier, et de se dÃ©barrasser du superflu.
 				         */
 				        nomFichierPart = nomFichierPart.substring( nomFichierPart.lastIndexOf( '/' ) + 1 )
 				                .substring( nomFichierPart.lastIndexOf( '\\' ) + 1 );
 
-				        /* Écriture du fichier sur le disque */
+				        /* Ã‰criture du fichier sur le disque */
 				        try {
 							ecrireFichier( fichierPart, nomFichierPart, chemin );
 						} catch (IOException e) {
@@ -320,24 +270,24 @@ public class AddQuestion extends Action {
 				
 				
 				    /*
-				     * Si la méthode a renvoyé quelque chose, il s'agit donc d'un champ
+				     * Si la mÃ©thode a renvoyÃ© quelque chose, il s'agit donc d'un champ
 				     * de type fichier (input type="file").
 				     */
 				    if ( nomFichierPart != null && !nomFichierPart.isEmpty() ) {
 				        String nomChamp = fichierPart.getName();
 				        /*
 				         * Antibug pour Internet Explorer, qui transmet pour une raison
-				         * mystique le chemin du fichier local à la machine du client...
+				         * mystique le chemin du fichier local Ã  la machine du client...
 				         * 
 				         * Ex : C:/dossier/sous-dossier/fichier.ext
 				         * 
-				         * On doit donc faire en sorte de ne sélectionner que le nom et
-				         * l'extension du fichier, et de se débarrasser du superflu.
+				         * On doit donc faire en sorte de ne sÃ©lectionner que le nom et
+				         * l'extension du fichier, et de se dÃ©barrasser du superflu.
 				         */
 				        nomFichierPart = nomFichierPart.substring( nomFichierPart.lastIndexOf( '/' ) + 1 )
 				                .substring( nomFichierPart.lastIndexOf( '\\' ) + 1 );
 
-				        /* Écriture du fichier sur le disque */
+				        /* Ã‰criture du fichier sur le disque */
 				        try {
 							ecrireFichier( fichierPart, nomFichierPart, chemin );
 						} catch (IOException e) {
@@ -379,8 +329,8 @@ public class AddQuestion extends Action {
 	
 	
 	/*
-	 * Méthode utilitaire qui a pour unique but de lire l'InputStream contenu
-	 * dans l'objet part, et de le convertir en une banale chaîne de caractères.
+	 * MÃ©thode utilitaire qui a pour unique but de lire l'InputStream contenu
+	 * dans l'objet part, et de le convertir en une banale chaÃ®ne de caractÃ¨res.
 	 */
 	private String getValeur( Part part ) throws IOException {
 	    BufferedReader reader = new BufferedReader( 
@@ -399,77 +349,43 @@ public class AddQuestion extends Action {
 	
 	
 	
-	/*
-     * Valide la description saisie.
-     */
-    private void validationDescription( String description ) throws Exception {
-        if ( description != null ) {
-            if ( description.length() < 15 ) {
-                throw new Exception( "La phrase de description du fichier doit contenir au moins 15 caractères." );
-            }
-        } else {
-            throw new Exception( "Merci d'entrer une phrase de description du fichier." );
-        }
-    }
+
+
+ 
+
+
+
+
 
     /*
-     * Valide le fichier envoyé.
-     */
-    private void validationFichier( String nomFichier, InputStream contenuFichier ) throws Exception {
-        if ( nomFichier == null || contenuFichier == null ) {
-            throw new Exception( "Merci de sélectionner un fichier à envoyer." );
-        }
-    }
-
-    /*
-     * Ajoute un message correspondant au champ spécifié à la map des erreurs.
-     */
-    private void setErreur( String champ, String message ) {
-        erreurs.put( champ, message );
-    }
-
-    /*
-     * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
-     * sinon.
-     */
-    private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
-        String valeur = request.getParameter( nomChamp );
-        if ( valeur == null || valeur.trim().length() == 0 ) {
-            return null;
-        } else {
-            return valeur;
-        }
-    }
-
-    /*
-     * Méthode utilitaire qui a pour unique but d'analyser l'en-tête
-     * "content-disposition", et de vérifier si le paramètre "filename" y est
-     * présent. Si oui, alors le champ traité est de type File et la méthode
+     * MÃ©thode utilitaire qui a pour unique but d'analyser l'en-tÃªte
+     * "content-disposition", et de vÃ©rifier si le paramÃ¨tre "filename" y est
+     * prÃ©sent. Si oui, alors le champ traitÃ© est de type File et la mÃ©thode
      * retourne son nom, sinon il s'agit d'un champ de formulaire classique et
-     * la méthode retourne null.
+     * la mÃ©thode retourne null.
      */
     private static String getNomFichier( Part part ) {
-        /* Boucle sur chacun des paramètres de l'en-tête "content-disposition". */
+        /* Boucle sur chacun des paramÃ¨tres de l'en-tÃªte "content-disposition". */
         for ( String contentDisposition : part.getHeader( "content-disposition" ).split( ";" ) ) {
-            /* Recherche de l'éventuelle présence du paramètre "filename". */
+            /* Recherche de l'Ã©ventuelle prÃ©sence du paramÃ¨tre "filename". */
             if ( contentDisposition.trim().startsWith( "filename" ) ) {
                 /*
-                 * Si "filename" est présent, alors renvoi de sa valeur,
-                 * c'est-à-dire du nom de fichier sans guillemets.
+                 * Si "filename" est prÃ©sent, alors renvoi de sa valeur,
+                 * c'est-Ã -dire du nom de fichier sans guillemets.
                  */
                 return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 ).trim().replace( "\"", "" );
             }
         }
-        /* Et pour terminer, si rien n'a été trouvé... */
+        /* Et pour terminer, si rien n'a Ã©tÃ© trouvÃ©... */
         return null;
     }
 
     /*
-     * Méthode utilitaire qui a pour but d'écrire le fichier passé en paramètre
-     * sur le disque, dans le répertoire donné et avec le nom donné.
+     * MÃ©thode utilitaire qui a pour but d'Ã©crire le fichier passÃ© en paramÃ¨tre
+     * sur le disque, dans le rÃ©pertoire donnÃ© et avec le nom donnÃ©.
      */
     private void ecrireFichier( Part part, String nomFichier, String chemin ) throws IOException {
-        /* Prépare les flux. */
+        /* PrÃ©pare les flux. */
         BufferedInputStream entree = null;
         BufferedOutputStream sortie = null;
         try {
@@ -479,7 +395,7 @@ public class AddQuestion extends Action {
                     TAILLE_TAMPON );
 
             /*
-             * Lit le fichier reçu et écrit son contenu dans un fichier sur le
+             * Lit le fichier reÃ§u et Ã©crit son contenu dans un fichier sur le
              * disque.
              */
             byte[] tampon = new byte[TAILLE_TAMPON];

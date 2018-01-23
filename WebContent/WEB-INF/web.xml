@@ -7,10 +7,6 @@
   	<servlet>
 	<servlet-name>FrontServlet</servlet-name>
 	<servlet-class>fr.nouas.main.FrontServlet</servlet-class>
-	<init-param>
-		<param-name>chemin</param-name> 
-		<param-value>/Users/youce/eclipse-workspace/questionnaire/WebContent/resources/img/</param-value> 
-	</init-param>
 	<multipart-config>
 		<location>C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\data</location>
 		<max-file-size>52428800</max-file-size> <!-- 10 Mo -->

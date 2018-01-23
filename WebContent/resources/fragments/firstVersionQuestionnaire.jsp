@@ -1,7 +1,7 @@
 	
 	
 	<c:if test="${user.role == 'admin' }">
-				<select name="type" id="type" form="formQuestion">
+				<select name="type" id="type" form="formQuestion" >
 					<option value="DEFAULT" selected disabled>Choix type
 						question</option>
 					<option value="QCM">QCM</option>
@@ -12,14 +12,15 @@
 			
 			
 				<article id="afficheQuestionnaire">
+<!-- 					enctype="multipart/form-data" -->
 					<form
 						action="<c:url value='/addQuestion?questionnaire=${questionnaire.id}'/>"
 						method="POST"  enctype = "multipart/form-data" id="formQuestion"></form>
 					<form
-						action="<c:url value='/editQuestion?question=${questionid}&questionnaire=${questionnaire.id}"'/>"
+						action="<c:url value='/editQuestion?question=${questionid}&questionnaire=${questionnaire.id}'/>"
 						method="POST" id="editQuestion"></form>
 						<form
-						action="<c:url value='/validQuestionnaire?questionnaire=${questionnaire.id}&user=${user.id}"'/>"
+						action="<c:url value='/validQuestionnaire?questionnaire=${questionnaire.id}&user=${user.id}'/>"
 						method="POST" id="validQuestionnaire"></form>
 				</article>
 			
@@ -46,7 +47,7 @@
 				
 							<br /> 
 						
-							<img src="<c:url value='/resources/img/${question.image }' /> ">
+							<img src="<c:url value='/resources/img/${question.image }' /> "> <br>
 							
 							</c:if>
 							<c:choose>
@@ -100,6 +101,8 @@
 					</c:forEach>
 					
 					<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
+					<%-- <a title="Acceuil" href='<c:url value="/createPdf" />'></a> --%>
+			<c:if test="${user.role == 'admin' }"> <input type="button" class="export" value="exporter" /></c:if>	
 				</article>
 	
 			

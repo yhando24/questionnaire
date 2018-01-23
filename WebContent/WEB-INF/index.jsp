@@ -44,7 +44,7 @@
 			<!-- RAJOUT DE QUESTIONNAIRE   -->
 		</aside>
 		<nav>
-		<c:if test="${!empty user }">
+		
 			<article style="background-color: rgb(75, 45, 162)">
 				<a href='<c:url value="/home" />'>All</a>
 			</article>
@@ -55,7 +55,7 @@
 						<article>
 							<form method="post"
 								action="<c:url value='/editCategory?id=${categoryid }'/>">
-								<select name="category-color">
+								<select name="category-color" required>
 									<option value="" selected disabled>Couleur</option>
 									<option style="background-color: rgb(59, 153, 217)"
 										value="rgb(59, 153, 217)">bleu</option>
@@ -74,7 +74,7 @@
 									<option style="background-color: rgb(41, 41, 41)"
 										value="rgb(41, 41, 41)">noir</option>
 									<input type="text" value="${category.name}"
-									name="category-name" />
+									name="category-name" required/>
 								</select> <input type="submit" value="Editer" />
 							</form>
 						</article>
@@ -92,7 +92,7 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-		</c:if>
+		
 		</nav>
 		
 	</section>
@@ -141,16 +141,16 @@
 						<article>
 							<input type="submit" value="Editer" form="form-editquestionnaire" />
 							<select name="questionnaire-category" id="questionnaire-category"
-								form="form-editquestionnaire">
+								form="form-editquestionnaire" required>
 								<option value="" selected disabled>Cat&eacute;gorie</option>
 								<c:forEach items="${categories}" var="category">
 									<option style="background-color:${category.color}"
 										value="${category.id}">${category.name}</option>
 								</c:forEach>
 							</select> <input type="text" value="${questionnaire.name}"
-								name="questionnaire-name" form="form-editquestionnaire" /> <input
+								name="questionnaire-name" form="form-editquestionnaire" required/> <input
 								type="text" value="${questionnaire.description}"
-								name="questionnaire-description" form="form-editquestionnaire" />
+								name="questionnaire-description" form="form-editquestionnaire" required/>
 								
 						</article>
 					</c:if>
@@ -216,7 +216,7 @@
 	
 	<c:if test="${actionName == 'checkProfil' }">
 	<c:if test="${user.role == 'admin' }">
-	
+	Questionnaire effectué par ${usertocheck.firstname } ${usertocheck.lastname } : 
 	<section>
 		<c:forEach items="${usertocheck.questionnaires}" var="questionnaire">
 					

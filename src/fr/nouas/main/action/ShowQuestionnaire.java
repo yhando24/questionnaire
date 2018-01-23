@@ -1,5 +1,7 @@
 package fr.nouas.main.action;
 
+
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +18,10 @@ public class ShowQuestionnaire extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
+		
+		
+		
+		
 		int id = Integer.parseInt(request.getParameter("questionnaire"));
 		Boolean newUser = Boolean.valueOf(request.getParameter("newUser"));
 		System.out.println(newUser + "test");
@@ -26,11 +32,16 @@ public class ShowQuestionnaire extends Action {
 		String VersionSession = null;
 		int idUser = Integer.parseInt(request.getSession().getAttribute("userid").toString());
   	   System.out.println( "id user : " + idUser);
-//		String nextVersion= request.getParameter("nextVersion");
-//		String checkVersion;
+  	 EntityManager em = JpaUtil.getEntityManager();
+  	 User user = em.find(User.class, idUser);
+  
+
+  	   
+
 		if(request.getMethod().equals("POST")) {
 			 String checkVersion= request.getParameter("checkVersion");
 			  System.out.println( "checkVersion : " + checkVersion);
+		
 			  request.getSession().setAttribute("checkVersion", checkVersion);
 		}
 		
@@ -41,7 +52,7 @@ public class ShowQuestionnaire extends Action {
 			System.out.println("premier passage");
 		}
 		
-		   EntityManager em = JpaUtil.getEntityManager();
+		   
 		   
 		   Questionnaire questionnaire = em.find(Questionnaire.class, id);
 		   

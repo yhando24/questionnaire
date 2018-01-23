@@ -64,7 +64,7 @@ public class AddQuestionnaire extends Action {
 					return true;
 				}
 				else {
-					request.getSession().setAttribute("addquestionnaireerror", "Veuillez choisir une Catégorie");
+					request.getSession().setAttribute("addquestionnaireerror", "Veuillez choisir une CatÃ©gorie");
 					return true;
 					}
 	}

@@ -27,7 +27,7 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(length=150, nullable=false)
+	@Column( nullable=false)
 	private String question;
 	
 //	@Lob
@@ -77,7 +77,7 @@ public class Question {
 
 
 
-	public Question(String question,	TypeQuestion type, Reponse bonneReponse, List<Reponse> reponses,  Questionnaire questionnaire) {
+	public Question(String question, TypeQuestion type, Reponse bonneReponse, List<Reponse> reponses,  Questionnaire questionnaire) {
 		super();
 		this.question = question;
 		this.type = type;

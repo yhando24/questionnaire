@@ -83,20 +83,10 @@ public class User {
 	public void addQuestionnaire(Questionnaire questionnaire) {
 		this.questionnaires.add(questionnaire);
 	}
-	public String getlastname() {
-		return lastname;
-	}
+	
 
 	public void setNom(String lastname) {
 		this.lastname = lastname;
-	}
-
-	public String getfirstname() {
-		return firstname;
-	}
-
-	public void setfirstname(String firstname) {
-		this.firstname = firstname;
 	}
 
 	public String getEmail() {
