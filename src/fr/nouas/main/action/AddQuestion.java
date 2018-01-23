@@ -58,7 +58,7 @@ public class AddQuestion extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
-		 String chemin = "/Users/youce/eclipse-workspace/questionnaire/WebContent/resources/img/";
+		 String chemin = "/Users/lokm/eclipse-workspace/questionnaire/WebContent/resources/img/";
 	
 
 		if (request.getMethod().equals("POST")) {

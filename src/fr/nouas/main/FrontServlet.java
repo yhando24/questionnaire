@@ -13,11 +13,9 @@ import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
 
-
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
 				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
 				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse", "/checkProfil"}
-
 
 		)
 @MultipartConfig

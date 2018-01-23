@@ -75,7 +75,7 @@
 						
 					
 								
-					${count.count}°. <input type="text" value="${question.question}" name="question-question" form="editQuestion" />
+					${count.count}°. <br /> <textarea name="question-question" form="editQuestion" >${question.question}</textarea>
 							<br />
 							<c:choose>
 								<c:when test="${question.type=='QCM'}">

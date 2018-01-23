@@ -37,6 +37,7 @@ input[type="submit"], input[type="button"] {
 	color:white;
 	font-weight:bold;
 	font-family: 'Lato', sans-serif;
+	height:2em;
 }
 section {
 	text-align:center;
@@ -192,6 +193,7 @@ nav article a:nth-child(3) {
 	background: white;
 	font-family: 'Lato', sans-serif;
 	border-radius: 1em;
+	
 }
 
 #pageAdmin article:first-child {
@@ -199,6 +201,7 @@ nav article a:nth-child(3) {
 }
 #questionnaire article {
 	border-radius: 1em;
+	position:relative;
 
 }
 #questionnaire article h2 {
@@ -234,9 +237,27 @@ nav article a:nth-child(3) {
 #questionnaire input {
 	padding:0.2em 0.5em;
 }
+#questionnaire hr {
+	width:75%;
+	color:rgb(225, 225, 225);
+}
 #questionnaire .reponse {
 	width:40vw;
 }
+#questionnaire #formUser {
+	top:2.2em;
+	right:1em;
+	text-align:left;
+	padding-left:1em;
+	display:flex;
+	flex-flow: row wrap;
+	align-content:center;
+	justify-content:space-around;
+	margin-bottom:1em; 
+}
+#questionnaire #formUser input, #questionnaire #formUser select {
+	margin:0.2em;
+} 
 .edit input[type="submit"] {
 	margin-bottom: 0.5em;
 

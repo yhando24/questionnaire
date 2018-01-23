@@ -16,7 +16,7 @@
 
 				<c:when test="${empty user}">
 					<%-- <c:import url='<c:url value="/resources/fragments/login.jsp" />' /> --%>
-					<c:if test="${actionName == 'home' || actionName == 'categorie' }">
+					<c:if test="${actionName != 'checkProfil'}">
 					<c:import url="/resources/fragments/login.jsp" /><a href="<c:url value='/signIn'/>"> <input type="button" value="Inscription"/></a>
 					
 					</c:if>
@@ -35,9 +35,11 @@
 
 
 				<c:if test="${user.role == 'admin' }">
-
-					<c:import url="/resources/fragments/addCategory.jsp" />
-					<c:import url="/resources/fragments/addQuestionnaire.jsp" />
+										
+					<c:if test="${ user.role == 'superAdmin' }">
+						<c:import url="/resources/fragments/addCategory.jsp" />
+					</c:if>
+						<c:import url="/resources/fragments/addQuestionnaire.jsp" />
 				</c:if>
 				</c:otherwise>
 			</c:choose>
@@ -46,7 +48,7 @@
 		<nav>
 		
 			<article style="background-color: rgb(75, 45, 162)">
-				<a href='<c:url value="/home" />'>All</a>
+				<a href='<c:url value="/home" />'>Tout voir</a>
 			</article>
 		
 			<c:forEach items="${categories}" var="category">
@@ -83,7 +85,7 @@
 						<article style="background-color:${category.color}">
 							<a href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
 
-							<c:if test="${user.role == 'admin' }">
+							<c:if test="${user.role == 'superAdmin' }">
 								<a title="Editer" href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a>
 								<a title="Supprimer" href='<c:url value="deleteCategory?categorie=${category.id}" /> '>&#10006;</a>							
 
@@ -96,7 +98,7 @@
 		</nav>
 		
 	</section>
-	<c:if test="${actionName == 'home' }">
+	<c:if test="${actionName != 'checkProfil'}">
 	<section id="listCategorie">
 		<form method="POST"
 			action="<c:url value='/editQuestionnaire?id=${questionnaireid}'/>"
@@ -112,7 +114,7 @@
 						<article> 
 							<h2 style="background-color:${categorie.color}">${categorie.name}
 					
-							<c:if test="${user.role == 'admin' }">
+							<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
 								<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
 								<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
 
@@ -167,7 +169,7 @@
 							<article>
 								<h2 style="background-color:${category.color}">${category.name}
 
-								<c:if test="${user.role == 'admin' }">
+								<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
 									<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
 									<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
 
@@ -215,9 +217,9 @@
 	</c:if>
 	
 	<c:if test="${actionName == 'checkProfil' }">
-	<c:if test="${user.role == 'admin' }">
-	Questionnaire effectué par ${usertocheck.firstname } ${usertocheck.lastname } : 
-	<section>
+	<c:if test="${user.role == 'admin' || user.role == 'superAdmin'}">
+	Questionnaire effectu&eacute; par ${usertocheck.firstname } ${usertocheck.lastname } : 
+	<section id="listCategorie">
 		<c:forEach items="${usertocheck.questionnaires}" var="questionnaire">
 					
 					
