@@ -63,8 +63,7 @@
 					
 					<input type="submit" value="Valider" form="validQuestionnaire" /> <br />
 					<%-- <a title="Acceuil" href='<c:url value="/createPdf" />'></a> --%>
-					<input
-						type="button" class="export" value="exporter" />
+				<c:if test="${user.role == 'admin' }"> <input type="button" class="export" value="exporter" /></c:if>	
 				</article>
 
 			

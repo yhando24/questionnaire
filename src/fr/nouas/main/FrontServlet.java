@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
+
+
 		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
 				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
-
 				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse", "/checkProfil"}
-
 
 
 		)
@@ -29,6 +29,8 @@ public class FrontServlet extends HttpServlet {
     public FrontServlet() {}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+
 		
 		String actionName = getActionName(request);
 		boolean redirect = ActionManager.getAction(actionName).executeAction(request);
@@ -43,6 +45,8 @@ public class FrontServlet extends HttpServlet {
 				switch(actionName)
 				{
 				case "questionnaire":
+				
+
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "addQuestion":
@@ -50,7 +54,6 @@ public class FrontServlet extends HttpServlet {
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
 				case "deleteQuestion":
-
 					System.out.println("dans le case deletequestion " +request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
 					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
 					break;
@@ -59,7 +62,7 @@ public class FrontServlet extends HttpServlet {
 					System.out.println("dans le case editQuestion");
 					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
 					break;
-
+					
 				default :
 					response.sendRedirect(request.getContextPath() +"/home");
 				}

@@ -1,23 +1,6 @@
 
 <!--  FORMULAIRE DE CHOIX DES VERSIONS DE REPONSE -->
-<c:if test="${questionnaire.version != 1 }"><form
-		action="<c:url value='/questionnaire?questionnaire=${questionnaire.id}"'/>"
-		method="POST" id="SelectVersion"></form>
-		
-		<input type="submit" value="Chercher une Version" form="SelectVersion" />
-		<select name="checkVersion" form="SelectVersion">
-			<c:forEach items="${reponses}" var="reponse" varStatus="countreponse">
-				<c:if test="${countreponse.first }">
-					<c:forEach begin="2" end="${lastVersion +1  }" varStatus="loop">
-		
-		
-						<option value="${loop.index-1 }">${loop.index -1}</option>
-					</c:forEach>
-				</c:if>
-			</c:forEach>
-		
-	</select>
-</c:if>
+
 	
 <!-- AFFICHAGE DES RESULTATS -->
 
@@ -36,13 +19,22 @@
 
 
 		<c:if test="${reponse.question == bonnereponse.question }">
+		
+		<c:if test="${user.role == 'admin' }">		<p>
+ 				Question :
+ 				<h3>${reponse.question.question}</h3>
+ 				
+ 						<br />
+ 					 reponse  : <h5>   ${reponse.reponse}</h5>
+ 				<hr />
+ 					</c:if>
 			
 				<c:if test="${reponse.question.type == 'QCM' }">
 					<c:choose>
 						<c:when test="${reponse.reponse == bonnereponse.reponse}">
 							<c:set var="point" value="${point + 1}" scope="page" />
 
-
+						
 						</c:when>
 
 					</c:choose>
@@ -84,7 +76,7 @@
 				
 				
 					</p>
-					<hr>
+				
 				
 					
 					
@@ -93,8 +85,33 @@
 				
 		</c:forEach>
 		<h4>note : ${point * 100 / nbQuestion}%</h4> 
+			<c:if test="${user.role == 'admin' }"> <input type="button" class="export" value="exporter" /> </c:if>
+			<br>
+				<c:if test="${user.role == 'admin' }"> 	
+				<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a>
+		</c:if>
+		<c:if test="${user.role != 'admin' }">
 		<c:if test="${lastVersion < questionnaire.version }">
-			<input type="button" class="export" value="exporter" />
+		
 			<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a>
 		</c:if>
+		</c:if>
+		<c:if test="${questionnaire.version != 1 }"><form
+		action="<c:url value='/questionnaire?questionnaire=${questionnaire.id}"'/>"
+		method="POST" id="SelectVersion"></form>
+		
+		<input type="submit" value="Chercher une Version" form="SelectVersion" />
+		<select name="checkVersion" form="SelectVersion">
+			<c:forEach items="${reponses}" var="reponse" varStatus="countreponse">
+				<c:if test="${countreponse.first }">
+					<c:forEach begin="2" end="${lastVersion +1  }" varStatus="loop">
+		
+		
+						<option value="${loop.index-1 }">${loop.index -1}</option>
+					</c:forEach>
+				</c:if>
+			</c:forEach>
+		
+	</select>
+</c:if>
 		

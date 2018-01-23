@@ -43,13 +43,104 @@
 		<c:choose>
 			<c:when test="${!empty userToCheck }">
 
-				<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
-				<c:if test="${user.role == 'admin' }">
-					<form
+			<c:if test="${user.role == 'admin' }">
+		Eleve : <a href='<c:url value="/checkProfil?profil=${userToCheck.id}" />'>${userToCheck.firstname} ${userToCheck.lastname }</a>
+		<br />
+		<a href='<c:url value="questionnaire?newUser=true&questionnaire=${questionnaire.id}" />'>Retour au questionnaire</a>
+				
+		
+			
+
+				<c:set var="point" value="0" scope="page" />
+				<c:set var="nbQuestion" value="0" scope="page" />
+				<c:forEach items="${ReponsesUser}" var="reponse"
+					varStatus="countreponse">
+					<c:if test="${countreponse.first }">
+						<c:if test="${questionnaire.version != 1 }">
+							<h4>Version du test : numéro ${reponse.version }</h4>
+						</c:if>
+					</c:if>
+					<c:set var="nbQuestion" value="${nbQuestion + 1}" scope="page" />
+					<c:forEach items="${bonneReponsesUser}" var="bonnereponse"
+						varStatus="countbonnereponse">
+						<c:if test="${reponse.question == bonnereponse.question }">
+
+							<p>Question :
+							<h3>${reponse.question.question}</h3>
+							<br />
+					 reponse  eleve : <h5>${reponse.reponse}</h5> 
+					 		<br />
+				
+
+							<c:if test="${reponse.question.type == 'QCM' }">
+						
+								<c:choose>
+									<c:when test="${reponse.reponse == bonnereponse.reponse}">
+										<c:set var="point" value="${point + 1}" scope="page" />
+									<strong style="color:green">&#10004;</strong>
+									</c:when>
+									<c:when test="${reponse.reponse != bonnereponse.reponse}">
+										<strong style="color:red">&#10060;</strong>
+									
+									</c:when>
+								</c:choose>
+							</c:if>
+							<c:if test="${reponse.question.type == 'QUESTION_SIMPLE' }">
+								<c:set var="ReussitMotCle" value="0" scope="page" />
+								<c:set var="Splitreponses"
+									value="${fn:split(bonnereponse.reponse, ' ')}" />
+					 
+
+					 mots cles attendu : ${bonnereponse.reponse}
+			
+
+								<c:forEach items="${Splitreponses}" var="Splitreponse">
+									<c:if
+										test="${fn:contains(fn:toLowerCase(reponse.reponse),fn:toLowerCase(Splitreponse))}">
+										<c:set var="ReussitMotCle" value="${ReussitMotCle + 1}"
+											scope="page" />
+									</c:if>
+								</c:forEach>
+
+								<c:if
+									test="${ReussitMotCle * 100 / fn:length(Splitreponses) >= reponse.question.pourcentageNeed }">
+									<c:set var="point" value="${point + 1}" scope="page" />
+									<strong style="color:green">&#10004;</strong>
+								</c:if>
+								
+									<c:if
+									test="${ReussitMotCle * 100 / fn:length(Splitreponses) <= reponse.question.pourcentageNeed }">
+					<strong style="color:red">&#10060;</strong>
+								</c:if>
+							
+
+							</c:if>
+						</c:if>
+
+
+
+
+						</p>
+				
+
+
+
+
+					</c:forEach>
+
+ <hr />
+				</c:forEach>
+				<h4>note : ${point * 100 / nbQuestion}%</h4>
+
+		 <input type="button" class="export" value="exporter" /> 
+		  </c:if>
+
+
+			<form
 						action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>"
 						method="POST">
 						<input type="hidden" name="userForReponse"
-							value="${userTocheck.id }"> Version <select
+							value="${userToCheck.id }">  <select
 							name="checkVersion">
 							<c:forEach items="${ReponsesUser}" var="reponse"
 								varStatus="countreponse">
@@ -65,67 +156,6 @@
 
 						</select> <input type="submit" value="Chercher Version">
 					</form>
-				</c:if>
-
-				<c:set var="point" value="0" scope="page" />
-				<c:set var="nbQuestion" value="0" scope="page" />
-				<c:forEach items="${ReponsesUser}" var="reponse"
-					varStatus="countreponse">
-					<c:if test="${countreponse.first }">
-						<c:if test="${questionnaire.version != 1 }">
-							<h4>Version du test : numéro ${reponse.version }</h4>
-						</c:if>
-					</c:if>
-					<c:set var="nbQuestion" value="${nbQuestion + 1}" scope="page" />
-					<c:forEach items="${bonneReponsesUser}" var="bonnereponse"
-						varStatus="countbonnereponse">
-						<c:if test="${reponse.question == bonnereponse.question }">
-						
-							<h3>${reponse.question.question}</h3>
-						
-					<h5>${reponse.reponse}</h5>
-							<c:if test="${reponse.question.type == 'QCM' }">
-								<c:choose>
-									<c:when test="${reponse.reponse == bonnereponse.reponse}">
-										<c:set var="point" value="${point + 1}" scope="page" />
-									</c:when>
-								</c:choose>
-							</c:if>
-							<c:if test="${reponse.question.type == 'QUESTION_SIMPLE' }">
-								<c:set var="ReussitMotCle" value="0" scope="page" />
-								<c:set var="Splitreponses"
-									value="${fn:split(bonnereponse.reponse, ' ')}" />
-					 
-					 mots cles attendu : ${fn:length(Splitreponses)}
-		
-								<c:forEach items="${Splitreponses}" var="Splitreponse">
-									<c:if
-										test="${fn:contains(fn:toLowerCase(reponse.reponse),fn:toLowerCase(Splitreponse))}">
-										<c:set var="ReussitMotCle" value="${ReussitMotCle + 1}"
-											scope="page" />
-									</c:if>
-								</c:forEach>
-
-								<c:if
-									test="${ReussitMotCle * 100 / fn:length(Splitreponses) >= reponse.question.pourcentageNeed }">
-									<c:set var="point" value="${point + 1}" scope="page" />
-								</c:if>
-
-							</c:if>
-						</c:if>
-
-
-
-					
-
-
-
-					</c:forEach>
-
-
-				</c:forEach>
-				<h4>note : ${point * 100 / nbQuestion}%</h4>
-
 
 
 
@@ -179,7 +209,7 @@
 				<!-- 	SI IL VEUX REFAIRE LE QUESTIONNAIRE -->
 
 				<c:if test="${ AddNewVersion == 'true' }">
-					<input type="button" class="export" value="exporter" />
+					
 					<c:import url="/resources/fragments/newVersionQuestionnaire.jsp" />
 				</c:if>
 

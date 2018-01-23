@@ -6,7 +6,6 @@ import java.util.Map;
 import fr.nouas.main.action.AddCategory;
 import fr.nouas.main.action.AddQuestion;
 import fr.nouas.main.action.AddQuestionnaire;
-
 import fr.nouas.main.action.CheckProfil;
 import fr.nouas.main.action.CheckReponse;
 import fr.nouas.main.action.DeleteCategory;

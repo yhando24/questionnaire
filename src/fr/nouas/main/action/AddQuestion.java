@@ -58,7 +58,8 @@ public class AddQuestion extends Action {
 
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
-		 String chemin = "/Users/lokm/eclipse-workspace/questionnaire/WebContent/resources/img/";
+		 String chemin = "/Users/youce/eclipse-workspace/questionnaire/WebContent/resources/img/";
+	
 
 		if (request.getMethod().equals("POST")) {
 
@@ -72,58 +73,7 @@ public class AddQuestion extends Action {
 			Questionnaire questionnaire = em.find(Questionnaire.class, idQuestionnaire);
 			System.out.println("je suis dans le post dadd question pour le questionnaire : " + questionnaire.getName());
 
-//			// pour les qcm faire le if
-//			if (request.getParameter("type").equals("QCM")) {
-//
-//				System.out.println("c'est bien un QCM ! ");
-//
-//				Reponse bonneReponse = new Reponse(request.getParameter("correctQcm"), true, null, questionnaire);
-//
-//				Question question = new Question(
-//						request.getParameter("questionQcm"), TypeQuestion.valueOf(request.getParameter("type")),
-//						bonneReponse, reponses, questionnaire);
-//				bonneReponse.setQuestion(question);
-//
-//				Reponse mauvaiseReponse1 = new Reponse(request.getParameter("notCorrectQcm1"), false, question, questionnaire);
-//				reponses.add(mauvaiseReponse1);
-//
-//				Reponse mauvaiseReponse2 = new Reponse(request.getParameter("notCorrectQcm2"), false, question, questionnaire);
-//				reponses.add(mauvaiseReponse2);
-//
-//				Collections.shuffle(reponses);
-//
-//				tr.begin();
-//				em.persist(question);
-//				em.persist(bonneReponse);
-//				em.persist(mauvaiseReponse1);
-//				em.persist(mauvaiseReponse2);
-//		
-//				tr.commit();
-//
-//			}
-//			if (request.getParameter("type").equals("QUESTION_SIMPLE")) {
-//
-//				System.out.println("c'est bien une question simple ! ");
-//
-//				Reponse bonneReponse = new Reponse(request.getParameter("reponse"), true, null, questionnaire);
-//
-//				Question question = new Question(request.getParameter("questionSimple"),
-//						TypeQuestion.valueOf(request.getParameter("type")), bonneReponse, questionnaire);
-//				bonneReponse.setQuestion(question);
-//				System.out.println(request.getParameter("pourcentageNeed"));
-//				question.setPourcentageNeed(Integer.parseInt(request.getParameter("pourcentageNeed")));
-//
-//				tr.begin();
-//				em.persist(question);
-//				em.persist(bonneReponse);
-//				tr.commit();
-//
-//			}
-//			
-//			return false;
-//
-//		
-//		}
+
 
 	
 			Question question = new Question ();
@@ -399,47 +349,13 @@ public class AddQuestion extends Action {
 	
 	
 	
-	/*
-     * Valide la description saisie.
-     */
-    private void validationDescription( String description ) throws Exception {
-        if ( description != null ) {
-            if ( description.length() < 15 ) {
-                throw new Exception( "La phrase de description du fichier doit contenir au moins 15 caractères." );
-            }
-        } else {
-            throw new Exception( "Merci d'entrer une phrase de description du fichier." );
-        }
-    }
 
-    /*
-     * Valide le fichier envoyé.
-     */
-    private void validationFichier( String nomFichier, InputStream contenuFichier ) throws Exception {
-        if ( nomFichier == null || contenuFichier == null ) {
-            throw new Exception( "Merci de sélectionner un fichier à envoyer." );
-        }
-    }
 
-    /*
-     * Ajoute un message correspondant au champ spécifié à la map des erreurs.
-     */
-    private void setErreur( String champ, String message ) {
-        erreurs.put( champ, message );
-    }
+ 
 
-    /*
-     * Méthode utilitaire qui retourne null si un champ est vide, et son contenu
-     * sinon.
-     */
-    private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
-        String valeur = request.getParameter( nomChamp );
-        if ( valeur == null || valeur.trim().length() == 0 ) {
-            return null;
-        } else {
-            return valeur;
-        }
-    }
+
+
+
 
     /*
      * Méthode utilitaire qui a pour unique but d'analyser l'en-tête

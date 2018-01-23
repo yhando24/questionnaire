@@ -37,8 +37,7 @@ public class ShowQuestionnaire extends Action {
   
 
   	   
-//		String nextVersion= request.getParameter("nextVersion");
-//		String checkVersion;
+
 		if(request.getMethod().equals("POST")) {
 			 String checkVersion= request.getParameter("checkVersion");
 			  System.out.println( "checkVersion : " + checkVersion);

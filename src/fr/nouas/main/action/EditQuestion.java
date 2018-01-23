@@ -40,10 +40,7 @@ public class EditQuestion extends Action {
 						request.getParameter("question-reponse3"),
 						request.getParameter("question-reponse4")
 				};
-//				String reponse1 = request.getParameter("question-reponse1");
-//				String reponse2 = request.getParameter("question-reponse2");
-//				String reponse3 = request.getParameter("question-reponse3");
-//				String reponse4 = request.getParameter("question-reponse4");
+
 				
 				
 				

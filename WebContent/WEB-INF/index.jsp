@@ -216,7 +216,7 @@
 	
 	<c:if test="${actionName == 'checkProfil' }">
 	<c:if test="${user.role == 'admin' }">
-	
+	Questionnaire effectué par ${usertocheck.firstname } ${usertocheck.lastname } : 
 	<section>
 		<c:forEach items="${usertocheck.questionnaires}" var="questionnaire">
 					
