@@ -41,7 +41,7 @@
 
 
 		<c:choose>
-			<c:when test="${!empty userTocheck }">
+			<c:when test="${!empty userToCheck }">
 
 				<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
 				<c:if test="${user.role == 'admin' }">
@@ -80,10 +80,10 @@
 					<c:forEach items="${bonneReponsesUser}" var="bonnereponse"
 						varStatus="countbonnereponse">
 						<c:if test="${reponse.question == bonnereponse.question }">
-							<p>Question
+						
 							<h3>${reponse.question.question}</h3>
-							<br />
-					Votre reponse : <h5>${reponse.reponse}</h5>
+						
+					<h5>${reponse.reponse}</h5>
 							<c:if test="${reponse.question.type == 'QCM' }">
 								<c:choose>
 									<c:when test="${reponse.reponse == bonnereponse.reponse}">
@@ -97,7 +97,7 @@
 									value="${fn:split(bonnereponse.reponse, ' ')}" />
 					 
 					 mots cles attendu : ${fn:length(Splitreponses)}
-			</p>
+		
 								<c:forEach items="${Splitreponses}" var="Splitreponse">
 									<c:if
 										test="${fn:contains(fn:toLowerCase(reponse.reponse),fn:toLowerCase(Splitreponse))}">
@@ -116,8 +116,7 @@
 
 
 
-						</p>
-						<hr>
+					
 
 
 
@@ -132,7 +131,7 @@
 
 			</c:when>
 
-			<c:when test="${empty userTocheck }">
+			<c:when test="${empty userToCheck }">
 				<!-- USER QUI ON FAIT LE QUESTIONNAIRE -->
 
 
@@ -141,7 +140,7 @@
 						action="<c:url value='/checkReponse?questionnaire=${questionnaire.id}"'/>"
 						method="POST">
 						Etudiant :<select name="userForReponse">
-							<c:forEach items="${UsersQuestionnaire}" var="UserQuestionnaire">
+							<c:forEach items="${questionnaire.users}" var="UserQuestionnaire">
 								<option value="${UserQuestionnaire.id }">${UserQuestionnaire.firstname}
 									${UserQuestionnaire.lastname }</option>
 

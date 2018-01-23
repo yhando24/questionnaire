@@ -1,4 +1,4 @@
-package fr.nouas.pojo.utils;
+package fr.nouas.main.action;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import fr.nouas.beans.Questionnaire;
 import fr.nouas.beans.Reponse;
 import fr.nouas.beans.User;
+import fr.nouas.pojo.utils.Action;
 import fr.nouas.utils.JpaUtil;
 
 public class CheckReponse extends Action {
