@@ -62,7 +62,9 @@ public class ShowQuestionnaire extends Action {
 	     
 //	     	VERIFICATION QUESTIONNAIRY DONE :
 	     	Boolean DoneQuestionnary = false;
-
+	     	 String chemin = "/Users/youce/eclipse-workspace/questionnaire/WebContent/resources/img/";
+			 request.getSession().setAttribute("chemin", chemin);	
+	     	
 	     	try {
 	     		
 	     		

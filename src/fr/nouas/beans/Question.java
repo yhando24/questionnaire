@@ -30,10 +30,12 @@ public class Question {
 	@Column( nullable=false)
 	private String question;
 	
-	@Lob
-    @Column(name="BOOK_IMAGE", nullable=false, columnDefinition="mediumblob")
-    private byte[] image;
- 
+//	@Lob
+//    @Column(name="BOOK_IMAGE", nullable=true, columnDefinition="mediumblob")
+//    private byte[] image;
+// 
+	@Column(length=150, nullable=true)
+	private String image;
 	
 
 	@OneToOne
@@ -101,11 +103,11 @@ public class Question {
 		return id;
 	}
 
-	 public byte[] getImage() {
+	 public String getImage() {
 	        return image;
 	    }
 	 
-	    public void setImage(byte[] image) {
+	    public void setImage(String image) {
 	        this.image = image;
 	    }
 	

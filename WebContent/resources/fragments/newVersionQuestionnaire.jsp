@@ -26,7 +26,16 @@
 							<input type="hidden" name="question${count.count}" value="${question.question}" form="createPdf"/>
 						
 							<br />
-		
+							
+							
+									<c:if test="${!empty question.image}">
+							
+				
+							<br /> 
+						
+							<img src="<c:url value='/resources/img/${question.image }' /> "> <br>
+							
+							</c:if>
 		
 							<c:choose>
 								<c:when test="${question.type=='QCM'}">
