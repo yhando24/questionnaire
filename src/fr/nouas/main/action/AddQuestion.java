@@ -33,14 +33,14 @@ import fr.nouas.utils.JpaUtil;
 public class AddQuestion extends Action {
 	
 	private static final String CHAMP_type = "type";
-	private static final String CHAMP_QUESTIONQQCM     = "questionQcm";
+	private static final String CHAMP_QUESTIONQQCM  = "questionQcm";
     private static final String CHAMP_correctQcm = "correctQcm";
     private static final String CHAMP_notCorrectQcm1 = "notCorrectQcm1";
     private static final String CHAMP_notCorrectQcm2 = "notCorrectQcm2";
     private static final String CHAMP_questionSimple    = "questionSimple";
     private static final String CHAMP_reponse = "reponse";
     
-    
+	
     
     private static final int    TAILLE_TAMPON     = 1000240;                       
 
@@ -60,7 +60,7 @@ public class AddQuestion extends Action {
 	public boolean executeAction(HttpServletRequest request) {
 		 String chemin = "/Users/youce/eclipse-workspace/questionnaire/WebContent/resources/img/";
 	
-
+		 System.out.println("je suiss la");
 		if (request.getMethod().equals("POST")) {
 
 			idQuestionnaire = Integer.parseInt(request.getParameter("questionnaire"));
