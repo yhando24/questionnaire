@@ -3,18 +3,24 @@ package fr.nouas.main;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.nouas.main.action.AddQuestion;
 import fr.nouas.pojo.utils.ActionManager;
 		
 @WebServlet(name="/FrontServlet",
-		value= { "/home", "/mathematique", "/francais", "/addCategory", "/addQuestionnaire", "/questionnaire", "/addQuestion", "/categorie",
-				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut"}
+
+
+		value= { "/home", "/addCategory", "/addQuestionnaire", "/questionnaire", "/editQuestionnaire", "/deleteQuestionnaire", 
+				"/addQuestion", "/editQuestion", "/categorie", "/deleteQuestion",
+				"/editCategory", "/deleteCategory", "/signIn", "/logIn", "/logOut", "/validQuestionnaire", "/checkReponse", "/checkProfil"}
+
+
 		)
+@MultipartConfig
 public class FrontServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String PAGE_HOME = "/WEB-INF/index.jsp";
@@ -43,10 +49,20 @@ public class FrontServlet extends HttpServlet {
 
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
-				case "AddQuestion":
-
+				case "addQuestion":
+					
 					getServletContext().getRequestDispatcher(PAGE_QUESTIONNAIRE).forward(request, response);
 					break;
+				case "deleteQuestion":
+					System.out.println("dans le case deletequestion " +request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					break;
+					
+				case "editQuestion":
+					System.out.println("dans le case editQuestion");
+					response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+					break;
+					
 				default :
 					response.sendRedirect(request.getContextPath() +"/home");
 				}
@@ -54,7 +70,7 @@ public class FrontServlet extends HttpServlet {
 		
 	}
 
-	
+		
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -68,9 +84,26 @@ public class FrontServlet extends HttpServlet {
 			System.out.println("dans le switch: " + actionName);
 			switch(actionName)
 			{
+			case "questionnaire":
+				
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+				break;
 			case "addQuestion":
 				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+
 				System.out.println("dans le case addquestion");
+				break;
+			case "checkReponse":
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString());
+
+				System.out.println("dans le case addquestion");
+				break;
+			
+			case "editQuestion":
+				System.out.println("dans le case editQuestion");
+				response.sendRedirect(request.getContextPath() +"/questionnaire?"+request.getQueryString().substring((request.getQueryString().lastIndexOf("&")+ 1)));
+				
+			break;
 
 			}
 		}

@@ -17,7 +17,7 @@ public class SignIn extends Action {
         
         request.setAttribute("title", "page d'inscription");
         
-        
+        System.out.println("dans le sign");
         
         if(request.getMethod().equals("POST")) {
             
@@ -29,6 +29,7 @@ public class SignIn extends Action {
         String lastname = request.getParameter("lastname");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
         
         // hachage du mot de passe
         Md5 md = new Md5(password);
@@ -40,8 +41,10 @@ public class SignIn extends Action {
             
             // creation de lutilisateur grace au information du formulaire
         
-            User user = new User(lastname, firstname,email, password);
+
+            User user = new User(lastname, firstname,email, password, role);
         
+
             EntityManager em = JpaUtil.getEntityManager();
             EntityTransaction transaction = em.getTransaction();
             boolean redirect = false;
@@ -51,6 +54,7 @@ public class SignIn extends Action {
                 em.persist(user);
                 transaction.commit();
                 request.getSession().setAttribute("user", user);
+                request.getSession().setAttribute("userid", user.getId());
                 redirect = true;
             } catch (Exception e) {
                 transaction.rollback();
@@ -61,7 +65,7 @@ public class SignIn extends Action {
             return redirect;
           }
         }
-        return false;
+        return true;
     }
 
 }

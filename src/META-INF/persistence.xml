@@ -9,6 +9,7 @@
 		 <class>fr.nouas.beans.Questionnaire</class>
 		 <class>fr.nouas.beans.Reponse</class>
 		 <class>fr.nouas.beans.Category</class>
+	
 		 
 		<properties>
 			
@@ -18,7 +19,9 @@
 			<!-- ne pas utiliser en prod -->
 
 
+
 			   <property name="hibernate.hbm2ddl.auto" value="create"/>   
+
 
 
 

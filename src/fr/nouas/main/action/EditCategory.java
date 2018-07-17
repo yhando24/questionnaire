@@ -5,11 +5,12 @@ import javax.persistence.EntityTransaction;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.Category;
+import fr.nouas.beans.User;
 import fr.nouas.pojo.utils.Action;
 import fr.nouas.utils.JpaUtil;
 
 public class EditCategory extends Action {
-
+ // TODO Gerer edition de mÃªme couleur
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
 		if(request.getMethod().equals("GET")) {
@@ -18,7 +19,7 @@ public class EditCategory extends Action {
 			System.out.println("dans le get");
 			request.getSession().setAttribute("categoryid", id);
 		}else {
-			// connection a la base de donnée, recuperation de l EMF grace a jpa util. la creation de EMF est faite au lancement de lappli7
+			// connection a la base de donnï¿½e, recuperation de l EMF grace a jpa util. la creation de EMF est faite au lancement de lappli7
 			// grace a un ecouteur devenement	
 			EntityManager em = JpaUtil.getEntityManager();
 			EntityTransaction tr = em.getTransaction();
@@ -31,16 +32,24 @@ public class EditCategory extends Action {
 			// edition grace au formulaire
 			category.setName(request.getParameter("category-name"));
 			category.setColor(request.getParameter("category-color"));
-			
+			 try {	
 			tr.begin();
-			em.persist(category);
+			em.merge(category);
 			tr.commit();
-			System.out.println("dans le post");
+			 request.getSession().removeAttribute("bugeditquestionnaire");
 			request.getSession().setAttribute("categoryid", -1);
-		}
-			
+			 }
+			 catch (Exception e) { 
+			request.getSession().setAttribute("bugeditquestionnaire", "Veuillez choisir votre categorie");
+			 e.printStackTrace();
+			 }
+	        
+		     }
 			return true;
-		}
+	
+         
 
+     }
+ 
 
 }

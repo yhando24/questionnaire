@@ -3,7 +3,18 @@
 
   <display-name>questionnaire</display-name>
   <description>Plateforme de questionnaire pour nouas</description>
-  	
+  
+  	<servlet>
+	<servlet-name>FrontServlet</servlet-name>
+	<servlet-class>fr.nouas.main.FrontServlet</servlet-class>
+	<multipart-config>
+		<location>C:\Program Files\Apache Software Foundation\Tomcat 9.0\webapps\data</location>
+		<max-file-size>52428800</max-file-size> <!-- 10 Mo -->
+		<max-request-size>52428800</max-request-size> <!-- 5 x 10 Mo -->
+		<file-size-threshold>52428800</file-size-threshold> <!-- 1 Mo -->
+	</multipart-config>
+	</servlet>
+
   	<session-config>
      	<tracking-mode>COOKIE</tracking-mode>
 	</session-config>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.nouas.beans.Category;
@@ -17,9 +18,11 @@ public class AddQuestionnaire extends Action {
 	@Override
 	public boolean executeAction(HttpServletRequest request) {
 		
+		if( request.getParameter("idCategory") != null) {
+
 					int id = Integer.parseInt(request.getParameter("idCategory"));
 					
-				
+									
 					EntityManager em = JpaUtil.getEntityManager();
 					EntityTransaction tr = em.getTransaction();
 				
@@ -33,7 +36,8 @@ public class AddQuestionnaire extends Action {
 							request.getParameter("description_questionnaire"),
 							category);
 					
-				
+					questionnaire.setVersion(Integer.parseInt(request.getParameter("remake_questionnaire")));;
+					
 					boolean add = false;
 					
 				
@@ -55,8 +59,13 @@ public class AddQuestionnaire extends Action {
 					em.persist(category);
 					tr.commit();
 				
-					
+					request.getSession().removeAttribute("addquestionnaireerror");
 					
 					return true;
-				};
+				}
+				else {
+					request.getSession().setAttribute("addquestionnaireerror", "Veuillez choisir une Catégorie");
+					return true;
+					}
+	}
 }

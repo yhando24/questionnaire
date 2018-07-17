@@ -5,18 +5,20 @@ $(document).ready(function() {
 	
 	$('#type').change(function() {
 	    var type = $('#type option:selected').val();
-	    var qcm = '<input type="text" placeholder="Ajouter une question" name="questionQcm" form="formQuestion"/> <input type="text" name="correctQcm" placeholder="Bonne réponse" form="formQuestion" /><input type="text" name="notCorrectQcm1" placeholder="Mauvaise réponse 1" form="formQuestion"/><input type="text" name="notCorrectQcm2" placeholder="Mauvaise réponse 2" form="formQuestion"/><input type="text" name="notCorrectQcm3" placeholder="Mauvaise réponse 3" form="formQuestion"/><input type="submit" value="Ajouter question" form="formQuestion"/>';
-	    var questionSimple = '<input type="text" placeholder="Entrer la question" id="questionSimple" name="questionSimple" form="formQuestion"/><input type="text" placeholder="Entrer la reponse" name="reponse" class="reponse" form="formQuestion" /><input type="submit" value="envoyer"  form="formQuestion"/>';
+
+	    var qcm = '<br> <textarea placeholder="Ajouter une question" name="questionQcm" form="formQuestion"/> <br>image : (optionnel)<input type = "file" name = "fichier" size = "500" form="formQuestion" /> <br> <input type="text" name="correctQcm" placeholder="Bonne r&#xE9;ponse" form="formQuestion" /><br><input type="text" name="notCorrectQcm1" placeholder="Mauvaise r&#xE9;ponse 1" form="formQuestion"/> <br> <input type="text" name="notCorrectQcm2" placeholder="Mauvaise r&#xE9;ponse 2" form="formQuestion"/> <br> <input type="submit" value="Ajouter Qcm" form="formQuestion"/><br>';
+	    var questionSimple = '<br> <input type="text" placeholder="Entrer la question" id="questionSimple" name="questionSimple" form="formQuestion"/> <br> image : (optionnel) <input type = "file" name = "fichier" size = "500" form="formQuestion"  /> <br> <input type="text" placeholder="Entrer mots cl&#xE9;s, Maximum 10, le reste sera ignor&#xE9;" name="reponse" class="reponse" form="formQuestion" /> <br> Pourcentage de mots cl&#xE9;s pour valider :<select name="pourcentageNeed" form="formQuestion"> <option value="25">25%</option>  <option value="50">50%</option> <option value="75">75%</option> <option value="100">100%</option></select> <br> <input type="submit" value="Ajouter question"  form="formQuestion"/><br>';
+
 	    $.ajax({
 	        url : '/questionnaire',
 	        data: type,
 	        success: function() {
 	           switch(type) {
 	           	case "QCM":
-	           		$('#questionnaire').append(qcm);
+	           		$('#afficheQuestionnaire').before(qcm);
 	        	break;
 	           	case "QUESTION_SIMPLE":
-	           		$('#questionnaire').append(questionSimple);
+	           		$('#afficheQuestionnaire').before(questionSimple);
 	        	break;
 	           	default:
 	           }

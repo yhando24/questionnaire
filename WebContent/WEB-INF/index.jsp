@@ -8,102 +8,242 @@
 </head>
 <body>
 	<section id="home">
-	<aside>
-	<!-- RAJOUT DE CATEGORY -->
-<c:choose>
-<c:when test="${empty user }">
-<c:import url="/resources/fragments/login.jsp" /> 
-</c:when>
+
+
+		<aside>
+			<!-- RAJOUT DE CATEGORY -->
+			<c:choose>
 
 
 
-</c:choose>
-
-	<c:import url="/resources/fragments/addCategory.jsp" />
-	<c:import url="/resources/fragments/addQuestionnaire.jsp" />
-
-	<!-- RAJOUT DE QUESTIONNAIRE   -->
-
-	
-
-	</aside>
-	<nav>
-		<a style="background-color:rgb(75, 45, 162)" href='<c:url value="home" />'>All</a>
-		<c:forEach items="${categories}" var="category">
-		<c:choose>
-			
-			
-				<c:when test="${categoryid == category.id}">
-				<form method="post" action="<c:url value='/editCategory?id=${categoryid }'/>">
-	
-						
-					<input type="text" value="${category.name}"
-							name="category-name" />
-						<select name="category-color" >
-	<option value="" selected disabled>Couleur</option>
-	<option style="background-color:rgb(59, 153, 217)" value="rgb(59, 153, 217)" >bleu</option>
-	<option style="background-color:rgb(56, 202, 117)" value="rgb(56, 202, 117)" >vert</option>
-	<option style="background-color:rgb(213, 72, 62)" value="rgb(213, 72, 62)" >rouge</option>
-	<option style="background-color:rgb(223, 123, 47)" value="rgb(223, 123, 47)" >orange</option>
-	<option style="background-color:rgb(253, 203, 46)" value="rgb(253, 203, 46)" >jaune</option>
-	<option style="background-color:rgb(145, 86, 168)" value="rgb(145, 86, 168)" >magenta</option>
-	<option style="background-color:rgb(119, 48, 44)" value="rgb(119, 48, 44)" >marron</option>
-	<option style="background-color:rgb(41, 41, 41)" value="rgb(41, 41, 41)" >noir</option>
-
-			</select>
-		
+				<c:when test="${empty user}">
+					<%-- <c:import url='<c:url value="/resources/fragments/login.jsp" />' /> --%>
+					<c:if test="${actionName == 'home' || actionName == 'categorie' }">
+					<c:import url="/resources/fragments/login.jsp" /><a href="<c:url value='/signIn'/>"> <input type="button" value="Inscription"/></a>
 					
-						<input type="submit" value="go" />
+					</c:if>
+					<c:if test="${actionName == 'signIn'}">
+					<c:import url="/resources/fragments/signin.jsp" />
+					</c:if>
 					
-					
-					</form>
-
 
 				</c:when>
-				<c:otherwise>	<a style="background-color:${category.color}" href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
-						<a href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a>
-							<a href='<c:url value="deleteCategory?categorie=${category.id}" /> '>&#10006;</a>
+				<c:otherwise>
+				<c:if test="${!empty user }">
+					Bienvenue ${user.firstname} ${user.lastname}
+					<a href="<c:url value='/logOut'/>"><input type="button"
+						value="Deconnection" /></a>
+				</c:if>
+
+
+				<c:if test="${user.role == 'admin' }">
+
+					<c:import url="/resources/fragments/addCategory.jsp" />
+					<c:import url="/resources/fragments/addQuestionnaire.jsp" />
+				</c:if>
 				</c:otherwise>
-		</c:choose>						
-		</c:forEach>
-	</nav>
+			</c:choose>
+			<!-- RAJOUT DE QUESTIONNAIRE   -->
+		</aside>
+		<nav>
+		
+			<article style="background-color: rgb(75, 45, 162)">
+				<a href='<c:url value="/home" />'>All</a>
+			</article>
+		
+			<c:forEach items="${categories}" var="category">
+				<c:choose>
+					<c:when test="${categoryid == category.id}">
+						<article>
+							<form method="post"
+								action="<c:url value='/editCategory?id=${categoryid }'/>">
+								<select name="category-color" required>
+									<option value="" selected disabled>Couleur</option>
+									<option style="background-color: rgb(59, 153, 217)"
+										value="rgb(59, 153, 217)">bleu</option>
+									<option style="background-color: rgb(56, 202, 117)"
+										value="rgb(56, 202, 117)">vert</option>
+									<option style="background-color: rgb(213, 72, 62)"
+										value="rgb(213, 72, 62)">rouge</option>
+									<option style="background-color: rgb(223, 123, 47)"
+										value="rgb(223, 123, 47)">orange</option>
+									<option style="background-color: rgb(253, 203, 46)"
+										value="rgb(253, 203, 46)">jaune</option>
+									<option style="background-color: rgb(145, 86, 168)"
+										value="rgb(145, 86, 168)">magenta</option>
+									<option style="background-color: rgb(119, 48, 44)"
+										value="rgb(119, 48, 44)">marron</option>
+									<option style="background-color: rgb(41, 41, 41)"
+										value="rgb(41, 41, 41)">noir</option>
+									<input type="text" value="${category.name}"
+									name="category-name" required/>
+								</select> <input type="submit" value="Editer" />
+							</form>
+						</article>
+					</c:when>
+					<c:otherwise>
+						<article style="background-color:${category.color}">
+							<a href='<c:url value="categorie?categorie=${category.id}" />'>${category.name}</a>
+
+							<c:if test="${user.role == 'admin' }">
+								<a title="Editer" href='<c:url value="editCategory?categorie=${category.id}" /> '>&#128393;</a>
+								<a title="Supprimer" href='<c:url value="deleteCategory?categorie=${category.id}" /> '>&#10006;</a>							
+
+							</c:if>
+						</article>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		
+		</nav>
+		
 	</section>
+	<c:if test="${actionName == 'home' }">
 	<section id="listCategorie">
-	
+		<form method="POST"
+			action="<c:url value='/editQuestionnaire?id=${questionnaireid}'/>"
+			id="form-editquestionnaire"></form>
+			
+			
+			<!-- RECHERCHE PAR CATEGORIE -->
 		<c:choose>
+						
 			<c:when test="${ !empty categorie}">
 				<c:forEach items="${categorie.questionnaires}" var="questionnaire">
-					<article>
-						<a
-							href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-							<h2 style="background-color:${categorie.color}">${categorie.name}</h2>
-							<h3>${questionnaire.name}</h3>
-							<p>${questionnaire.description}</p>
-						</a>
+					<c:if test="${questionnaireid != questionnaire.id}">
+						<article> 
+							<h2 style="background-color:${categorie.color}">${categorie.name}
 					
-					</article>
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${categories}" var="category">
-					<c:forEach items="${category.questionnaires}" var="questionnaire">
-						<article>
-							<a
-								href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
-								<h2 style="background-color:${category.color}">${category.name}</h2>
+							<c:if test="${user.role == 'admin' }">
+								<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+								<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+
+							</c:if>
+	
+							</h2>
+								<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
 								<h3>${questionnaire.name}</h3>
 								<p>${questionnaire.description}</p>
-							</a>
+								<c:forEach items="${questionnaire.users}" var="userquestionnaire" varStatus="theCount">
+								
+								<c:if test="${userquestionnaire.id == user.id}">
+								<h4>Questionnaire Effectué</h4>
+								
+								</c:if>
+								
+								</c:forEach>
+								
+								</a>	
+								
+							
+					
 						</article>
+					</c:if>
+					<c:if test="${questionnaireid == questionnaire.id}">
+						<article>
+							<input type="submit" value="Editer" form="form-editquestionnaire" />
+							<select name="questionnaire-category" id="questionnaire-category"
+								form="form-editquestionnaire" required>
+								<option value="" selected disabled>Cat&eacute;gorie</option>
+								<c:forEach items="${categories}" var="category">
+									<option style="background-color:${category.color}"
+										value="${category.id}">${category.name}</option>
+								</c:forEach>
+							</select> <input type="text" value="${questionnaire.name}"
+								name="questionnaire-name" form="form-editquestionnaire" required/> <input
+								type="text" value="${questionnaire.description}"
+								name="questionnaire-description" form="form-editquestionnaire" required/>
+								
+						</article>
+					</c:if>
+				</c:forEach>
+			</c:when>
+
+
+			
+			<c:otherwise>
+			<!-- TOUT LES CATEGORIES -->
+				<c:forEach items="${categories}" var="category">
+					<c:forEach items="${category.questionnaires}" var="questionnaire">
+						<c:if test="${questionnaireid != questionnaire.id}">
+							<article>
+								<h2 style="background-color:${category.color}">${category.name}
+
+								<c:if test="${user.role == 'admin' }">
+									<a title="Supprimer" href="<c:url value='deleteQuestionnaire?id=${questionnaire.id}'/>">&#10006;</a>
+									<a title="Editer" href="<c:url value='editQuestionnaire?id=${questionnaire.id}'/>">&#128393;</a>
+
+								</c:if>
+								</h2>
+								<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<h3>${questionnaire.name}</h3>
+								<p>${questionnaire.description}</p>
+								<c:forEach items="${questionnaire.users}" var="userquestionnaire" varStatus="theCount">
+								
+								<c:if test="${userquestionnaire.id == user.id}">
+								<h4>Questionnaire Effectue</h4>
+								</c:if>
+							
+								</c:forEach>
+								
+								</a>
+							</article>
+						</c:if>
+						<c:if test="${questionnaireid == questionnaire.id}">
+							<article class="edit">
+								<select name="questionnaire-category"
+									id="questionnaire-category" form="form-editquestionnaire">
+									<option value="" selected disabled>Cat&eacute;gorie</option>
+									<c:forEach items="${categories}" var="category">
+										<option style="background-color:${category.color}"
+											value="${category.id}">${category.name}</option>
+									</c:forEach>
+								</select> <input type="text" value="${questionnaire.name}"
+									name="questionnaire-name" form="form-editquestionnaire" /> <input
+									type="text" value="${questionnaire.description}"
+									name="questionnaire-description" form="form-editquestionnaire" /><br />
+								${editquestionnaireerror}<br>
+								<input type="submit" value="Editer"
+									form="form-editquestionnaire" />
+							</article>
+						</c:if>
 					</c:forEach>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-	
+
 
 	</section>
-
-
+	</c:if>
+	
+	<c:if test="${actionName == 'checkProfil' }">
+	<c:if test="${user.role == 'admin' }">
+	Questionnaire effectué par ${usertocheck.firstname } ${usertocheck.lastname } : 
+	<section>
+		<c:forEach items="${usertocheck.questionnaires}" var="questionnaire">
+					
+					
+							<article>
+					
+							<h2 style="background-color:${questionnaire.category.color}">${questionnaire.category.name}</h2>	
+							
+							
+								<a href='<c:url value="questionnaire?questionnaire=${questionnaire.id}" />'>
+								<h3>${questionnaire.name}</h3>
+								<p>${questionnaire.description}</p>
+							
+								
+								</a>
+								
+							</article>
+					
+				
+					</c:forEach>
+	</section>			
+	</c:if>
+	</c:if>
+	
+	
 
 
 

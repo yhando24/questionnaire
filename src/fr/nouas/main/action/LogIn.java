@@ -39,6 +39,7 @@ public class LogIn extends Action {
                     User user = (User) q.getSingleResult();
                     // on envoi lutilisateur
                     request.getSession().setAttribute("user", user);
+                    request.getSession().setAttribute("userid", user.getId());
                     
                     
                     request.getSession().removeAttribute("usererror");

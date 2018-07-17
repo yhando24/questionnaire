@@ -2,6 +2,7 @@ package fr.nouas.beans;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,19 +27,29 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(length=150, nullable=false)
+	@Column( nullable=false)
 	private String question;
+	
+//	@Lob
+//    @Column(name="BOOK_IMAGE", nullable=true, columnDefinition="mediumblob")
+//    private byte[] image;
+// 
+	@Column(length=150, nullable=true)
+	private String image;
 	
 
 	@OneToOne
 	private Reponse bonneReponse;
 	
+	@Column(length=150, nullable=true)
+	private int pourcentageNeed;
 
 
-	@OneToMany(mappedBy="question")
+	@OneToMany(mappedBy="question",cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, orphanRemoval = true)
+
 	private List <Reponse> reponses;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Questionnaire questionnaire;
 	
 	@Enumerated(EnumType.STRING)
@@ -65,7 +77,7 @@ public class Question {
 
 
 
-	public Question(String question,	TypeQuestion type, Reponse bonneReponse, List<Reponse> reponses,  Questionnaire questionnaire) {
+	public Question(String question, TypeQuestion type, Reponse bonneReponse, List<Reponse> reponses,  Questionnaire questionnaire) {
 		super();
 		this.question = question;
 		this.type = type;
@@ -91,8 +103,26 @@ public class Question {
 		return id;
 	}
 
+	 public String getImage() {
+	        return image;
+	    }
+	 
+	    public void setImage(String image) {
+	        this.image = image;
+	    }
 	
-	
+	public int getPourcentageNeed() {
+		return pourcentageNeed;
+	}
+
+
+
+	public void setPourcentageNeed(int pourcentageNeed) {
+		this.pourcentageNeed = pourcentageNeed;
+	}
+
+
+
 	public Questionnaire getQuestionnaire() {
 		return questionnaire;
 	}
@@ -123,6 +153,13 @@ public class Question {
 	}
 	public void addReponse(Reponse reponse) {
 		this.reponses.add(reponse);
+	}
+	public void deleteReponse(Reponse reponse) {
+		this.reponses.remove(reponse);
+	}
+	
+	public void deleteAllReponses() {
+		this.reponses.removeAll(getReponses());
 	}
 
 	public TypeQuestion getType() {

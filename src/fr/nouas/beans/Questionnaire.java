@@ -1,14 +1,19 @@
 package fr.nouas.beans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -23,14 +28,31 @@ public class Questionnaire {
 	private String name;
 	
 	@Column(length=150, nullable=true)
+	private int version;
+	
+	@Column(length=150, nullable=true)
 	private String description;
 
-
-	@OneToMany(fetch = FetchType.EAGER,cascade=CascadeType.PERSIST,mappedBy="questionnaire")
-	private List <Question> questions;
-
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@JoinTable(
+			name="questionnaires_users",
+			joinColumns=@JoinColumn(name="questionnaire_id", referencedColumnName="id",foreignKey=@ForeignKey(name="fk_questionnaire")),
+			inverseJoinColumns=@JoinColumn(name="user_id", referencedColumnName="id", foreignKey=@ForeignKey(name="fk_user")))
+			
+	@ManyToMany
+	private List <User> users = new ArrayList <User>();
+
+	@OneToMany(fetch = FetchType.EAGER, cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
+
+	private List <Question> questions;
+	
+	
+	
+	@OneToMany(cascade ={CascadeType.REMOVE, CascadeType.PERSIST }, mappedBy="questionnaire", orphanRemoval = true)
+
+	private List <Reponse> reponses;
+	
+	@ManyToOne
 	private Category category;
 	
 
@@ -50,9 +72,39 @@ public class Questionnaire {
 		this.description = description;
 		this.category = category;
 	}
-
+	
 	public int getId() {
 		return id;
+	}
+	
+	
+	
+	public List<User> getUsers() {
+		return users;
+	}
+	
+	public void addUser(User user) {
+		this.users.add(user);
+	}
+	
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+	public List<Reponse> getReponses() {
+		return reponses;
+	}
+
+	public void setReponses(List<Reponse> reponses) {
+		this.reponses = reponses;
 	}
 
 	public String getName() {
@@ -72,6 +124,9 @@ public class Questionnaire {
 	}
 	public void addQuestion(Question question) {
 		this.questions.add(question);
+	}
+	public void deleteQuestion(Question question) {
+		this.questions.remove(question);
 	}
 
 	public Category getCategory() {
