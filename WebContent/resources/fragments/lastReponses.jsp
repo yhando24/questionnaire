@@ -9,7 +9,7 @@
 
 <c:forEach items="${reponses}" var="reponse" varStatus="countreponse">
 	<c:if test="${countreponse.first }">
-	<c:if test="${questionnaire.version != 1 }">	<h4>Version de votre test : numéro ${reponse.version }</h4></c:if>
+	<c:if test="${questionnaire.version != 1 }">	<h4>Vous avez complété ${reponse.version } fois ce questionnaire <br />Il vous reste ${questionnaire.version - lastVersion} tentatives</h4></c:if>
 	</c:if>
 	<c:set var="nbQuestion" value="${nbQuestion + 1}" scope="page" />
 	<c:forEach items="${bonneReponses}" var="bonnereponse"
@@ -75,8 +75,7 @@
 				
 				
 				
-					</p>
-				
+			
 				
 					
 					
@@ -84,7 +83,7 @@
 				
 				
 		</c:forEach>
-		<h4>note : ${point * 100 / nbQuestion}%</h4> 
+		<h4>Réussite de la dernière tentative : ${point * 100 / nbQuestion} %</h4> 
 			<c:if test="${user.role == 'admin' }"> <input type="button" class="export" value="exporter" /> </c:if>
 			<br>
 				<c:if test="${user.role == 'admin' }"> 	
@@ -93,10 +92,10 @@
 		<c:if test="${user.role != 'admin' }">
 		<c:if test="${lastVersion < questionnaire.version }">
 		
-			<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'> Refaire le questionnaire</a>
+			<a title="refaire" href='<c:url value="/questionnaire?nextVersion=${reponse.version +1}&questionnaire=${questionnaire.id}" />'><input type="button" value="Refaire le questionnaire"/></a>
 		</c:if>
 		</c:if>
-		<c:if test="${questionnaire.version != 1 }"><form
+		<c:if test="${questionnaire.version != 1 && user.role == 'admin'}"><form
 		action="<c:url value='/questionnaire?questionnaire=${questionnaire.id}"'/>"
 		method="POST" id="SelectVersion"></form>
 		
