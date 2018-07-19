@@ -36,7 +36,7 @@
 				</c:if>
 
 
-				<c:if test="${user.role == 'admin' }">
+				<c:if test="${(user.role == 'admin') || (user.role == 'superAdmin')}">
 										
 					<c:if test="${ user.role == 'superAdmin' }">
 						<c:import url="/resources/fragments/addCategory.jsp" />
